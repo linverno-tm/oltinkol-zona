@@ -200,13 +200,12 @@
   $$("#cv, [data-money]").forEach(el => liveFmt(el, v => { const d = v.replace(/\D/g, "").replace(/^0+(?=\d)/, "").slice(0, 12); return d ? fmt(+d) : ""; }));
 
   /* ---------- soha yangiliklari: uzcharm.uz dan jonli ---------- */
-  const soha = $("#soha");
+  const soha = $("#soha-list");
   if (soha && S.soha) fetch(S.soha + "?t=" + Math.floor(Date.now() / 6e5), { cache: "no-store" }).then(r => r.ok ? r.json() : null).then(j => {
     if (!j || !j.items || !j.items.length) return;
     const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
     const ext = soha.querySelector(".ico") ? soha.querySelector(".ico").outerHTML : "";
-    const fdate = d => { const [y, m, dd] = d.split("-"); return S.months ? (S.lang === "uz" ? `${+dd}-${S.months[m - 1]}, ${y}` : `${+dd} ${S.months[m - 1]} ${y}`) : `${dd}.${m}.${y}`; };
-    soha.innerHTML = j.items.map(n => `<li><a href="${esc(n.url[S.lang] || n.url.uz)}" target="_blank" rel="noopener">${n.img ? `<img src="${esc(n.img)}" alt="" loading="lazy" referrerpolicy="no-referrer">` : '<i class="noimg"></i>'}<span><time class="num" datetime="${esc(n.d)}">${fdate(n.d)}</time><b>${esc(n.t[S.lang] || n.t.uz)}</b></span>${ext}</a></li>`).join("");
+    soha.innerHTML = j.items.map(n => `<li><a href="${esc(n.url[S.lang] || n.url.uz)}" target="_blank" rel="noopener"><time class="num" datetime="${esc(n.d)}">${n.d.slice(8, 10)}.${n.d.slice(5, 7)}</time><span>${esc(n.t[S.lang] || n.t.uz)}</span>${ext}</a></li>`).join("");
     after(soha);
   }).catch(() => {});
 
