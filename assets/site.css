@@ -47,7 +47,6 @@ img, svg { max-width: 100%; }
 .btn.lg { padding: 16px 28px; font-size: 17.5px; border-radius: 14px; }
 
 /* ---------- sarlavha ---------- */
-.flagline { height: 4px; background: linear-gradient(90deg, var(--orange) 0 33%, var(--navy) 33% 66%, var(--cognac) 66%); }
 header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: rgba(255,255,255,.9); backdrop-filter: saturate(1.6) blur(14px); -webkit-backdrop-filter: saturate(1.6) blur(14px); border-bottom: 1px solid var(--line); }
 header.top .wrap { display: flex; align-items: center; gap: 22px; height: 76px; }
 .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
