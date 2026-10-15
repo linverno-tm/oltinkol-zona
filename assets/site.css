@@ -780,3 +780,4 @@ html.gray { filter: grayscale(1); }
 .fs-list li[aria-selected="true"]::after { content: ""; width: 18px; height: 18px; flex: none;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FF8C00' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / contain no-repeat; }
 @media (prefers-reduced-motion: reduce) { .fs-list { animation: none; } .fs-chev { transition: none; } }
+.fs-list li { user-select: none; -webkit-user-select: none; }

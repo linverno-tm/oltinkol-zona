@@ -239,7 +239,8 @@
     const pick = i => { if (sel.selectedIndex !== i) { sel.selectedIndex = i; sel.dispatchEvent(new Event("change", { bubbles: true })); } sync(); close(true); };
     btn.addEventListener("click", () => list.hidden ? open() : close());
     btn.addEventListener("keydown", e => { if (["ArrowDown", "ArrowUp", "Enter", " "].includes(e.key)) { e.preventDefault(); open(); } });
-    list.addEventListener("click", e => { const li = e.target.closest("li"); if (li) pick(+li.dataset.i); });
+    list.addEventListener("click", e => { e.preventDefault(); e.stopPropagation(); const li = e.target.closest("li"); if (li) pick(+li.dataset.i); });   // label ichida: bosish tugmaga qaytib, ro’yxatni qayta ochmasin
+    list.addEventListener("mousedown", e => e.preventDefault());   // matn belgilanmasin, fokus ro’yxatda qolsin
     list.addEventListener("mousemove", e => { const li = e.target.closest("li"); if (li && +li.dataset.i !== act) mark(+li.dataset.i); });
     let typed = "", tt;
     list.addEventListener("keydown", e => {
