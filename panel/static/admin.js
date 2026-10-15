@@ -17,8 +17,8 @@
 
   // jonli qidiruv — birinchi harfdan
   $$("[data-filter]").forEach(inp => inp.addEventListener("input", () => {
-    const q = inp.value.trim().toLowerCase();
-    $$(inp.dataset.filter).forEach(r => r.hidden = q && !r.textContent.toLowerCase().includes(q));
+    const q = inp.value.trim().toLowerCase(), qc = toCyr(q).toLowerCase();   // panel kirillda bo'lsa ham lotincha qidiruv topadi
+    $$(inp.dataset.filter).forEach(r => { const t = r.textContent.toLowerCase(); r.hidden = q && !t.includes(q) && !t.includes(qc); });
   }));
 
   // pul yozilayotganda o'zi tartiblanadi: 1 000 000
