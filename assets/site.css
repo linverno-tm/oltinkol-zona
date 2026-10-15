@@ -385,7 +385,15 @@ footer .b .wrap { display: flex; gap: 8px 24px; flex-wrap: wrap; padding-block: 
 .drawer a.nl { padding: 13px 8px; font-size: 19px; font-weight: 600; border-bottom: 1px solid var(--line); }
 .drawer .btn { margin-top: 16px; }
 .drawer .langs { align-self: flex-start; margin-top: 16px; }
-.toast { position: fixed; left: 50%; bottom: calc(96px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 90; background: var(--navy); color: #fff; padding: 11px 18px; border-radius: 12px; font-size: 15px; max-width: calc(100% - 32px); text-align: center; }
+/* xabar har qanday fonda (ko'k bo'limda ham) ko'rinsin: oq fon, ko'k matn, yashil belgi, soya */
+.toast { position: fixed; left: 50%; bottom: calc(96px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 90; display: flex; align-items: center; gap: 10px;
+  background: #fff; color: var(--navy); font-weight: 700; padding: 12px 20px 12px 14px; border-radius: 14px; font-size: 15px; max-width: calc(100% - 32px); text-align: left;
+  border: 1.5px solid var(--line); box-shadow: 0 12px 32px rgba(10, 18, 60, .28), 0 2px 6px rgba(10, 18, 60, .12); animation: toastIn .22s ease-out; }
+.toast::before { content: "✓"; flex: none; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: #1E9E57; color: #fff; font-size: 14px; font-weight: 800; }
+.toast[hidden] { display: none; }
+.toast.err::before { content: "!"; background: var(--terra); }
+@keyframes toastIn { from { opacity: 0; transform: translate(-50%, 8px); } }
+@media (prefers-reduced-motion: reduce) { .toast { animation: none; } }
 .mbar { display: none; }
 
 /* ---------- moslashuv ---------- */

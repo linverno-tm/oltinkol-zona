@@ -34,8 +34,8 @@
   /* ---------- menyu ---------- */
   const lock = () => { document.body.style.overflow = !$("#drawer").hidden ? "hidden" : ""; };
   const closeDrawer = () => { $("#drawer").hidden = true; $("#burger").setAttribute("aria-expanded", "false"); lock(); };
-  function toast(t) { const el = $("#toast"); el.textContent = cyr ? toCyr(t) : t; el.hidden = false; clearTimeout(toast.h); toast.h = setTimeout(() => el.hidden = true, 2400); }
-  function copy(text) { navigator.clipboard.writeText(text).then(() => toast(T.copied), () => toast(T.copy_fail)); }
+  function toast(t, err) { const el = $("#toast"); el.textContent = cyr ? toCyr(t) : t; el.classList.toggle("err", !!err); el.hidden = false; clearTimeout(toast.h); toast.h = setTimeout(() => el.hidden = true, 2400); }
+  function copy(text) { navigator.clipboard.writeText(text).then(() => toast(T.copied), () => toast(T.copy_fail, true)); }
 
   /* ---------- kredit: 20% / 18% / 5 yil, 1-yil faqat foiz, keyin 48 oy teng to'lov ---------- */
   function credit(v) {
