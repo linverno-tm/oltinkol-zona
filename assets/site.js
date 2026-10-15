@@ -179,6 +179,17 @@
     });
   })();
 
+  /* ---------- soha yangiliklari: uzcharm.uz dan jonli ---------- */
+  const soha = $("#soha");
+  if (soha && S.soha) fetch(S.soha + "?t=" + Math.floor(Date.now() / 6e5), { cache: "no-store" }).then(r => r.ok ? r.json() : null).then(j => {
+    if (!j || !j.items || !j.items.length) return;
+    const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+    const ext = soha.querySelector(".ico") ? soha.querySelector(".ico").outerHTML : "";
+    const fmt = d => { const [y, m, dd] = d.split("-"); return S.months ? (S.lang === "uz" ? `${+dd}-${S.months[m - 1]}, ${y}` : `${+dd} ${S.months[m - 1]} ${y}`) : `${dd}.${m}.${y}`; };
+    soha.innerHTML = j.items.map(n => `<li><a href="${esc(n.url[S.lang] || n.url.uz)}" target="_blank" rel="noopener">${n.img ? `<img src="${esc(n.img)}" alt="" loading="lazy" referrerpolicy="no-referrer">` : '<i class="noimg"></i>'}<span><time class="num" datetime="${esc(n.d)}">${fmt(n.d)}</time><b>${esc(n.t[S.lang] || n.t.uz)}</b></span>${ext}</a></li>`).join("");
+    after(soha);
+  }).catch(() => {});
+
   let wantCyr = location.hash === "#cyr";
   try { wantCyr = wantCyr || localStorage.getItem("oz_cyr") === "1"; } catch (e) {}
   if (S.lang === "uz" && wantCyr) setCyr(true);
