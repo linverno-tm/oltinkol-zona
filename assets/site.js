@@ -179,14 +179,34 @@
     });
   })();
 
+  /* ---------- raqamlar yozilayotganda o'zi tartiblanadi: 1 000 000, +998 99 107 55 08 ---------- */
+  function liveFmt(el, format) {
+    el.addEventListener("input", () => {
+      const old = el.value, pos = el.selectionStart, before = old.slice(0, pos).replace(/\D/g, "").length, atEnd = pos === old.length;
+      el.value = format(old);
+      if (atEnd || document.activeElement !== el) return;
+      let i = 0, n = 0; const shift = el.value.replace(/\D/g, "").length - old.replace(/\D/g, "").length;
+      while (i < el.value.length && n < before + Math.max(0, shift)) { if (/\d/.test(el.value[i])) n++; i++; }
+      el.setSelectionRange(i, i);
+    });
+  }
+  const telFmt = v => {
+    let d = v.replace(/\D/g, "");
+    if (!d.startsWith("998")) d = "998" + d;
+    d = d.slice(0, 12);
+    return "+998 " + [d.slice(3, 5), d.slice(5, 8), d.slice(8, 10), d.slice(10, 12)].filter(Boolean).join(" ");
+  };
+  $$('input[type="tel"]').forEach(el => liveFmt(el, telFmt));
+  $$("#cv, [data-money]").forEach(el => liveFmt(el, v => { const d = v.replace(/\D/g, "").replace(/^0+(?=\d)/, "").slice(0, 12); return d ? fmt(+d) : ""; }));
+
   /* ---------- soha yangiliklari: uzcharm.uz dan jonli ---------- */
   const soha = $("#soha");
   if (soha && S.soha) fetch(S.soha + "?t=" + Math.floor(Date.now() / 6e5), { cache: "no-store" }).then(r => r.ok ? r.json() : null).then(j => {
     if (!j || !j.items || !j.items.length) return;
     const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
     const ext = soha.querySelector(".ico") ? soha.querySelector(".ico").outerHTML : "";
-    const fmt = d => { const [y, m, dd] = d.split("-"); return S.months ? (S.lang === "uz" ? `${+dd}-${S.months[m - 1]}, ${y}` : `${+dd} ${S.months[m - 1]} ${y}`) : `${dd}.${m}.${y}`; };
-    soha.innerHTML = j.items.map(n => `<li><a href="${esc(n.url[S.lang] || n.url.uz)}" target="_blank" rel="noopener">${n.img ? `<img src="${esc(n.img)}" alt="" loading="lazy" referrerpolicy="no-referrer">` : '<i class="noimg"></i>'}<span><time class="num" datetime="${esc(n.d)}">${fmt(n.d)}</time><b>${esc(n.t[S.lang] || n.t.uz)}</b></span>${ext}</a></li>`).join("");
+    const fdate = d => { const [y, m, dd] = d.split("-"); return S.months ? (S.lang === "uz" ? `${+dd}-${S.months[m - 1]}, ${y}` : `${+dd} ${S.months[m - 1]} ${y}`) : `${dd}.${m}.${y}`; };
+    soha.innerHTML = j.items.map(n => `<li><a href="${esc(n.url[S.lang] || n.url.uz)}" target="_blank" rel="noopener">${n.img ? `<img src="${esc(n.img)}" alt="" loading="lazy" referrerpolicy="no-referrer">` : '<i class="noimg"></i>'}<span><time class="num" datetime="${esc(n.d)}">${fdate(n.d)}</time><b>${esc(n.t[S.lang] || n.t.uz)}</b></span>${ext}</a></li>`).join("");
     after(soha);
   }).catch(() => {});
 
