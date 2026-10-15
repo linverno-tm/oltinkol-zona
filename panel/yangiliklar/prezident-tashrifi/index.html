@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Yangilikni tahrirlash · Oltinko‘l zona</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="/oltinkol-zona/panel/static/admin.css">
+</head>
+<body>
+<div class="demo-bar">Bu — boshqaruv panelining <b>namunasi</b>. O‘zgarishlar saqlanmaydi; haqiqiy panelda har bir saqlash bir necha soniyada saytga chiqadi.</div>
+
+<header class="top">
+  <button class="burger" id="burger" aria-label="Menyu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <a class="brand" href="/oltinkol-zona/panel/"><b>OLTINKO‘L</b><small>Boshqaruv paneli</small></a>
+  <div class="tools">
+    <span class="pub" id="pub" data-h="tayyor" title="Sayt holati">Sayt yangi</span>
+    <button class="chip" id="cyr" type="button">Кирилл</button>
+    <a class="chip" href="https://linverno-tm.github.io/oltinkol-zona/" target="_blank" rel="noopener">Saytni ochish ↗</a>
+  </div>
+</header>
+<div class="shell">
+  <nav class="side" id="side">
+    
+    <a href="/oltinkol-zona/panel/" class="">Bosh sahifa</a>
+    <a href="/oltinkol-zona/panel/arizalar/" class="">Arizalar <i class="badge">2</i></a>
+    <a href="/oltinkol-zona/panel/yangiliklar/" class="on">Yangiliklar</a>
+    <a href="/oltinkol-zona/panel/dokonlar/" class="">Do‘konlar</a>
+    <a href="/oltinkol-zona/panel/vakansiyalar/" class="">Ish o‘rinlari</a>
+    <a href="/oltinkol-zona/panel/rezidentlar/" class="">Rezidentlar</a>
+    <a href="/oltinkol-zona/panel/rahbariyat/" class="">Rahbariyat</a>
+    <hr>
+    <a href="/oltinkol-zona/panel/foydalanuvchilar/" class="">Xodimlar</a>
+    <a href="/oltinkol-zona/panel/parol/" class="">Parolni o‘zgartirish</a>
+    <form method="post" action="/oltinkol-zona/panel/chiqish/"><input type="hidden" name="csrf" value="namuna"><button class="link">Chiqish (Direksiya (namuna))</button></form>
+  </nav>
+  <main class="main">
+    
+    
+    
+
+<div class="head"><h1>Yangilikni tahrirlash</h1><a class="link" href="/oltinkol-zona/panel/yangiliklar/">← Ro‘yxatga</a></div>
+<form method="post" enctype="multipart/form-data" class="card form">
+  <input type="hidden" name="csrf" value="namuna">
+  <div class="tabs" role="tablist"><button type="button" role="tab" data-tab="uz" aria-selected="true">O‘zbekcha</button><button type="button" role="tab" data-tab="ru" aria-selected="false">Ruscha <small>ixtiyoriy</small></button><button type="button" role="tab" data-tab="en" aria-selected="false">Inglizcha <small>ixtiyoriy</small></button></div>
+  
+  <div class="tab" data-pane="uz">
+    
+    <label>Sarlavha *<input name="t_uz" value="Davlatimiz rahbari zonadagi loyihalar bilan tanishdi" maxlength="160" required></label>
+    <label>Qisqacha (1–2 gap) *<textarea name="l_uz" rows="2" maxlength="400" required>Prezident Andijon viloyatiga tashrifi chog‘ida Oltinko‘l tumanidagi charm-poyabzal kichik sanoat zonasida bo‘ldi.</textarea></label>
+    <label>To‘liq matn <small>xatboshilar orasida bitta bo‘sh qator</small><textarea name="b_uz" rows="9">Davlatimiz rahbariga zonada amalga oshirilayotgan loyihalar haqida ma’lumot berildi. Zona vodiydagi charm mahsulotlari va tayyor poyabzal ishlab chiqaruvchi tadbirkorlar, kosiblar hamda klasterlarni yagona majmuaga birlashtiradi.
+
+Majmua 10,1 gektar maydonni egallaydi. Unda umumiy quvvati 150 milliard so‘m bo‘lgan 17 ta loyiha amalga oshirilmoqda, 2 500 ta yangi ish o‘rni yaratildi.
+
+Tadbirkorlarga qurilgan bino va inshootlarni bo‘lib to‘lash sharti bilan sotish kabi imtiyozlar berilgan.</textarea></label>
+  </div>
+  
+  <div class="tab" data-pane="ru" hidden>
+    <p class="muted">Bo‘sh qoldirsangiz, saytning rus tilidagi qismida o‘zbekcha matn chiqadi.</p>
+    <label>Sarlavha<input name="t_ru" value="Глава государства ознакомился с проектами зоны" maxlength="160" ></label>
+    <label>Qisqacha (1–2 gap)<textarea name="l_ru" rows="2" maxlength="400" >В ходе визита в Андижанскую область Президент посетил малую промышленную зону кожи и обуви Алтынкульского района.</textarea></label>
+    <label>To‘liq matn <small>xatboshilar orasida bitta bo‘sh qator</small><textarea name="b_ru" rows="9">Главе государства представили проекты, реализуемые в зоне. Зона объединяет предпринимателей, ремесленников и кластеры долины, производящих кожаные изделия и готовую обувь.
+
+Комплекс занимает 10,1 гектара. Здесь реализуются 17 проектов общей мощностью 150 млрд сумов, создано 2 500 новых рабочих мест.
+
+Предпринимателям предоставлены льготы, в том числе продажа построенных зданий и сооружений с рассрочкой платежа.</textarea></label>
+  </div>
+  
+  <div class="tab" data-pane="en" hidden>
+    <p class="muted">Bo‘sh qoldirsangiz, saytning ingliz tilidagi qismida o‘zbekcha matn chiqadi.</p>
+    <label>Sarlavha<input name="t_en" value="The President visited the zone’s projects" maxlength="160" ></label>
+    <label>Qisqacha (1–2 gap)<textarea name="l_en" rows="2" maxlength="400" >During his visit to the Andijan Region, the President toured the Oltinkul Leather and Footwear Small Industrial Zone.</textarea></label>
+    <label>To‘liq matn <small>xatboshilar orasida bitta bo‘sh qator</small><textarea name="b_en" rows="9">The President was briefed on the projects under way in the zone. It brings together the valley’s leather goods and footwear makers, craftsmen and clusters in a single complex.
+
+The complex covers 10.1 hectares and hosts 17 projects with a combined capacity of 150 billion soums; 2,500 new jobs have been created.
+
+Entrepreneurs receive incentives, including the purchase of completed buildings and facilities in instalments.</textarea></label>
+  </div>
+  
+  <div class="row3">
+    <label>Sana<input type="date" name="d" value="2026-09-23"></label>
+    <label>Turi<select name="tag"><option value="yangilik" selected>Yangilik</option><option value="tashrif">Tashrif</option><option value="eksport">Eksport</option><option value="kadrlar">Kadrlar</option><option value="elon">E’lon</option><option value="tadbir">Tadbir</option></select></label>
+    <label>Manba havolasi <small>ixtiyoriy</small><input name="src" type="url" value="https://uza.uz/ar/posts/oltinkolda-charm-poyabzal-sanoatining-toliq-ishlab-chiqarish-zanjiri-yaratilmoqda_912642" placeholder="https://…"></label>
+  </div>
+  <div class="photo">
+    <img src="https://linverno-tm.github.io/oltinkol-zona/https://cdn.uza.uz/2026/09/23/17/28/bIVqs8LJDs7AvRHA77giPwEkVpQue4MC_normal.jpg" alt=""><label class="check"><input type="checkbox" name="rasm_ochir" value="1"> Rasmni olib tashlash</label>
+    <label>Rasm almashtirish <small>JPG/PNG, telefondan ham bo‘ladi</small><input type="file" name="rasm" accept="image/*"></label>
+  </div>
+  
+  <fieldset class="send"><legend>Saqlangach yuborish</legend>
+    <label class="check"><input type="checkbox" name="kanal" value="1"> Telegram kanalga</label>
+    <label class="check"><input type="checkbox" name="insta" value="1"> Instagram’ga <small>(rasm bo‘lsa)</small></label>
+  </fieldset>
+  
+  <div class="actions"><button class="btn">Saqlash</button><a class="btn ghost" href="/oltinkol-zona/panel/yangiliklar/">Bekor qilish</a></div>
+</form>
+
+
+<form method="post" action="/oltinkol-zona/panel/yangiliklar/prezident-tashrifi/ochir/" class="danger" data-confirm="Yangilik saytdan o‘chirilsinmi?">
+  <input type="hidden" name="csrf" value="namuna"><button class="btn red sm">Yangilikni o‘chirish</button></form>
+
+
+  </main>
+</div>
+
+<script src="/oltinkol-zona/panel/static/admin.js"></script>
+<script src="/oltinkol-zona/panel/static/demo.js"></script>
+</body>
+</html>

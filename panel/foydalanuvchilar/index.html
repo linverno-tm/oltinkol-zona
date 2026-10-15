@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Xodimlar · Oltinko‘l zona</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="/oltinkol-zona/panel/static/admin.css">
+</head>
+<body>
+<div class="demo-bar">Bu — boshqaruv panelining <b>namunasi</b>. O‘zgarishlar saqlanmaydi; haqiqiy panelda har bir saqlash bir necha soniyada saytga chiqadi.</div>
+
+<header class="top">
+  <button class="burger" id="burger" aria-label="Menyu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <a class="brand" href="/oltinkol-zona/panel/"><b>OLTINKO‘L</b><small>Boshqaruv paneli</small></a>
+  <div class="tools">
+    <span class="pub" id="pub" data-h="tayyor" title="Sayt holati">Sayt yangi</span>
+    <button class="chip" id="cyr" type="button">Кирилл</button>
+    <a class="chip" href="https://linverno-tm.github.io/oltinkol-zona/" target="_blank" rel="noopener">Saytni ochish ↗</a>
+  </div>
+</header>
+<div class="shell">
+  <nav class="side" id="side">
+    
+    <a href="/oltinkol-zona/panel/" class="">Bosh sahifa</a>
+    <a href="/oltinkol-zona/panel/arizalar/" class="">Arizalar <i class="badge">2</i></a>
+    <a href="/oltinkol-zona/panel/yangiliklar/" class="">Yangiliklar</a>
+    <a href="/oltinkol-zona/panel/dokonlar/" class="">Do‘konlar</a>
+    <a href="/oltinkol-zona/panel/vakansiyalar/" class="">Ish o‘rinlari</a>
+    <a href="/oltinkol-zona/panel/rezidentlar/" class="">Rezidentlar</a>
+    <a href="/oltinkol-zona/panel/rahbariyat/" class="">Rahbariyat</a>
+    <hr>
+    <a href="/oltinkol-zona/panel/foydalanuvchilar/" class="on">Xodimlar</a>
+    <a href="/oltinkol-zona/panel/parol/" class="">Parolni o‘zgartirish</a>
+    <form method="post" action="/oltinkol-zona/panel/chiqish/"><input type="hidden" name="csrf" value="namuna"><button class="link">Chiqish (Direksiya (namuna))</button></form>
+  </nav>
+  <main class="main">
+    
+    
+    
+<div class="head"><h1>Panelga kiradigan xodimlar</h1></div>
+<section class="card">
+  <ul class="list">
+    <li><div class="li"><span><b>Direksiya (namuna)</b><small>direksiya · administrator</small></span>
+      </div></li>
+  
+    <li><div class="li"><span><b>Sotuv bo‘limi (namuna)</b><small>xodim · xodim</small></span>
+      <form method="post" class="inline"><input type="hidden" name="csrf" value="namuna"><input type="hidden" name="id" value="2">
+        <input name="parol" type="password" placeholder="yangi parol" autocomplete="new-password" size="12"><button class="chip" name="amal" value="parol">Parolni almashtirish</button>
+        <button class="chip red" name="amal" value="ochir" data-confirm="Bu xodim panelga kira olmay qoladi. Davom etilsinmi?">O‘chirish</button>
+      </form></div></li>
+  </ul>
+</section>
+<form method="post" class="card form">
+  <input type="hidden" name="csrf" value="namuna"><input type="hidden" name="amal" value="qosh">
+  <h2>Xodim qo‘shish</h2>
+  <div class="row3">
+    <label>Ism<input name="ism" required></label>
+    <label>Login <small>lotin harf/raqam</small><input name="login" autocapitalize="none" pattern="[a-z0-9_.]{3,30}" required></label>
+    <label>Parol <small>kamida 8 belgi</small><input name="parol" type="password" minlength="8" autocomplete="new-password" required></label>
+    <label>Huquqi<select name="rol"><option value="xodim">Xodim (yangilik, do‘kon, arizalar)</option><option value="admin">Administrator (+ xodimlarni boshqarish)</option></select></label>
+  </div>
+  <div class="actions"><button class="btn">Qo‘shish</button></div>
+</form>
+
+  </main>
+</div>
+
+<script src="/oltinkol-zona/panel/static/admin.js"></script>
+<script src="/oltinkol-zona/panel/static/demo.js"></script>
+</body>
+</html>

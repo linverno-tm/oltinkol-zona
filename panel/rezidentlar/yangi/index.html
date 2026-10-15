@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Rezident korxona · Oltinko‘l zona</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="/oltinkol-zona/panel/static/admin.css">
+</head>
+<body>
+<div class="demo-bar">Bu — boshqaruv panelining <b>namunasi</b>. O‘zgarishlar saqlanmaydi; haqiqiy panelda har bir saqlash bir necha soniyada saytga chiqadi.</div>
+
+<header class="top">
+  <button class="burger" id="burger" aria-label="Menyu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <a class="brand" href="/oltinkol-zona/panel/"><b>OLTINKO‘L</b><small>Boshqaruv paneli</small></a>
+  <div class="tools">
+    <span class="pub" id="pub" data-h="tayyor" title="Sayt holati">Sayt yangi</span>
+    <button class="chip" id="cyr" type="button">Кирилл</button>
+    <a class="chip" href="https://linverno-tm.github.io/oltinkol-zona/" target="_blank" rel="noopener">Saytni ochish ↗</a>
+  </div>
+</header>
+<div class="shell">
+  <nav class="side" id="side">
+    
+    <a href="/oltinkol-zona/panel/" class="">Bosh sahifa</a>
+    <a href="/oltinkol-zona/panel/arizalar/" class="">Arizalar <i class="badge">2</i></a>
+    <a href="/oltinkol-zona/panel/yangiliklar/" class="">Yangiliklar</a>
+    <a href="/oltinkol-zona/panel/dokonlar/" class="">Do‘konlar</a>
+    <a href="/oltinkol-zona/panel/vakansiyalar/" class="">Ish o‘rinlari</a>
+    <a href="/oltinkol-zona/panel/rezidentlar/" class="on">Rezidentlar</a>
+    <a href="/oltinkol-zona/panel/rahbariyat/" class="">Rahbariyat</a>
+    <hr>
+    <a href="/oltinkol-zona/panel/foydalanuvchilar/" class="">Xodimlar</a>
+    <a href="/oltinkol-zona/panel/parol/" class="">Parolni o‘zgartirish</a>
+    <form method="post" action="/oltinkol-zona/panel/chiqish/"><input type="hidden" name="csrf" value="namuna"><button class="link">Chiqish (Direksiya (namuna))</button></form>
+  </nav>
+  <main class="main">
+    
+    
+    
+<div class="head"><h1>Yangi rezident korxona</h1><a class="link" href="/oltinkol-zona/panel/rezidentlar/">← Ro‘yxatga</a></div>
+<form method="post" enctype="multipart/form-data" class="card form">
+  <input type="hidden" name="csrf" value="namuna">
+  <div class="tabs" role="tablist"><button type="button" role="tab" data-tab="uz" aria-selected="true">O‘zbekcha</button><button type="button" role="tab" data-tab="ru" aria-selected="false">Ruscha <small>ixtiyoriy</small></button><button type="button" role="tab" data-tab="en" aria-selected="false">Inglizcha <small>ixtiyoriy</small></button></div>
+  
+  <div class="tab" data-pane="uz">
+    <label>Korxona nomi *<input name="name_uz" value="" required></label>
+    <label>Mahsuloti (qisqa)<input name="product_uz" value="" placeholder="masalan: erkaklar charm poyabzali"></label>
+    <label>Korxona haqida<textarea name="about_uz" rows="5"></textarea></label>
+  </div>
+  
+  <div class="tab" data-pane="ru" hidden>
+    <label>Korxona nomi<input name="name_ru" value="" ></label>
+    <label>Mahsuloti (qisqa)<input name="product_ru" value="" placeholder="masalan: erkaklar charm poyabzali"></label>
+    <label>Korxona haqida<textarea name="about_ru" rows="5"></textarea></label>
+  </div>
+  
+  <div class="tab" data-pane="en" hidden>
+    <label>Korxona nomi<input name="name_en" value="" ></label>
+    <label>Mahsuloti (qisqa)<input name="product_en" value="" placeholder="masalan: erkaklar charm poyabzali"></label>
+    <label>Korxona haqida<textarea name="about_en" rows="5"></textarea></label>
+  </div>
+  
+  <div class="row3">
+    <label>Yo‘nalishi<select name="dir"><option value="poyabzal">Poyabzal va tagcharm</option><option value="suniy-charm">Sun’iy charm</option><option value="yelim">Poyabzal yelimi</option><option value="rezina">Rezina poyabzal</option><option value="ustki-qism">Poyabzal ustki qismlari</option><option value="teri">Teri tayyorlash</option></select></label>
+    <label>Telefon<input name="tel" type="tel" value="" placeholder="+998 "></label>
+    <label>Faoliyat boshlagan yil<input name="since" inputmode="numeric" value=""></label>
+    <label>Ish o‘rinlari soni<input name="workers" inputmode="numeric" value=""></label>
+    <label>Sayti<input name="site" type="url" value="" placeholder="https://…"></label>
+    <label>Instagram<input name="instagram" type="url" value="" placeholder="https://instagram.com/…"></label>
+    <label>Telegram<input name="telegram" type="url" value="" placeholder="https://t.me/…"></label>
+  </div>
+  <div class="photo">
+    <label>Rasm (sex yoki mahsulot)<input type="file" name="rasm" accept="image/*"></label></div>
+  <div class="actions"><button class="btn">Saqlash</button><a class="btn ghost" href="/oltinkol-zona/panel/rezidentlar/">Bekor qilish</a></div>
+</form>
+
+
+  </main>
+</div>
+
+<script src="/oltinkol-zona/panel/static/admin.js"></script>
+<script src="/oltinkol-zona/panel/static/demo.js"></script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Do‘konlar · Oltinko‘l zona</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="/oltinkol-zona/panel/static/admin.css">
+</head>
+<body>
+<div class="demo-bar">Bu — boshqaruv panelining <b>namunasi</b>. O‘zgarishlar saqlanmaydi; haqiqiy panelda har bir saqlash bir necha soniyada saytga chiqadi.</div>
+
+<header class="top">
+  <button class="burger" id="burger" aria-label="Menyu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <a class="brand" href="/oltinkol-zona/panel/"><b>OLTINKO‘L</b><small>Boshqaruv paneli</small></a>
+  <div class="tools">
+    <span class="pub" id="pub" data-h="tayyor" title="Sayt holati">Sayt yangi</span>
+    <button class="chip" id="cyr" type="button">Кирилл</button>
+    <a class="chip" href="https://linverno-tm.github.io/oltinkol-zona/" target="_blank" rel="noopener">Saytni ochish ↗</a>
+  </div>
+</header>
+<div class="shell">
+  <nav class="side" id="side">
+    
+    <a href="/oltinkol-zona/panel/" class="">Bosh sahifa</a>
+    <a href="/oltinkol-zona/panel/arizalar/" class="">Arizalar <i class="badge">2</i></a>
+    <a href="/oltinkol-zona/panel/yangiliklar/" class="">Yangiliklar</a>
+    <a href="/oltinkol-zona/panel/dokonlar/" class="on">Do‘konlar</a>
+    <a href="/oltinkol-zona/panel/vakansiyalar/" class="">Ish o‘rinlari</a>
+    <a href="/oltinkol-zona/panel/rezidentlar/" class="">Rezidentlar</a>
+    <a href="/oltinkol-zona/panel/rahbariyat/" class="">Rahbariyat</a>
+    <hr>
+    <a href="/oltinkol-zona/panel/foydalanuvchilar/" class="">Xodimlar</a>
+    <a href="/oltinkol-zona/panel/parol/" class="">Parolni o‘zgartirish</a>
+    <form method="post" action="/oltinkol-zona/panel/chiqish/"><input type="hidden" name="csrf" value="namuna"><button class="link">Chiqish (Direksiya (namuna))</button></form>
+  </nav>
+  <main class="main">
+    
+    
+    
+<div class="head"><h1>Do‘konlar</h1></div>
+<form method="post" class="card">
+  <input type="hidden" name="csrf" value="namuna">
+  <div class="bulk">
+    <label>1 m² narxi<input id="m2" inputmode="numeric" data-money placeholder="masalan 9 000 000"></label>
+    <button type="button" class="btn ghost sm" id="m2go">Belgilanganlarga qo‘llash</button>
+    <input class="search" type="search" placeholder="Do‘kon raqami…" data-filter="#sh tbody tr" aria-label="Qidirish">
+  </div>
+  <div class="tbl"><table id="sh">
+    <thead><tr><th><input type="checkbox" id="all" aria-label="Hammasini belgilash"></th><th>Do‘kon</th><th>Maydoni, m²</th><th>Narxi, so‘m</th><th>Holati</th></tr></thead>
+    <tbody>
+      <tr><td><input type="checkbox" class="pick" aria-label="A-01"></td><td><b>A-01</b></td>
+        <td><input name="area_A-01" value="24" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_A-01" value="216 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_A-01" value="1"><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    
+      <tr><td><input type="checkbox" class="pick" aria-label="A-02"></td><td><b>A-02</b></td>
+        <td><input name="area_A-02" value="30" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_A-02" value="270 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_A-02" value="1"><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    
+      <tr><td><input type="checkbox" class="pick" aria-label="A-03"></td><td><b>A-03</b></td>
+        <td><input name="area_A-03" value="36" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_A-03" value="324 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_A-03" value="1" checked><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    
+      <tr><td><input type="checkbox" class="pick" aria-label="A-04"></td><td><b>A-04</b></td>
+        <td><input name="area_A-04" value="42" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_A-04" value="378 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_A-04" value="1"><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    
+      <tr><td><input type="checkbox" class="pick" aria-label="A-05"></td><td><b>A-05</b></td>
+        <td><input name="area_A-05" value="30" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_A-05" value="270 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_A-05" value="1"><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    
+      <tr><td><input type="checkbox" class="pick" aria-label="A-06"></td><td><b>A-06</b></td>
+        <td><input name="area_A-06" value="48" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_A-06" value="432 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_A-06" value="1" checked><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    
+      <tr><td><input type="checkbox" class="pick" aria-label="A-07"></td><td><b>A-07</b></td>
+        <td><input name="area_A-07" value="36" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_A-07" value="324 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_A-07" value="1"><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    
+      <tr><td><input type="checkbox" class="pick" aria-label="A-08"></td><td><b>A-08</b></td>
+        <td><input name="area_A-08" value="60" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_A-08" value="540 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_A-08" value="1" checked><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    
+      <tr><td><input type="checkbox" class="pick" aria-label="A-09"></td><td><b>A-09</b></td>
+        <td><input name="area_A-09" value="42" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_A-09" value="378 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_A-09" value="1"><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    
+      <tr><td><input type="checkbox" class="pick" aria-label="A-10"></td><td><b>A-10</b></td>
+        <td><input name="area_A-10" value="30" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_A-10" value="270 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_A-10" value="1"><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    
+      <tr><td><input type="checkbox" class="pick" aria-label="A-11"></td><td><b>A-11</b></td>
+        <td><input name="area_A-11" value="48" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_A-11" value="432 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_A-11" value="1" checked><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    
+      <tr><td><input type="checkbox" class="pick" aria-label="A-12"></td><td><b>A-12</b></td>
+        <td><input name="area_A-12" value="36" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_A-12" value="324 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_A-12" value="1"><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    
+      <tr><td><input type="checkbox" class="pick" aria-label="A-13"></td><td><b>A-13</b></td>
+        <td><input name="area_A-13" value="60" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_A-13" value="540 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_A-13" value="1" checked><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    
+      <tr><td><input type="checkbox" class="pick" aria-label="A-14"></td><td><b>A-14</b></td>
+        <td><input name="area_A-14" value="24" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_A-14" value="216 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_A-14" value="1"><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    
+      <tr><td><input type="checkbox" class="pick" aria-label="A-15"></td><td><b>A-15</b></td>
+        <td><input name="area_A-15" value="30" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_A-15" value="270 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_A-15" value="1"><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    
+      <tr><td><input type="checkbox" class="pick" aria-label="A-16"></td><td><b>A-16</b></td>
+        <td><input name="area_A-16" value="36" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_A-16" value="324 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_A-16" value="1" checked><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    
+      <tr><td><input type="checkbox" class="pick" aria-label="B-01"></td><td><b>B-01</b></td>
+        <td><input name="area_B-01" value="48" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_B-01" value="432 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_B-01" value="1"><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    
+      <tr><td><input type="checkbox" class="pick" aria-label="B-02"></td><td><b>B-02</b></td>
+        <td><input name="area_B-02" value="36" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_B-02" value="324 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_B-02" value="1"><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    
+      <tr><td><input type="checkbox" class="pick" aria-label="B-03"></td><td><b>B-03</b></td>
+        <td><input name="area_B-03" value="60" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_B-03" value="540 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_B-03" value="1" checked><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    
+      <tr><td><input type="checkbox" class="pick" aria-label="B-04"></td><td><b>B-04</b></td>
+        <td><input name="area_B-04" value="24" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_B-04" value="216 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_B-04" value="1"><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    
+      <tr><td><input type="checkbox" class="pick" aria-label="B-05"></td><td><b>B-05</b></td>
+        <td><input name="area_B-05" value="30" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_B-05" value="270 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_B-05" value="1" checked><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    
+      <tr><td><input type="checkbox" class="pick" aria-label="B-06"></td><td><b>B-06</b></td>
+        <td><input name="area_B-06" value="36" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_B-06" value="324 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_B-06" value="1" checked><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    
+      <tr><td><input type="checkbox" class="pick" aria-label="B-07"></td><td><b>B-07</b></td>
+        <td><input name="area_B-07" value="42" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_B-07" value="378 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_B-07" value="1"><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    
+      <tr><td><input type="checkbox" class="pick" aria-label="B-08"></td><td><b>B-08</b></td>
+        <td><input name="area_B-08" value="30" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_B-08" value="270 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_B-08" value="1" checked><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    
+      <tr><td><input type="checkbox" class="pick" aria-label="B-09"></td><td><b>B-09</b></td>
+        <td><input name="area_B-09" value="24" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_B-09" value="216 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_B-09" value="1"><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    
+      <tr><td><input type="checkbox" class="pick" aria-label="B-10"></td><td><b>B-10</b></td>
+        <td><input name="area_B-10" value="30" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_B-10" value="270 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_B-10" value="1"><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    
+      <tr><td><input type="checkbox" class="pick" aria-label="B-11"></td><td><b>B-11</b></td>
+        <td><input name="area_B-11" value="36" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_B-11" value="324 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_B-11" value="1" checked><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    
+      <tr><td><input type="checkbox" class="pick" aria-label="B-12"></td><td><b>B-12</b></td>
+        <td><input name="area_B-12" value="42" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_B-12" value="378 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_B-12" value="1"><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    
+      <tr><td><input type="checkbox" class="pick" aria-label="B-13"></td><td><b>B-13</b></td>
+        <td><input name="area_B-13" value="30" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_B-13" value="270 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_B-13" value="1" checked><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    
+      <tr><td><input type="checkbox" class="pick" aria-label="B-14"></td><td><b>B-14</b></td>
+        <td><input name="area_B-14" value="48" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_B-14" value="432 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_B-14" value="1"><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    
+      <tr><td><input type="checkbox" class="pick" aria-label="B-15"></td><td><b>B-15</b></td>
+        <td><input name="area_B-15" value="36" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_B-15" value="324 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_B-15" value="1" checked><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    
+      <tr><td><input type="checkbox" class="pick" aria-label="B-16"></td><td><b>B-16</b></td>
+        <td><input name="area_B-16" value="60" inputmode="numeric" class="area" size="4"></td>
+        <td><input name="price_B-16" value="540 000 000" inputmode="numeric" data-money class="price"></td>
+        <td><label class="tog"><input type="checkbox" name="free_B-16" value="1" checked><span class="on">Bo‘sh</span><span class="off">Band</span></label></td></tr>
+    </tbody>
+  </table></div>
+  <div class="actions sticky"><button class="btn">Saqlash</button><span class="muted">Saytdagi xarita, narx va kredit hisobi o‘zi yangilanadi.</span></div>
+</form>
+
+  </main>
+</div>
+
+<script src="/oltinkol-zona/panel/static/admin.js"></script>
+<script src="/oltinkol-zona/panel/static/demo.js"></script>
+</body>
+</html>
