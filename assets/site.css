@@ -743,3 +743,14 @@ html.gray { filter: grayscale(1); }
   transform: rotate(-10deg); transition: opacity .35s var(--ease), transform .8s var(--ease); }
 .pro:hover .em { opacity: .17; transform: rotate(0deg) scale(1.03); }
 @media (prefers-reduced-motion: reduce) { .pro .em { transition: none; } }
+
+/* mutaxassis kartalari: bir qatordagi kartalarda sarlavha, xodim, telefon, tugmalar bir chiziqda */
+@supports (grid-template-rows: subgrid) {
+  .pros > .pro:not(.more) { display: grid; grid-row: span 4; grid-template-rows: subgrid; row-gap: 16px; align-content: start; }
+  .pros > .pro:not(.more) .person { align-self: stretch; }
+  .pros > .pro:not(.more) .tel { align-self: center; }
+  .pros > .pro:not(.more) .acts { margin-top: 0; align-self: end; }
+}
+@supports not (grid-template-rows: subgrid) {
+  .pro h3 { min-height: 2.4em; }
+}
