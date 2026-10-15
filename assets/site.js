@@ -124,7 +124,7 @@
     if (data.website || Date.now() - opened < 2500) { r.className = "res"; r.textContent = T.f_ok; return; }   // bot
     if (!data.name.trim() || data.tel.replace(/\D/g, "").length < 12) { r.className = "res err"; r.textContent = T.f_err; after(r); return; }
     delete data.website;
-    data.need = form.need.selectedOptions[0].text; data.type = form.type.selectedOptions[0].text; data.page = location.href; data.lang = S.lang; data.ms = Date.now() - opened;
+    data.need = form.need.selectedOptions[0].text; data.type = form.type.value ? form.type.selectedOptions[0].text : ""; data.page = location.href; data.lang = S.lang; data.ms = Date.now() - opened;
     if (S.endpoint) {
       try {
         const res = await fetch(S.endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });

@@ -131,14 +131,15 @@ td input:not([type=checkbox]) { min-height: 40px !important; }
 td .area { width: 90px; }
 td .price { width: 170px; }
 tr.new td { background: var(--sand); }
-.tog { display: inline-flex; flex-direction: row; cursor: pointer; }
-.tog input { position: absolute; opacity: 0; }
-.tog span { padding: 7px 12px; font-size: 13.5px; font-weight: 700; border: 1.5px solid var(--line); }
+.tog { display: inline-flex; }
+.tog label { display: inline-flex; cursor: pointer; position: relative; }
+.tog input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.tog span { padding: 7px 12px; font-size: 13.5px; font-weight: 700; border: 1.5px solid var(--line); color: var(--ink-3); background: #fff; }
 .tog .on { border-radius: 10px 0 0 10px; }
 .tog .off { border-radius: 0 10px 10px 0; border-left: 0; }
-.tog input:checked ~ .on { background: var(--ok-bg); color: var(--ok); border-color: #BFE3CB; }
-.tog input:not(:checked) ~ .off { background: #F1EEEA; color: var(--ink-2); }
-.tog input:focus-visible ~ .on { outline: 2px solid var(--navy); }
+.tog input:checked + .on { background: var(--ok-bg); color: var(--ok); border-color: #BFE3CB; }
+.tog input:checked + .off { background: #E9E3DC; color: var(--ink); }
+.tog input:focus-visible + span { outline: 2px solid var(--navy); outline-offset: 1px; }
 
 .dl { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 10px 14px; margin: 0; }
 .dl dt { color: var(--ink-3); font-size: 14.5px; }
