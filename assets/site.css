@@ -696,3 +696,9 @@ footer .fb p { margin-top: 12px; max-width: 46ch; }
 html.gray { filter: grayscale(1); }
 @media (max-width: 1080px) { .eco { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .eco-news { grid-column: 1 / -1; } }
 @media (max-width: 700px) { .eco { grid-template-columns: minmax(0, 1fr); } .a11y-t { display: none; } }
+
+.eco-card .region { background: var(--sand); border-radius: var(--r); padding: 14px 16px; display: grid; gap: 4px; font-size: 15px; }
+.eco-card .region .kick { font-size: 12px; }
+.eco-card .region small { display: block; color: var(--ink-3); font-size: 13px; }
+.eco-card .region b { font-size: 15.5px; }
+.eco-card .region a { font-weight: 700; color: var(--navy); }
