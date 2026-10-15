@@ -1,0 +1,763 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Oltinko‘l charm-poyabzal kichik sanoat zonasi: savdo do‘koni 20% boshlang‘ich to‘lov bilan, 5 yilga bank krediti, 1 yil imtiyoz.">
+<meta property="og:title" content="Oltinko‘l charm-poyabzal kichik sanoat zonasi">
+<meta property="og:description" content="O‘z do‘koningiz — atigi 20% to‘lov bilan. Qolgani 5 yilga bank krediti, birinchi yil imtiyozli.">
+<meta property="og:image" content="logo-512.png">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<title>Oltinko‘l charm-poyabzal zonasi</title>
+<style>body{margin:0}[hidden]{display:none!important}</style>
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Bebas+Neue&display=swap">
+<style>
+/* Maket: hamkorsavdo.uz/mebel tuzilishi — bosh blok, raqamlar, zona haqida, kimlar uchun, mutaxassislar, qadamlar, yangiliklar, savollar, aloqa+rekvizit, ariza. Rang: charm (konyak) */
+:root {
+  /* Buyurtmachi ranglari: #FFA500 oranj, #FF8C00 to'q oranj, #FF7F00 mandarin, #FFCC99 shaftoli, #CC5500 terrakot, #B5651D konyak + logodagi #13236A */
+  --ground: #FFFFFF;
+  --ground-2: #FFF6EE;
+  --card: #FFFFFF;
+  --ink: #1E1712;
+  --ink-2: #5A4E45;
+  --ink-3: #75685E;
+  --line: #F1E3D5;
+  --brand: #A8520F;
+  --brand-dark: #8E440B;
+  --brand-deep: #13236A;
+  --brand-50: #FFE8D1;
+  --cta: #FF8C00;
+  --cta-hover: #FFA500;
+  --cta-ink: #13236A;
+  --num: #CC5500;
+  --key: #FFA500;
+  --on-dark-2: #C9D0EE;
+  --ok: #1E7A3E;
+  --radius: 18px;
+  --radius-lg: 26px;
+  --ease: cubic-bezier(.22,1,.36,1);
+  --f: "Outfit", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-d: "Bebas Neue", "Outfit", system-ui, sans-serif;
+  color-scheme: light;
+}
+:root[data-site-theme="dark"] {
+  --ground: #14100D; --ground-2: #1D1814; --card: #211B16; --ink: #F3EDE7; --muted: #B9ACA0; --ink-2: #C9BBAE; --ink-3: #A39587; --line: #3A2F27;
+  --brand: #D88A4E; --brand-dark: #C27840; --brand-deep: #0D0A08; --brand-50: #33241A; --key: #E8B67A; --ok: #4CC27A;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { background: var(--ground); color: var(--ink); font: 17px / 1.6 var(--f); -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; background: none; border: 0; padding: 0; }
+h1, h2, h3 { margin: 0; line-height: 1.08; text-wrap: balance; letter-spacing: -0.02em; }
+p { margin: 0; }
+:focus-visible { outline: 3px solid var(--brand); outline-offset: 3px; border-radius: 6px; }
+.num { font-variant-numeric: tabular-nums; }
+.ico { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.wrap { max-width: 1200px; margin: 0 auto; padding-inline: 20px; }
+
+/* sarlavha */
+header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 40; background: color-mix(in srgb, var(--ground) 86%, transparent); backdrop-filter: saturate(1.5) blur(14px); -webkit-backdrop-filter: saturate(1.5) blur(14px); border-bottom: 1px solid var(--line); }
+header .wrap { display: flex; align-items: center; gap: 24px; height: 76px; }
+.logo { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.logo .mk { width: 50px; height: 50px; flex: none; display: block; }
+.logo b { font-family: var(--f-d); font-size: 27px; letter-spacing: .03em; line-height: .9; font-weight: 400; display: block; }
+.logo small { display: block; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; margin-top: 3px; white-space: nowrap; }
+nav.top { display: flex; gap: 2px; margin-left: 8px; }
+nav.top a { font-weight: 500; font-size: 15.5px; padding: 8px 11px; border-radius: 10px; color: var(--ink-2); white-space: nowrap; }
+nav.top a:hover { color: var(--ink); background: var(--ground-2); }
+.h-act { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+.tbtn { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); border-radius: 99px; padding: 6px 12px; font-size: 14px; font-weight: 600; color: var(--ink-2); white-space: nowrap; }
+.tbtn:hover { color: var(--ink); border-color: var(--ink-3); }
+.tbtn .ico { width: 17px; height: 17px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: var(--cta); color: var(--cta-ink); font-weight: 600; font-size: 16.5px; padding: 14px 24px; border-radius: 12px; border: 1.5px solid var(--cta); white-space: nowrap; font-weight: 700; transition: background .2s var(--ease), transform .2s var(--ease); }
+.btn:hover { background: var(--cta-hover); border-color: var(--cta-hover); }
+.btn:active { transform: translateY(1px); }
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn.ghost:hover { border-color: var(--ink-3); background: var(--ground-2); }
+.btn.sm { padding: 10px 16px; font-size: 15px; border-radius: 10px; }
+.btn .ico { width: 18px; height: 18px; }
+.burger { display: none; width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--line); place-items: center; }
+.draft { background: #FFF5D6; color: #694A00; font-size: 14px; }
+:root[data-site-theme="dark"] .draft { background: #2B250F; color: #F1D78A; }
+.draft .wrap { padding-block: 8px; }
+
+/* bosh blok */
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; padding-block: 56px 36px; }
+.eyebrow { font-size: 14px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--brand); }
+.hero h1 { font-size: clamp(40px, 5.4vw, 66px); font-weight: 700; letter-spacing: -0.035em; margin: 14px 0 20px; }
+.hero p { font-size: 19px; color: var(--ink-2); max-width: 48ch; }
+.hero .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+.photo { position: relative; aspect-ratio: 4 / 3; border-radius: var(--radius-lg); overflow: hidden; background: linear-gradient(150deg, #13236A, #B5651D 125%); color: #fff; display: grid; place-items: center; }
+.photo::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 82% 14%, rgba(255,140,0,.55), transparent 46%), repeating-linear-gradient(135deg, rgba(255,255,255,.035) 0 2px, transparent 2px 12px); }
+.photo .lbl { position: relative; display: grid; gap: 6px; justify-items: center; text-align: center; padding: 20px 20px 70px; }
+.photo .lbl .ico { width: 40px; height: 40px; opacity: .85; }
+.photo .lbl b { font-size: 18px; }
+.photo .lbl small { font-size: 14px; opacity: .8; max-width: 32ch; }
+.photo .chip { position: absolute; left: 18px; bottom: 18px; background: rgba(255,255,255,.96); color: #1E1712; border-radius: 14px; padding: 10px 14px; display: flex; gap: 10px; align-items: center; font-size: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.25); }
+.photo .chip .d { width: 34px; height: 34px; border-radius: 10px; background: #FFE8D1; color: #A8520F; display: grid; place-items: center; }
+.photo .chip b { display: block; font-size: 14.5px; }
+
+/* raqamlar */
+.facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; padding-block: 24px 0; }
+.fact { background: var(--ground-2); border-radius: var(--radius); padding: 22px; display: grid; gap: 4px; align-content: start; }
+.fact b { font-family: var(--f-d); font-size: 46px; font-weight: 400; letter-spacing: .01em; line-height: 1; color: var(--num); }
+.fact span { font-size: 16px; color: var(--ink-2); }
+.src { font-size: 13.5px; color: var(--ink-3); margin-top: 10px; }
+
+/* bo'limlar */
+section.s { padding-block: 88px 0; }
+.s-h { margin-bottom: 36px; max-width: 720px; }
+.s-h .eyebrow { display: block; margin-bottom: 10px; }
+.s-h h2 { font-size: clamp(32px, 4vw, 48px); font-weight: 700; letter-spacing: -0.03em; }
+.s-h p { color: var(--ink-2); font-size: 18px; margin-top: 12px; }
+
+/* zona haqida */
+.about { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 48px; align-items: start; }
+.about .txt p { color: var(--ink-2); font-size: 18px; margin-bottom: 14px; }
+.about h3 { font-size: 15px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); margin: 6px 0 12px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips span { background: var(--brand-50); color: var(--brand-dark); padding: 7px 14px; border-radius: 99px; font-size: 15px; font-weight: 500; }
+:root[data-site-theme="dark"] .chips span { color: var(--key); }
+.inzone { display: grid; gap: 10px; }
+.inzone div { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 14px; align-items: center; background: var(--ground-2); border-radius: var(--radius); padding: 16px 18px; }
+.inzone .ii { width: 48px; height: 48px; border-radius: 14px; background: var(--card); color: var(--brand); display: grid; place-items: center; }
+.inzone b { display: block; font-size: 17px; }
+.inzone small { color: var(--ink-3); font-size: 14.5px; }
+
+/* kimlar uchun */
+.types { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.type { border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 28px; display: flex; flex-direction: column; gap: 14px; background: var(--card); text-align: left; transition: border-color .25s var(--ease), transform .25s var(--ease); }
+.type:hover { border-color: var(--brand); transform: translateY(-3px); }
+.type .ti { width: 56px; height: 56px; border-radius: 16px; background: var(--brand-50); color: var(--brand); display: grid; place-items: center; }
+.type .ti .ico { width: 28px; height: 28px; }
+.type h3 { font-size: 24px; font-weight: 700; }
+.type .who { color: var(--ink-3); font-size: 15px; margin-top: -8px; }
+.type ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; font-size: 16px; color: var(--ink-2); }
+.type li { display: flex; gap: 10px; }
+.type li .ico { color: var(--brand); width: 18px; height: 18px; margin-top: 4px; }
+.type .more { margin-top: auto; padding-top: 6px; color: var(--brand); font-weight: 600; display: inline-flex; gap: 6px; align-items: center; }
+.type .more .ico { width: 18px; height: 18px; transition: transform .2s var(--ease); }
+.type:hover .more .ico { transform: translateX(4px); }
+
+/* mutaxassislar */
+.pros { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.pro { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+.pro .top { display: flex; gap: 14px; align-items: center; }
+.pro .si { width: 54px; height: 54px; border-radius: 16px; background: var(--brand-50); color: var(--brand); display: grid; place-items: center; flex: none; }
+.pro .si .ico { width: 26px; height: 26px; }
+.pro .kind { font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--brand); }
+.pro h3 { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.2; margin-top: 2px; }
+.pro .person { display: flex; gap: 12px; align-items: center; padding: 14px; background: var(--ground-2); border-radius: 14px; }
+.pro .av { width: 44px; height: 44px; border-radius: 50%; background: var(--brand-deep); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 15px; flex: none; }
+.pro .person b { display: block; font-size: 16px; line-height: 1.25; }
+.pro .person small { color: var(--ink-3); font-size: 14px; }
+.pro .tel { font-family: var(--f-d); font-size: 30px; letter-spacing: .03em; line-height: 1; }
+.pro .acts { display: flex; gap: 8px; margin-top: auto; }
+.pro .acts .btn { flex: 1; min-width: 0; padding-inline: 12px; }
+.pro .acts .btn.ghost { flex: 0 0 auto; }
+.pro.soon { grid-column: 1 / -1; flex-direction: row; align-items: center; justify-content: space-between; flex-wrap: wrap; padding: 18px 24px; border-style: dashed; background: transparent; color: var(--ink-3); }
+.pro.soon .si { background: var(--ground-2); color: var(--ink-3); }
+.pro.soon h3 { color: var(--ink); }
+
+/* qadamlar */
+.steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.step { border-top: 2px solid var(--line); padding-top: 20px; display: grid; gap: 8px; align-content: start; }
+.step b { font-family: var(--f-d); font-weight: 400; font-size: 56px; line-height: .9; color: var(--num); }
+.step h3 { font-size: 20px; font-weight: 600; letter-spacing: -0.01em; }
+.step p { color: var(--ink-2); font-size: 16px; }
+
+/* yangiliklar */
+.news { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.nc { display: flex; flex-direction: column; gap: 12px; text-align: left; }
+.nc .ph { aspect-ratio: 16 / 10; border-radius: var(--radius); background: linear-gradient(150deg, #13236A, #B5651D 140%); display: grid; place-items: center; color: rgba(255,255,255,.75); font-size: 13px; font-weight: 600; }
+.nc .meta { display: flex; gap: 10px; align-items: center; color: var(--ink-3); font-size: 14.5px; }
+.nc .tag { font-weight: 600; color: var(--brand); }
+.nc h3 { font-size: 20px; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em; }
+.nc:hover h3 { color: var(--brand); }
+.ig { margin-top: 28px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 20px; align-items: center; background: var(--brand-deep); color: #fff; border-radius: var(--radius-lg); padding: 26px 30px; }
+.ig .l { display: flex; gap: 16px; align-items: center; }
+.ig .ii { width: 52px; height: 52px; border-radius: 15px; flex: none; display: grid; place-items: center; background: linear-gradient(45deg, #F2A33A, #D9346D 55%, #7A3FC1); }
+.ig b { font-size: 20px; display: block; }
+.ig p { color: var(--on-dark-2); font-size: 15.5px; }
+.ig .r { display: flex; gap: 10px; flex-wrap: wrap; }
+.ig .btn { background: var(--cta); color: var(--cta-ink); border-color: var(--cta); }
+.ig .btn.ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,.35); }
+
+/* savollar */
+.faq { border-top: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { list-style: none; cursor: pointer; padding: 22px 0; font-size: 19px; font-weight: 600; display: flex; justify-content: space-between; gap: 20px; align-items: center; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary span.pl { font-size: 26px; font-weight: 400; color: var(--brand); transition: transform .25s var(--ease); line-height: 1; }
+.faq details[open] summary span.pl { transform: rotate(45deg); }
+.faq details p { padding-bottom: 22px; color: var(--ink-2); max-width: 70ch; }
+
+/* aloqa */
+.contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+.cbox { background: var(--ground-2); border-radius: var(--radius-lg); padding: 28px; display: grid; gap: 18px; align-content: start; }
+.cbox h3 { font-size: 22px; }
+.crow { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 14px; align-items: start; }
+.crow .ci { width: 44px; height: 44px; border-radius: 12px; background: var(--card); color: var(--brand); display: grid; place-items: center; }
+.crow small { display: block; color: var(--ink-3); font-size: 14px; }
+.crow b { font-size: 17px; font-weight: 600; line-height: 1.35; }
+.req { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px 18px; margin: 0; font-size: 15.5px; }
+.req dt { color: var(--ink-3); }
+.req dd { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+.copy { justify-self: start; display: inline-flex; gap: 8px; align-items: center; color: var(--brand); font-weight: 600; font-size: 15px; }
+
+/* ariza */
+.apply { margin-top: 88px; background: var(--brand-deep); color: #fff; }
+.apply .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 56px; padding-block: 72px; }
+.apply .eyebrow { color: var(--key); }
+.apply h2 { font-size: clamp(32px, 4vw, 48px); font-weight: 700; letter-spacing: -0.03em; margin-top: 12px; }
+.apply .l p { color: var(--on-dark-2); font-size: 18px; margin-top: 14px; }
+.apply .l .call { margin-top: 22px; }
+.apply .l .call b { color: #fff; font-family: var(--f-d); font-size: 34px; letter-spacing: .03em; font-weight: 400; display: block; }
+form.f { background: var(--card); color: var(--ink); border-radius: var(--radius-lg); padding: 28px; display: grid; gap: 16px; }
+.fld { display: grid; gap: 6px; font-size: 15px; font-weight: 600; }
+.fld small { font-weight: 400; color: var(--ink-3); font-size: 13.5px; }
+.fld input, .fld select, .fld textarea { border: 1.5px solid var(--line); background: var(--ground); border-radius: 12px; padding: 13px 14px; font-size: 16.5px; font-weight: 400; width: 100%; min-width: 0; }
+.fld textarea { min-height: 100px; resize: vertical; }
+.fld input:focus, .fld select:focus, .fld textarea:focus { outline: 0; border-color: var(--brand); box-shadow: 0 0 0 4px var(--brand-50); }
+.row2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.f .note { font-size: 13.5px; color: var(--ink-3); }
+.res { border-radius: 12px; padding: 14px 16px; background: #E5F4EA; color: #0E4D25; font-size: 15.5px; }
+.res.err { background: #FDECEC; color: #8A1C1C; }
+
+
+/* nega biz */
+.why { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.why div { background: var(--ground-2); border-radius: var(--radius-lg); padding: 26px; display: grid; gap: 8px; align-content: start; }
+.why .wi { width: 52px; height: 52px; border-radius: 15px; background: var(--cta); color: var(--cta-ink); display: grid; place-items: center; margin-bottom: 6px; }
+.why .wi .ico { width: 26px; height: 26px; stroke-width: 2; }
+.why h3 { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; }
+.why p { color: var(--ink-2); font-size: 16px; }
+
+/* kredit kalkulyatori */
+.credit { background: var(--brand-deep); color: #fff; border-radius: 30px; padding: 48px; display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 48px; align-items: center; position: relative; overflow: hidden; }
+.credit::before { content: ""; position: absolute; width: 520px; height: 520px; right: -160px; top: -220px; border-radius: 50%; background: radial-gradient(circle, rgba(255,140,0,.35), transparent 65%); pointer-events: none; }
+.credit > * { position: relative; }
+.credit .eyebrow { color: var(--key); }
+.credit h2 { font-size: clamp(34px, 4.4vw, 54px); font-weight: 800; letter-spacing: -0.035em; margin: 12px 0 14px; }
+.credit h2 em { font-style: normal; color: var(--cta); }
+.credit .lead { color: var(--on-dark-2); font-size: 18px; }
+.terms { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 26px; }
+.terms div { border: 1px solid rgba(255,255,255,.16); border-radius: 16px; padding: 14px 16px; }
+.terms b { font-family: var(--f-d); font-weight: 400; font-size: 38px; line-height: 1; color: var(--cta); display: block; letter-spacing: .02em; }
+.terms span { color: var(--on-dark-2); font-size: 14.5px; }
+.calc { background: var(--card); color: var(--ink); border-radius: var(--radius-lg); padding: 26px; display: grid; gap: 16px; }
+.calc label { font-weight: 600; font-size: 15px; display: grid; gap: 8px; }
+.calc .vin { display: flex; align-items: center; border: 1.5px solid var(--line); border-radius: 12px; padding: 0 14px; background: var(--ground); }
+.calc .vin:focus-within { border-color: var(--brand); box-shadow: 0 0 0 4px var(--brand-50); }
+.calc .vin input { border: 0; outline: 0; background: none; flex: 1; min-width: 0; font-family: var(--f-d); font-size: 34px; letter-spacing: .02em; padding: 8px 0; }
+.calc .vin span { color: var(--ink-3); font-weight: 600; }
+.calc input[type=range] { width: 100%; accent-color: var(--cta); }
+.calc .presets { display: flex; gap: 6px; flex-wrap: wrap; }
+.calc .presets button { border: 1px solid var(--line); border-radius: 99px; padding: 5px 12px; font-size: 14px; font-weight: 600; color: var(--ink-2); }
+.calc .presets button:hover { border-color: var(--brand); color: var(--brand); }
+.out { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.out div { background: var(--ground-2); border-radius: 14px; padding: 14px 16px; display: grid; gap: 2px; }
+.out div.hl { background: var(--cta); color: var(--cta-ink); }
+.out small { font-size: 13.5px; color: var(--ink-3); font-weight: 500; }
+.out div.hl small { color: var(--cta-ink); opacity: .85; }
+.out b { font-family: var(--f-d); font-weight: 400; font-size: 30px; letter-spacing: .02em; line-height: 1.05; }
+.calc .tot { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; font-size: 15px; color: var(--ink-2); border-top: 1px dashed var(--line); padding-top: 12px; }
+.calc .tot b { color: var(--ink); }
+.calc .note { font-size: 13px; color: var(--ink-3); }
+
+
+/* kredit hujjatlari */
+.docs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.dcol { border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 26px; display: grid; gap: 16px; align-content: start; background: var(--card); }
+.dcol.us { background: var(--ground-2); border-color: transparent; }
+.dcol h3 { font-size: 21px; display: flex; gap: 10px; align-items: center; }
+.dcol h3 .cnt { font-family: var(--f-d); font-weight: 400; font-size: 26px; width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--cta); color: var(--cta-ink); flex: none; }
+.dcol ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; counter-reset: d; }
+.dcol li { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 12px; counter-increment: d; }
+.dcol li::before { content: counter(d); width: 30px; height: 30px; border-radius: 50%; background: var(--brand-50); color: var(--brand-dark); font-weight: 700; font-size: 14px; display: grid; place-items: center; }
+.dcol li b { font-weight: 600; display: block; line-height: 1.35; }
+.dcol li small { color: var(--ink-3); font-size: 14px; display: block; margin-top: 2px; }
+.dcol li .help { display: inline-flex; gap: 5px; align-items: center; margin-top: 6px; font-size: 13px; font-weight: 600; color: var(--ok); background: color-mix(in srgb, var(--ok) 10%, transparent); padding: 3px 9px; border-radius: 99px; }
+.dcol li .help.dir { color: var(--brand-dark); background: var(--brand-50); }
+.guarantee { margin-top: 16px; display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; gap: 18px; align-items: center; background: var(--cta); color: var(--cta-ink); border-radius: var(--radius-lg); padding: 22px 26px; }
+.guarantee .gi { width: 56px; height: 56px; border-radius: 16px; background: var(--cta-ink); color: var(--cta); display: grid; place-items: center; }
+.guarantee .gi .ico { width: 28px; height: 28px; }
+.guarantee b { font-size: 21px; display: block; letter-spacing: -0.01em; }
+.guarantee p { font-size: 16px; }
+.guarantee .btn { background: var(--cta-ink); color: #fff; border-color: var(--cta-ink); }
+@media (max-width: 860px) {
+  .docs { grid-template-columns: minmax(0, 1fr); }
+  .guarantee { grid-template-columns: 48px minmax(0, 1fr); padding: 20px; }
+  .guarantee .gi { width: 48px; height: 48px; }
+  .guarantee .btn { grid-column: 1 / -1; }
+}
+
+/* telefondagi doimiy tugmalar */
+.mbar { display: none; }
+@media (max-width: 860px) {
+  .why { grid-template-columns: minmax(0, 1fr); }
+  .credit { grid-template-columns: minmax(0, 1fr); padding: 28px 20px; gap: 28px; }
+  .mbar { display: grid; grid-template-columns: auto 1fr; gap: 8px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 45; padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px)); background: color-mix(in srgb, var(--ground) 92%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-top: 1px solid var(--line); }
+  .mbar .btn { padding: 13px 18px; }
+  body { padding-bottom: 76px; }
+}
+@media (max-width: 560px) {
+  .out b { font-size: 25px; }
+  .calc { padding: 20px; }
+  .terms b { font-size: 32px; }
+}
+
+/* pastki qism */
+footer { background: var(--ground-2); color: var(--ink-2); font-size: 15.5px; }
+footer .wrap.c { display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr)); gap: 28px; padding-block: 48px 32px; }
+footer h4 { margin: 0 0 12px; color: var(--ink); font-size: 15.5px; }
+footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+footer a:hover { color: var(--brand); }
+footer .b { border-top: 1px solid var(--line); }
+footer .b .wrap { display: flex; gap: 8px 24px; flex-wrap: wrap; padding-block: 16px; font-size: 13.5px; color: var(--ink-3); }
+
+/* oyna va menyu */
+.modal-bg { position: fixed; inset: 0; z-index: 70; background: rgba(20,12,6,.55); display: grid; place-items: center; padding: 16px; }
+.modal { background: var(--card); border-radius: var(--radius-lg); width: 100%; max-width: 620px; max-height: 90vh; overflow-y: auto; padding: 26px; display: grid; gap: 16px; }
+.modal-h { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+.modal-h h2 { font-size: 26px; }
+.x { width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; flex: none; }
+.x:hover { background: var(--ground-2); }
+.modal .ph { aspect-ratio: 16 / 9; border-radius: var(--radius); background: linear-gradient(150deg, #13236A, #B5651D 140%); display: grid; place-items: center; color: rgba(255,255,255,.75); font-size: 13px; font-weight: 600; }
+.modal .txt p { color: var(--ink-2); margin-bottom: .8em; }
+.drawer-bg { position: fixed; inset: 0; z-index: 80; background: rgba(20,12,6,.45); }
+.drawer { position: absolute; top: 0; right: 0; bottom: 0; width: min(330px, 88vw); background: var(--ground); padding: calc(16px + env(safe-area-inset-top, 0px)) 18px 18px; display: flex; flex-direction: column; gap: 4px; }
+.drawer a { padding: 13px 8px; font-size: 19px; font-weight: 600; border-bottom: 1px solid var(--line); }
+.drawer .btn { margin-top: 16px; border-bottom: 0; }
+.toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 90; background: var(--ink); color: var(--ground); padding: 11px 18px; border-radius: 12px; font-size: 15px; max-width: calc(100% - 32px); text-align: center; }
+
+@media (max-width: 1140px) {
+  nav.top { display: none; }
+  .burger { display: grid; }
+  .h-act .btn { display: none; }
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 28px; }
+  .pros { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 860px) {
+  .hero .wrap, .apply .wrap, .about, .contact { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .contact { gap: 16px; }
+  .hero .wrap { padding-block: 32px 12px; }
+  .types, .news, .pros { grid-template-columns: minmax(0, 1fr); }
+  .ig { grid-template-columns: minmax(0, 1fr); }
+  footer .wrap.c { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  section.s { padding-block: 64px 0; }
+  .apply { margin-top: 64px; }
+  .apply .wrap { padding-block: 52px; }
+}
+@media (max-width: 560px) {
+  header .wrap { height: 64px; gap: 10px; }
+  .logo small { display: none; }
+  .logo b { font-size: 24px; }
+  .tbtn span { display: none; }
+  .steps, .row2 { grid-template-columns: minmax(0, 1fr); }
+  .facts { gap: 10px; }
+  .fact { padding: 16px; }
+  .fact b { font-size: 38px; }
+  .fact span { font-size: 14.5px; }
+  .photo { aspect-ratio: 1 / 1; }
+  .hero .cta .btn { flex: 1; }
+  .cbox { padding: 22px; }
+  .req { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .req dd { margin-bottom: 8px; }
+  form.f { padding: 20px; }
+  footer .wrap.c { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="logo" viewBox="0 0 512 512">
+  
+  <circle cx="256" cy="256" r="252" fill="#fff"/>
+  <circle cx="256" cy="256" r="247" fill="none" stroke="#13236A" stroke-width="6"/>
+  <circle cx="256" cy="256" r="203.0" fill="none" stroke="#13236A" stroke-width="62"/>
+  <path d="M44.95480546123059 190.90813969878528Q47.07803785517517 184.01637111682084 53.597926867881974 180.595372637271Q60.11781588058878 177.17437415772116 67.29674148680175 179.3860745680801Q74.40940008741892 181.57735928234342 77.82788860831427 187.9876399386087Q81.24637712920962 194.39792059487397 79.09592380713755 201.3780451842995Q76.84339200458739 208.6895048017041 70.29466476246007 211.96859807489932Q63.74593752033275 215.24769134809455 56.787901932772485 213.10404325805433Q52.12712253920037 211.668139299329 48.91150287629857 208.21053503942977Q45.69588321339677 204.75293077953052 44.62440543803069 200.10570243128078Q43.55292766266462 195.45847408303104 44.95480546123059 190.90813969878528ZM50.98677627621914 192.83904028111448Q49.598508941716915 197.3451966616297 51.789219954154916 201.3819108694284Q53.979930966592924 205.41862507722706 58.817422375087205 206.90897089220738Q64.20713883021325 208.56944750798453 68.53469270065958 205.67021513008822Q71.91208346403944 203.42149163194938 73.1098043016492 199.53382730366175Q74.46404547599205 195.13811593247289 72.23596169185538 191.06570225874518Q70.00787790771871 186.99328858501747 65.3470985141466 185.55738462629216Q60.70840812243975 184.12828589959867 56.53492063454868 186.25267390196422Q52.36143314665762 188.3770619043298 50.98677627621914 192.83904028111448ZM72.17795031255233 158.85852424860332 69.53269245501656 164.04780956982296 66.67034856751842 162.5887189261822Q63.97274389656694 161.21360472246317 62.34732378622344 159.54188290367625Q60.721903675879936 157.87016108488933 59.47093670329379 155.23484062660563L62.08526305159704 154.02505845815617Q62.80886172864878 155.3538183041564 63.42826694698485 156.12357048497083Q64.04767216532092 156.89332266578526 65.20772836492873 157.9257020753113L66.26793091894108 155.8458694664098ZM69.00476162787533 139.69041499046955 80.63261248604204 122.72100794199443 96.69171987000783 148.43518258465267 103.10663534344587 139.07340858375235 108.23559095697375 142.58789384313081 96.49015509012895 159.72890163703997 80.55745170017603 134.15738050108092 74.28625123734454 143.3094202575619ZM117.81808976984311 91.7268076912696 117.61912886265691 97.98502338843319Q110.90357524144454 97.74958390297256 106.78392315594311 101.80151749635077Q103.3069367957799 105.22134944916198 103.25969164014593 109.93628666738341Q103.21244648451196 114.65122388560485 106.63227843732317 118.12821024576806Q109.01481539022956 120.5505656720429 111.91712804269838 121.39183202312672Q114.81944069516722 122.23309837421056 117.80094060546023 121.40790299473993Q120.78244051575322 120.5827076152693 123.13888150866005 118.26500159985696Q125.14927172638474 116.28765800628838 126.07615925493249 113.90090015500232Q127.00304678348023 111.51414230371627 127.05203026804138 107.57557344348052L133.39209725897803 107.75886836423021Q133.28311386461962 113.02082779349172 131.89049131899984 116.38438369068444Q130.49786877338005 119.74793958787716 127.43284762176698 122.76257818135055Q121.78068496045901 128.32183107146545 114.65492681149172 128.2791237176918Q107.52916866252443 128.2364163639181 102.01853897553005 122.63368952763614Q98.45283741335723 119.00839569239488 97.3209363655161 114.57788409574738Q96.18903531767498 110.14737249909986 97.56021279027169 105.42706250524463Q98.93139026286842 100.7067525113894 102.45781244805764 97.23829735545766Q105.45691916630268 94.2884896994783 109.48156021869113 92.82633929987583Q113.50620127107959 91.36418890027336 117.81808976984311 91.7268076912696ZM128.5469183973817 76.26270380700247 134.10417962896403 72.76897788770606 140.93170739378624 83.62911867477717 150.55907544286552 77.576607575151 143.7315476780433 66.71646678807987 149.26924108838767 63.235042720611965 167.3652651281237 92.01930776165995 161.8275717177793 95.50073182912784 153.89287728839133 82.87948713063977 144.26550923931205 88.93199823026596 152.20020366870006 101.55324292875403 146.6429424371177 105.04696884805044ZM177.39510323818058 50.495822924387156 183.56033087392714 48.24210568510482 207.5206720739866 75.68381658210974 201.20348460214768 77.99308318996594 196.30250748379063 72.32798991139643 183.27737867587533 77.08936436058448 183.07684701113223 84.61932929841932 176.75965953929332 86.92859590627552ZM183.61602754405249 57.81942678172696 183.36864229486676 70.3376258484571 191.8566845680249 67.23479683240288ZM213.29845119741074 39.97899811765065 220.08357992978503 38.93670274526961Q225.6578944439242 38.08040621038418 228.17506842540337 38.71096354646784Q230.69224240688257 39.341520882551485 232.4859627528424 41.427828604806706Q234.2796830988022 43.51413632706193 234.7639819586964 46.666822404730794Q235.27284670278817 49.97942734141185 234.02724856106136 52.45077272789999Q232.78165041933454 54.92211811438813 229.75874384050172 56.55571336271156L240.00415115499146 70.2754285188873L233.01341246103004 71.3493085995223L223.26517129130184 58.27814552877797L222.67118695782798 58.36939024151166L224.85755065140842 72.60216869359648L218.46079629092085 73.58480406149779ZM221.7131174741242 52.13255474003629 223.72352598742032 51.823726481553024Q226.78482985993935 51.353465269771675 227.8157007789682 50.37664566728567Q228.84657169799704 49.39982606479967 228.5623093237113 47.549336410515764Q228.3938575463568 46.4527499487179 227.69813463716864 45.729468178718705Q227.00241172798047 45.0061864087195 225.98850268746992 44.79947566894914Q224.9745936469594 44.59276492917878 222.41589190276437 44.9858190763393L220.6567844536303 45.25604380251217ZM256.4054288610647 35.54682267492114 262.72474876192354 35.964479047606495 269.0023156521309 60.14559359138086 278.5230485140706 37.00861997931988 284.75011556966143 37.420179178681366 288.22755648642357 71.72418777207298 282.0004894308328 71.31262857271149 279.772570547216 49.64606691292268 271.1377169005243 70.59468641382536 265.4411037052246 70.21818596107614 259.73063991274034 48.32145600831109 254.60139438623318 69.50176809552097 248.30513769669136 69.08563601616659ZM323.89050298536125 51.38686075078639 318.13229212274325 54.148283087538736Q316.6688060202328 50.08030737173516 314.15637757320513 49.366618087904Q312.9335141697846 49.019247197543706 311.9690112536873 49.45409245642181Q311.0045083375901 49.88893771529992 310.77082246589316 50.711591277601016Q310.5371365941962 51.534244839902115 310.88456106153484 52.425858741209126Q311.36261627136116 53.618887832531925 314.2488137783188 57.922808118851776Q316.9599127826644 61.91268154641544 317.49481050182237 62.905605717178524Q318.8415285512726 65.35456532399294 319.1350382954207 67.32413702901664Q319.4285480395688 69.29370873404035 318.84117544314137 71.3614595798242Q317.6980094221375 75.38579187108093 314.1735059586814 77.21991042214616Q310.6490024952253 79.05402897321139 306.1799926027248 77.78454626480374Q302.68927343296065 76.79296026868434 300.58534565221976 74.34515679976874Q298.4814178714788 71.89735333085316 297.67811849739775 67.70454886786597L303.7999287925794 66.03155897602873Q304.92513237698523 71.036644031396 307.9934078255677 71.90822917448183Q309.59424719004556 72.36296924913532 310.9489723566408 71.73862217066244Q312.30369752323605 71.11427509218956 312.65106841359636 69.891411688769Q312.96686013210575 68.7797176856594 312.459998288314 67.4343378108529Q311.9531364445223 66.08895793604637 309.8021984968154 63.00307315899701Q305.70397081844607 57.12943241796246 304.8202355745176 54.319415785425925Q303.93650033058907 51.50939915288939 304.6059787738289 49.152607866297046Q305.57230143246755 45.750824216781695 308.85413232324845 44.052009054098505Q312.1359632140293 42.353193891415316 315.9379567046641 43.43320156871734Q318.3836835115052 44.127943349437935 320.27384702481373 45.89029675244335Q322.1640105381223 47.65265015544877 323.89050298536125 51.38686075078639ZM352.1593770057947 58.100856989428635 358.0202368375311 61.05713763036071 354.38839825285424 97.30565754321945 348.3830806083637 94.27651083015174 349.1639050927043 86.82646575013999 336.78180685664137 80.58080242422716 331.15132722984276 85.58462936825637 325.14600958535226 82.55548265518865ZM351.07139942060644 67.64818004108862 341.76981403084926 76.02952936997674 349.8388147146836 80.09961997069661ZM384.74848342545744 77.08982452139904 389.54349842318135 81.01139808317589 386.66876430289705 107.56396314018322 400.8332538842403 90.24465523795647 405.84297104604144 94.34182164578304 384.31821466778115 120.66072859224538 379.50530782305077 116.72452229329771 382.3540355788291 90.24026551448048 368.23344420899826 107.50589787568794 363.22372704719714 103.40873146786136ZM431.3018947903185 121.66359354849492Q435.6900783772923 127.38621836522559 434.70236686028744 134.68256055116186Q433.7146553432826 141.9789027370981 427.7535878258548 146.5499273068625Q421.84754554704944 151.0787578036752 414.64200708985186 150.15248710812813Q407.43646863265434 149.22621641258104 402.992026281745 143.4302246110205Q398.3366135660773 137.35910661634787 399.456706122116 130.12144996160103Q400.5767986781546 122.88379330685419 406.3544487335077 118.45341564692872Q410.2245571832839 115.48576584932785 414.9056447423629 114.8671736583412Q419.5867323014419 114.24858146735455 423.9956503745395 116.06688764855531Q428.4045684476371 117.88519382975608 431.3018947903185 121.66359354849492ZM426.23406225652 125.46229363945847Q423.3648652958064 121.72057741313456 418.8053452875849 121.16826081000866Q414.2458252793634 120.61594420688274 410.2289828599274 123.69611153235473Q405.7535967853047 127.12789613242398 405.61038974602474 132.33488783844368Q405.48725389080465 136.39054602187144 407.9626395039694 139.61869335438618Q410.7615130097636 143.26870084967274 415.3717812013839 143.81122981703834Q419.9820493930042 144.35375878440394 423.85215784278046 141.38610898680307Q427.7039245463492 138.4325238801861 428.38952719080754 133.79992512677677Q429.0751298352659 129.16732637336742 426.23406225652 125.46229363945847ZM455.2594640346178 162.6921086772507 457.95455376093105 168.67757144652197 432.3235856323934 194.5657718507979 429.56206763817806 188.43278006960796 434.85664475283704 183.13369413461106 429.16279321837237 170.488350255869 421.6381242527147 170.83467650502524 418.87660625849935 164.7016847238353ZM448.406514881707 169.42799470555084 435.90335894917393 170.0895074133362 439.6138521991334 178.33005650764977ZM467.122125361983 193.42249839572503 471.68774300090007 211.65071916744267 465.49956473153463 213.200670543016 463.99453948278955 207.19185975971916 437.20152125129806 213.90269995468336 435.6066437488965 207.5351541992494 462.39966198038803 200.82431400428518 460.9339470926176 194.97244977129836ZM80.23446764090966 317.9249883498766 82.7665747408561 323.90597306718234 62.50359448863167 332.48449961219666Q59.88558338461527 333.59285965950414 58.9938043172354 334.5100434086833Q58.10202524985553 335.4272271578625 57.898890970743516 336.7556542399087Q57.6957566916315 338.084081321955 58.32653070229432 339.57400634050094Q58.993348942137864 341.14906993153517 60.19911837358103 341.9814223905305Q61.4048878050242 342.81377484952577 62.707058243484894 342.77702952553136Q64.00922868194559 342.740284201537 67.15935586401409 341.40664772184994L86.67737360696556 333.143508182167L89.209480706912 339.1244928994728L70.54284868884392 347.02719014734834Q65.81765791574115 349.027644866879 63.76190217486231 349.2704797162126Q61.70614643398346 349.51331456554624 59.3680954449063 348.7336318090539Q57.030044455829135 347.9539490525616 55.381568424472036 346.34268759119436Q53.73309239311494 344.7314261298272 52.633743403102606 342.13469966893285Q51.19197423587331 338.72915676939937 51.68858521586732 335.5446138482364Q52.18519619586134 332.3600709270734 54.077585338797334 330.2788322967294Q55.96997448173334 328.19759366638533 61.56783562284156 325.8276855977522ZM94.2853829214231 348.4095306884856 105.4129021379143 365.7111493192156 75.48201092129028 370.5335406867315 81.62090073623094 380.07859096503313 76.39153510514511 383.44185239114114 65.15149041343098 365.96527357201046 94.9018558014271 361.2040248072704 88.90049712287005 351.87281475923623ZM127.98852574537526 400.04840983691656 121.73537289131055 399.7275850583917Q122.10157765442288 393.0178916032355 118.13065810065667 388.82009491351357Q114.779201997278 385.2771545073883 110.0660796019213 385.1380776836983Q105.35295720656461 384.9990008600084 101.8100168004393 388.35045696338705Q99.3417123468828 390.6853576610016 98.44407246213376 393.5707329300878Q97.5464325773847 396.45610819917397 98.31339578921958 399.45311613394307Q99.08035900105448 402.45012406871217 101.35172498580874 404.85126377523306Q103.28953372804665 406.8997885598174 105.65778422529759 407.8729910636796Q108.02603472254853 408.84619356754183 111.9629021976379 408.97188577955944L111.65614608024045 415.30717955033094Q106.39730783652173 415.0957209448276 103.06151650966574 413.6378450750153Q99.72572518280974 412.17996920520307 96.77136103480768 409.05680846804995Q91.32325940704045 403.2974314097515 91.50475883710686 396.1738570911579Q91.68625826717327 389.05028277256434 97.3952617651951 383.64983217944234Q101.08932285215039 380.15542297212806 105.54104177031914 379.1100370798613Q109.99276068848789 378.06465118759456 114.68546642030674 379.52751379700146Q119.37817215212559 380.9903764064084 122.77727929014947 384.5836903728104Q125.66810872529126 387.63968636292793 127.05158712409532 391.6920445543605Q128.43506552289938 395.7444027457931 127.98852574537526 400.04840983691656ZM139.7510476171631 401.71192374910817 145.14007406915022 405.4599455066484 137.81559493029522 415.9913176223275 147.15151399500527 422.4843693994746 154.47599313386027 411.9529972837955 159.8460441405939 415.6878217816261 140.43287510770074 443.60070174948896 135.0628241009671 439.8658772516584 143.5750566136905 427.6267150631665 134.2391375489804 421.1336632860194 125.72690503625704 433.3728254745112 120.33787858426992 429.62480371697103ZM179.4470412949406 425.5474597390436 185.47628773160622 428.14312162017654 184.0478893372619 464.54511504643136 177.87003471377704 461.8854755837212 178.19792981858947 454.40180379977767 165.46008523408463 448.9180110931588 160.14320100034115 454.25386406700994 153.96534637685627 451.5942246042998ZM178.9396587359195 435.14316896856025 170.16310397691038 444.07281587635634 178.4639326978127 447.64642079016966ZM206.92282022517864 435.655019272337 213.62782094019678 437.127200297138Q219.13630637610396 438.3366688831699 221.2572750610384 439.83174722381034Q223.37824374597287 441.3268255644507 224.2998759397144 443.9192581461992Q225.22150813345593 446.51169072794767 224.53746442496248 449.6271456056329Q223.81872284719765 452.90063080320067 221.76641577779742 454.75726712808483Q219.7141087083972 456.613903452969 216.30566038737837 457.0487340667022L220.92025250389824 473.53826088236764L214.01206994903106 472.0214683113605L209.62760375973835 456.31605630911986L209.0406340001745 456.1871785089689L205.95252363501936 470.2518769785188L199.63131083971604 468.86396220766255ZM210.39385090175932 450.0239960335482 212.3805177802832 450.46019781867443Q215.40566961803552 451.1244141732985 216.71923484354545 450.5845829164864Q218.0328000690554 450.0447516596744 218.43430398491023 448.2161151010331Q218.67223223134275 447.13247862183823 218.2838059973528 446.2071181807501Q217.89537976336285 445.281757739662 217.0240288403112 444.72364624429355Q216.1526779172595 444.1655347489251 213.6241927991382 443.6103688405826L211.88585928042977 443.2286922785971ZM240.28375195133498 441.8729870437253 246.61662936175566 441.9268810101636 254.27313706240304 465.7073779871002 262.4488228878074 442.0616159262592 268.68924953311245 442.1147231194648 274.13186111396516 476.1622719311638 267.8914344686601 476.1091647379582 264.42235732988155 454.60639699716234 257.0053568762946 476.0165221898107 251.29652213040444 475.96793894269297 244.33742860851083 454.4354705123636 240.43355722931787 475.8754930878536 234.1237925101761 475.82179581472354ZM301.71925479335636 441.29717718251595 297.8331203859378 446.3647609290133Q294.6876923691047 443.39887141867575 292.12418357639666 443.8989431785242Q290.87645805782194 444.1423409377424 290.2130006168551 444.9664650172077Q289.54954317588823 445.79058909667305 289.7132834866351 446.62996808189604Q289.8770237973819 447.46934706711903 290.59021041590137 448.1073470331647Q291.55624985294037 448.9550633786895 296.0772269213571 451.48777580354425Q300.2999793342153 453.8196226765277 301.2261900470186 454.4631657553767Q303.5350787083208 456.03799457471985 304.68782379937596 457.66173698846285Q305.84056889043114 459.2854794022059 306.25213237420024 461.3952698245231Q307.05313227271847 465.5014210765599 304.7395912866442 468.7315361873617Q302.42605030056995 471.9616512981635 297.8661806781424 472.85115947276114Q294.3044914705746 473.54594943998416 291.3208251001426 472.3146944221419Q288.3371587297106 471.0834394042996 285.72403421493397 467.7075721943048L290.4268163068624 463.4461995205976Q293.6944793617075 467.40085976868727 296.82513611740404 466.7901526637396Q298.458522250811 466.4715228698539 299.38426487850177 465.3018690156388Q300.31000750619256 464.13221516142363 300.0666097469743 462.8844896428489Q299.84533905677586 461.7501937168719 298.7846893813545 460.7796381016417Q297.7240397059331 459.8090824864115 294.40979635066225 458.03003501819893Q288.0977948003948 454.64569430132144 286.03847393390436 452.5394229452682Q283.9791530674139 450.43315158921496 283.5100592041933 448.0284442261437Q282.8329708921861 444.557498692654 284.991297588178 441.557829906602Q287.14962428416993 438.5581611205501 291.0289163510113 437.8014153600715Q293.5243673881607 437.31461984163496 296.00731238485736 438.0312730126367Q298.490257381554 438.74792618363836 301.71925479335636 441.29717718251595ZM321.3599647031997 430.1688020411739 327.464217625123 427.7548075381971 352.1332073000789 454.5612693672969 345.8784974399391 457.03476373478367 340.8312107483083 451.4996254689371 327.9349017583295 456.59961385550776 327.9311340955519 464.13224757276123 321.6764242354121 466.60574194024804ZM327.77007131206557 437.3274056718832 327.8497672673695 449.8477952780618 336.25386195917235 446.52430284614655ZM347.2320560858081 418.6583376789984 352.3992953415581 415.24211952105526 376.9046205179284 425.8624700505476 364.5654444847607 407.1987103506743 369.96405266241 403.62952720058445 388.7150112830605 431.9915008767349 383.5284912838188 435.4204661173569 359.08068809897685 424.84521073566054 371.3816228841079 443.45112820505904 365.98301470645856 447.02031135514886ZM389.1851514947119 384.60916372913Q394.1964420162308 379.4234567093512 401.5586359538942 379.32204783730936Q408.9208298915577 379.2206389652675 414.32260803716053 384.44073325851633Q419.67452361526557 389.61264206598133 419.82327943223424 396.87594940950606Q419.9720352492029 404.1392567530308 414.89649741330555 409.39144719614006Q409.58003214848907 414.8929504767387 402.2563157005981 414.8547591559173Q394.9325992527072 414.8165678350959 389.69702966543053 409.75709182779315Q386.1900290847468 406.36804599433003 384.8864441190227 401.8297750381561Q383.5828591532986 397.2915040819821 384.72963697876025 392.66228205631637Q385.87641480422184 388.0330600306506 389.1851514947119 384.60916372913ZM393.69108050706706 389.05996733155155Q390.41446747376625 392.4506219214069 390.54203482734783 397.04170054257656Q390.6696021809295 401.6327791637462 394.30956960827416 405.1503196259662Q398.3650584314345 409.0694058030515 403.5360399637242 408.4415356927771Q407.5653636500127 407.9639622735421 410.3922454826644 405.03869164700023Q413.58854937299213 401.73114133630804 413.4438021363399 397.09131820211655Q413.2990548996877 392.451495067925 409.79205431900397 389.0624492344619Q406.30167459415287 385.68946522959345 401.6186222386658 385.69600984147746Q396.9355698831787 385.7025544533614 393.69108050706706 389.05996733155155ZM412.8646942730346 356.00082140206905 416.29548146617077 350.40448577680274 452.1195492692756 357.0212533725867 448.60420041997054 362.75552684777153 441.2442348507228 361.3613369794101 433.99609289339287 373.18458125814163 438.5172028626863 379.2095418023396 435.0018540133812 384.9438152775244ZM422.2893571239693 357.874535047438 429.8728613525072 367.8373143259097 434.59623386136724 360.13250013760296ZM425.4910066003098 333.1835099357864 432.4050134254702 315.7104047009146 438.3368425088953 318.05759520982514 436.0576865074894 323.81748721836834 461.7407870679713 333.98014177687605 459.3255620515561 340.08390793518305 433.6424614910742 329.9212533766754 431.4228356837349 335.53070044469695Z" fill="#fff"/>
+  <g fill="#fff"><circle cx="60.50" cy="256.00" r="4.6"/><circle cx="58.30" cy="261.30" r="4.6"/><circle cx="53.00" cy="263.50" r="4.6"/><circle cx="47.70" cy="261.30" r="4.6"/><circle cx="45.50" cy="256.00" r="4.6"/><circle cx="47.70" cy="250.70" r="4.6"/><circle cx="53.00" cy="248.50" r="4.6"/><circle cx="58.30" cy="250.70" r="4.6"/><circle cx="53.0" cy="256" r="6"/></g><circle cx="53.0" cy="256" r="2.6" fill="#13236A"/>
+  <g fill="#fff"><circle cx="466.50" cy="256.00" r="4.6"/><circle cx="464.30" cy="261.30" r="4.6"/><circle cx="459.00" cy="263.50" r="4.6"/><circle cx="453.70" cy="261.30" r="4.6"/><circle cx="451.50" cy="256.00" r="4.6"/><circle cx="453.70" cy="250.70" r="4.6"/><circle cx="459.00" cy="248.50" r="4.6"/><circle cx="464.30" cy="250.70" r="4.6"/><circle cx="459.0" cy="256" r="6"/></g><circle cx="459.0" cy="256" r="2.6" fill="#13236A"/>
+  <path d="M256.00 128.00C260.67 128.00 264.00 119.00 270.00 116.00C276.00 113.00 283.33 109.83 292.00 110.00C300.67 110.17 312.00 113.33 322.00 117.00C332.00 120.67 343.33 125.83 352.00 132.00C360.67 138.17 370.67 146.00 374.00 154.00C377.33 162.00 375.17 171.00 372.00 180.00C368.83 189.00 359.83 198.00 355.00 208.00C350.17 218.00 345.00 229.00 343.00 240.00C341.00 251.00 341.33 263.33 343.00 274.00C344.67 284.67 348.50 294.33 353.00 304.00C357.50 313.67 366.00 323.33 370.00 332.00C374.00 340.67 378.33 348.83 377.00 356.00C375.67 363.17 368.83 371.00 362.00 375.00C355.17 379.00 345.00 378.00 336.00 380.00C327.00 382.00 316.67 383.50 308.00 387.00C299.33 390.50 292.67 399.67 284.00 401.00C275.33 402.33 265.33 395.00 256.00 395.00C246.67 395.00 236.67 402.33 228.00 401.00C219.33 399.67 212.67 390.50 204.00 387.00C195.33 383.50 185.00 382.00 176.00 380.00C167.00 378.00 156.83 379.00 150.00 375.00C143.17 371.00 136.33 363.17 135.00 356.00C133.67 348.83 138.00 340.67 142.00 332.00C146.00 323.33 154.50 313.67 159.00 304.00C163.50 294.33 167.33 284.67 169.00 274.00C170.67 263.33 171.00 251.00 169.00 240.00C167.00 229.00 161.83 218.00 157.00 208.00C152.17 198.00 143.17 189.00 140.00 180.00C136.83 171.00 134.67 162.00 138.00 154.00C141.33 146.00 151.33 138.17 160.00 132.00C168.67 125.83 180.00 120.67 190.00 117.00C200.00 113.33 211.33 110.17 220.00 110.00C228.67 109.83 236.00 113.00 242.00 116.00C248.00 119.00 251.33 128.00 256.00 128.00Z" fill="#96503A"/>
+  <path d="M256.00 140.80C260.20 140.80 263.20 132.70 268.60 130.00C274.00 127.30 280.60 124.45 288.40 124.60C296.20 124.75 306.40 127.60 315.40 130.90C324.40 134.20 334.60 138.85 342.40 144.40C350.20 149.95 359.20 157.00 362.20 164.20C365.20 171.40 363.25 179.50 360.40 187.60C357.55 195.70 349.45 203.80 345.10 212.80C340.75 221.80 336.10 231.70 334.30 241.60C332.50 251.50 332.80 262.60 334.30 272.20C335.80 281.80 339.25 290.50 343.30 299.20C347.35 307.90 355.00 316.60 358.60 324.40C362.20 332.20 366.10 339.55 364.90 346.00C363.70 352.45 357.55 359.50 351.40 363.10C345.25 366.70 336.10 365.80 328.00 367.60C319.90 369.40 310.60 370.75 302.80 373.90C295.00 377.05 289.00 385.30 281.20 386.50C273.40 387.70 264.40 381.10 256.00 381.10C247.60 381.10 238.60 387.70 230.80 386.50C223.00 385.30 217.00 377.05 209.20 373.90C201.40 370.75 192.10 369.40 184.00 367.60C175.90 365.80 166.75 366.70 160.60 363.10C154.45 359.50 148.30 352.45 147.10 346.00C145.90 339.55 149.80 332.20 153.40 324.40C157.00 316.60 164.65 307.90 168.70 299.20C172.75 290.50 176.20 281.80 177.70 272.20C179.20 262.60 179.50 251.50 177.70 241.60C175.90 231.70 171.25 221.80 166.90 212.80C162.55 203.80 154.45 195.70 151.60 187.60C148.75 179.50 146.80 171.40 149.80 164.20C152.80 157.00 161.80 149.95 169.60 144.40C177.40 138.85 187.60 134.20 196.60 130.90C205.60 127.60 215.80 124.75 223.60 124.60C231.40 124.45 238.00 127.30 243.40 130.00C248.80 132.70 251.80 140.80 256.00 140.80Z" fill="none" stroke="#F2CDB6" stroke-width="2.4" stroke-dasharray="6 5" stroke-linecap="round"/>
+  <clipPath id="teri"><path d="M256.00 128.00C260.67 128.00 264.00 119.00 270.00 116.00C276.00 113.00 283.33 109.83 292.00 110.00C300.67 110.17 312.00 113.33 322.00 117.00C332.00 120.67 343.33 125.83 352.00 132.00C360.67 138.17 370.67 146.00 374.00 154.00C377.33 162.00 375.17 171.00 372.00 180.00C368.83 189.00 359.83 198.00 355.00 208.00C350.17 218.00 345.00 229.00 343.00 240.00C341.00 251.00 341.33 263.33 343.00 274.00C344.67 284.67 348.50 294.33 353.00 304.00C357.50 313.67 366.00 323.33 370.00 332.00C374.00 340.67 378.33 348.83 377.00 356.00C375.67 363.17 368.83 371.00 362.00 375.00C355.17 379.00 345.00 378.00 336.00 380.00C327.00 382.00 316.67 383.50 308.00 387.00C299.33 390.50 292.67 399.67 284.00 401.00C275.33 402.33 265.33 395.00 256.00 395.00C246.67 395.00 236.67 402.33 228.00 401.00C219.33 399.67 212.67 390.50 204.00 387.00C195.33 383.50 185.00 382.00 176.00 380.00C167.00 378.00 156.83 379.00 150.00 375.00C143.17 371.00 136.33 363.17 135.00 356.00C133.67 348.83 138.00 340.67 142.00 332.00C146.00 323.33 154.50 313.67 159.00 304.00C163.50 294.33 167.33 284.67 169.00 274.00C170.67 263.33 171.00 251.00 169.00 240.00C167.00 229.00 161.83 218.00 157.00 208.00C152.17 198.00 143.17 189.00 140.00 180.00C136.83 171.00 134.67 162.00 138.00 154.00C141.33 146.00 151.33 138.17 160.00 132.00C168.67 125.83 180.00 120.67 190.00 117.00C200.00 113.33 211.33 110.17 220.00 110.00C228.67 109.83 236.00 113.00 242.00 116.00C248.00 119.00 251.33 128.00 256.00 128.00Z"/></clipPath>
+  <g stroke-linecap="round" clip-path="url(#teri)">
+    <path d="M256 100v320M130 256h252" stroke="#6F3526" stroke-width="5"/>
+    <path d="M256 100v320M130 256h252" stroke="#F2CDB6" stroke-width="2.2" stroke-dasharray="5 5"/>
+  </g>
+  <g transform="translate(204 200)"><circle r="29" fill="#6F3526" fill-opacity=".25" stroke="#fff" stroke-width="2.6"/><g fill="#fff"><path d="M-15 -3h30l-2.5 17h-25z"/><path d="M-8 -3v-5a8 7 0 0 1 16 0v5" fill="none" stroke="#fff" stroke-width="3.2"/><rect x="-3" y="1" width="6" height="4" rx="1" fill="#96503A"/></g></g>
+  <g transform="translate(308 200)"><circle r="29" fill="#6F3526" fill-opacity=".25" stroke="#fff" stroke-width="2.6"/><g fill="#fff"><path d="M-19 7v-5c0-3 2-5 5-5h7l3-6c3-2 6-1 8 2 3 4 7 5 10 6 4 1 5 4 5 8z"/><rect x="-19" y="7" width="38" height="3.6" rx="1.2"/><rect x="-19" y="9" width="8" height="4.5" rx="1"/><path d="M-1 -6l4 2M1 -9l4 2" stroke="#96503A" stroke-width="1.6" stroke-linecap="round"/><path d="M-19 6.6h38" stroke="#96503A" stroke-width="1.2"/></g></g>
+  <g transform="translate(204 314)"><circle r="29" fill="#6F3526" fill-opacity=".25" stroke="#fff" stroke-width="2.6"/><g fill="#fff"><path d="M-6 -15h12l10 6 3 21h-7l-1-10v18h-24v-18l-1 10h-7l3-21z"/><path d="M-6 -15l6 9 6-9M0 -6v20" fill="none" stroke="#96503A" stroke-width="2"/></g></g>
+  <g transform="translate(308 314)"><circle r="29" fill="#6F3526" fill-opacity=".25" stroke="#fff" stroke-width="2.6"/><g fill="#fff"><g><circle cx="-8" cy="-2" r="6.5"/><circle cx="0" cy="-5" r="7"/><circle cx="8" cy="-2" r="6.5"/><circle cx="-6" cy="4" r="6"/><circle cx="4" cy="4" r="6"/><ellipse cx="16" cy="-4" rx="5" ry="4.2"/><rect x="-10" y="7" width="3" height="9" rx="1"/><rect x="-4" y="7" width="3" height="9" rx="1"/><rect x="3" y="7" width="3" height="9" rx="1"/><rect x="9" y="7" width="3" height="9" rx="1"/></g><circle cx="17.5" cy="-5" r="1.1" fill="#96503A"/></g></g>
+</symbol></svg>
+<header><div class="wrap">
+  <a class="logo" href="#bosh" aria-label="Bosh sahifa">
+    <svg class="mk" role="img" aria-label="O‘ZCHARMSANOAT logotipi"><use href="#logo"/></svg>
+    <span><b>OLTINKO‘L</b><small>Charm-poyabzal kichik sanoat zonasi</small></span>
+  </a>
+  <nav class="top" id="menu" aria-label="Bo‘limlar"><a href="#kredit">Kredit</a><a href="#hujjatlar">Hujjatlar</a><a href="#zona">Zona haqida</a><a href="#kimlar">Kimlar uchun</a><a href="#xizmatlar">Xizmatlar</a><a href="#yangiliklar">Yangiliklar</a><a href="#aloqa">Aloqa</a></nav>
+  <div class="h-act">
+    <button class="tbtn" id="themeBtn" aria-label="Tun / kun rejimi"><svg class="ico" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg><span>Tungi</span></button>
+    <button class="tbtn" id="langBtn" data-notr>Кириллча</button>
+    <a class="btn sm" href="#ariza">Hamkor bo‘lish</a>
+    <button class="burger" id="burger" aria-label="Menyu"><svg class="ico" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</div></header>
+<div class="draft"><div class="wrap"><b>Qoralama.</b> Rasmlar, ish vaqti va yangiliklar matni keyin to‘ldiriladi. Raqamlar — matbuotdagi ma’lumot, direksiya tasdiqlaydi.</div></div>
+
+<main id="bosh">
+  <section class="hero"><div class="wrap">
+    <div>
+      <span class="eyebrow">Oltinko‘l charm-poyabzal kichik sanoat zonasi</span>
+      <h1>O‘z do‘koningiz — atigi 20% to‘lov bilan</h1>
+      <p>Charm-poyabzal zonasida savdo do‘konining 20% ini to‘lang — qolgani 5 yilga bank krediti, birinchi yil imtiyozli, qo‘shimcha garovsiz. Ishlab chiqaruvchilarga tayyor joy, xaridorlarga fabrika narxi.</p>
+      <div class="cta"><a class="btn" href="#ariza">Hamkor bo‘lish</a><a class="btn ghost" href="#kredit">To‘lovni hisoblash</a></div>
+    </div>
+    <div class="photo">
+      <div class="lbl"><svg class="ico" viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><b>Rasm joyi</b><small>Zona binolari yoki ishlab chiqarish sexidan haqiqiy fotosurat qo‘yiladi</small></div>
+      <div class="chip"><span class="d"><svg class="ico" viewBox="0 0 24 24"><path d="M12 3 4 7v5c0 5 3.4 8.3 8 9 4.6-.7 8-4 8-9V7z"/></svg></span><span><b>1 yil imtiyoz</b>Birinchi yil asosiy qarz yo‘q</span></div>
+    </div>
+  </div></section>
+
+  <div class="wrap">
+    <div class="facts">
+      <div class="fact"><b class="num">10,1 GA</b><span>zona maydoni</span></div>
+      <div class="fact"><b class="num">17</b><span>ishlab chiqarish loyihasi</span></div>
+      <div class="fact"><b class="num">2 500</b><span>yangi ish o‘rni</span></div>
+      <div class="fact"><b class="num">7</b><span>davlatga eksport</span></div>
+    </div>
+    <p class="src">Manba: UzA, 2026-yil sentabr. Raqamlar direksiya tomonidan yangilanib boriladi.</p>
+  </div>
+
+
+  <section class="s wrap" id="nega">
+    <div class="s-h"><span class="eyebrow">Nega aynan biz</span><h2>Biznesingizni shu yerda boshlashga 6 sabab</h2></div>
+    <div class="why">
+      <div><span class="wi"><svg class="ico" viewBox="0 0 24 24"><path d="M5 19 19 5"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/></svg></span><h3>20% bilan boshlaysiz</h3><p>Do‘kon qiymatining atigi 20% ini to‘laysiz, qolgani — 5 yilga bank krediti. Garovga do‘konning o‘zi olinadi.</p></div>
+      <div><span class="wi"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><h3>1 yil imtiyoz</h3><p>Birinchi yil asosiy qarzni to‘lamaysiz — biznesingiz oyoqqa turib oladi.</p></div>
+      <div><span class="wi"><svg class="ico" viewBox="0 0 24 24"><path d="M3 20V10l5 3V10l5 3V10l5 3V4h3v16z"/></svg></span><h3>Hammasi tayyor</h3><p>Bino, infratuzilma va savdo shoxobchalari qurilgan — qurilish bilan ovora bo‘lmaysiz.</p></div>
+      <div><span class="wi"><svg class="ico" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.2a5 5 0 0 1 5.5 5.8"/></svg></span><h3>Xaridor shu yerda</h3><p>Ulgurji va dona xaridorlar charm-poyabzal uchun aynan shu zonaga keladi.</p></div>
+      <div><span class="wi"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><h3>Eksport yo‘li ochiq</h3><p>Zona mahsulotlari allaqachon 7 davlatga chiqmoqda.</p></div>
+      <div><span class="wi"><svg class="ico" viewBox="0 0 24 24"><path d="M12 3v18M6 21h12M5 7h14"/><path d="m5 7-3 6h6zM19 7l-3 6h6z"/></svg></span><h3>Mutaxassislar yoningizda</h3><p>Yuridik, soliq, shartnoma, eksport va kassa bo‘yicha mutaxassislar maslahat beradi.</p></div>
+    </div>
+  </section>
+
+  <section class="s wrap" id="kredit">
+    <div class="credit">
+      <div>
+        <span class="eyebrow">Savdo do‘koni kreditga</span>
+        <h2>20% to‘lang — <em>do‘kon sizniki</em></h2>
+        <p class="lead">Qolgan 80% i AT Xalq banki krediti hisobidan — yillik 18%, 5 yilga, birinchi yil imtiyozli. Garovga do‘konning o‘zi olinadi.</p>
+        <div class="terms">
+          <div><b>20%</b><span>boshlang‘ich to‘lov</span></div>
+          <div><b>18%</b><span>yillik foiz</span></div>
+          <div><b>5 YIL</b><span>kredit muddati</span></div>
+          <div><b>1 YIL</b><span>imtiyozli davr</span></div>
+        </div>
+      </div>
+      <div class="calc">
+        <label for="cv">Do‘kon qiymati<span class="vin"><input id="cv" inputmode="numeric" value="500 000 000" class="num" aria-describedby="cvn"><span>so‘m</span></span></label>
+        <input type="range" id="cr" min="100000000" max="2000000000" step="10000000" value="500000000" aria-label="Do‘kon qiymati">
+        <div class="presets"><button type="button" data-v="300000000">300 mln</button><button type="button" data-v="500000000">500 mln</button><button type="button" data-v="800000000">800 mln</button><button type="button" data-v="1200000000">1,2 mlrd</button></div>
+        <div class="out">
+          <div class="hl"><small>Boshlang‘ich to‘lov (20%)</small><b class="num" id="o-first">—</b></div>
+          <div><small>Kredit summasi (80%)</small><b class="num" id="o-loan">—</b></div>
+          <div><small>1-yil (imtiyoz): oyiga</small><b class="num" id="o-grace">—</b></div>
+          <div><small>2–5-yillar: oyiga</small><b class="num" id="o-month">—</b></div>
+        </div>
+        <div class="tot"><span>Jami foiz: <b class="num" id="o-int">—</b></span><span>Jami to‘lov: <b class="num" id="o-all">—</b></span></div>
+        <p class="note" id="cvn">Taxminiy hisob: imtiyozli yilda faqat foiz to‘lanadi, keyin 48 oy davomida teng oylik to‘lov. Aniq grafikni bank tuzadi.</p>
+        <a class="btn" href="#ariza" data-need="Savdo do‘konini kreditga olish">Shu shartlarda ariza qoldirish</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="s wrap" id="hujjatlar">
+    <div class="s-h"><span class="eyebrow">Kredit uchun hujjatlar</span><h2>Hujjatlarning yarmini biz tayyorlaymiz</h2><p>AT Xalq bankidan direksiyaning savdo do‘konini kredit hisobidan sotib olish uchun kerakli hujjatlar ro‘yxati.</p></div>
+    <div class="docs">
+      <div class="dcol">
+        <h3><span class="cnt">4</span>Direksiya beradi</h3>
+        <ol>
+          <li><span><b>Oldi-sotdi shartnomasi</b><small>Yoki elektron onlayn auksion savdosi natijalari bo‘yicha g‘oliblik bayonnomasi</small><span class="help dir"><svg class="ico" viewBox="0 0 24 24" style="width:14px;height:14px"><path d="M5 12l5 5 9-10"/></svg>Direksiya beradi</span></span></li>
+          <li><span><b>Do‘kon qiymatining 20% i to‘langani haqida ma’lumotnoma</b><span class="help dir"><svg class="ico" viewBox="0 0 24 24" style="width:14px;height:14px"><path d="M5 12l5 5 9-10"/></svg>Direksiya beradi</span></span></li>
+          <li><span><b>Kadastr hujjati</b><small>Siz tanlagan do‘konning direksiya nomiga rasmiylashtirilgan kadastri</small><span class="help dir"><svg class="ico" viewBox="0 0 24 24" style="width:14px;height:14px"><path d="M5 12l5 5 9-10"/></svg>Direksiya beradi</span></span></li>
+          <li><span><b>Do‘konning baholash hisoboti</b><span class="help dir"><svg class="ico" viewBox="0 0 24 24" style="width:14px;height:14px"><path d="M5 12l5 5 9-10"/></svg>Tayyor</span></span></li>
+        </ol>
+      </div>
+      <div class="dcol us">
+        <h3><span class="cnt">5</span>Siz olib kelasiz</h3>
+        <ol>
+          <li><span><b>Ariza</b><span class="help"><svg class="ico" viewBox="0 0 24 24" style="width:14px;height:14px"><path d="M5 12l5 5 9-10"/></svg>Bank xodimi yozishga yordam beradi</span></span></li>
+          <li><span><b>Ta’sis hujjatlari</b><small>Yuridik shaxs: guvohnoma, ustav, ta’sis shartnomasi, rahbar va ta’sischilar pasporti nusxasi. YaTT: guvohnoma va ID karta nusxasi. Asl nusxasini olib borsangiz, bank nusxasini o‘zi oladi.</small></span></li>
+          <li><span><b>Kredit olishga rozilik</b><small>Yuridik shaxs uchun — ta’sischilar bayonnomasi</small><span class="help"><svg class="ico" viewBox="0 0 24 24" style="width:14px;height:14px"><path d="M5 12l5 5 9-10"/></svg>Bank xodimi yozishga yordam beradi</span></span></li>
+          <li><span><b>Pul oqimlari prognozi</b><small>Loyiha o‘zini qanday qoplashi hisob-kitobi</small><span class="help"><svg class="ico" viewBox="0 0 24 24" style="width:14px;height:14px"><path d="M5 12l5 5 9-10"/></svg>Bank xodimi tayyorlashga yordam beradi</span></span></li>
+          <li><span><b>Ta’minot hujjatlari</b><small>Do‘kon qiymatining 20% i to‘langan bo‘lsa, do‘konning o‘zi garov sifatida qabul qilinadi</small></span></li>
+        </ol>
+      </div>
+    </div>
+    <div class="guarantee">
+      <span class="gi"><svg class="ico" viewBox="0 0 24 24"><path d="M12 3 4 7v5c0 5 3.4 8.3 8 9 4.6-.7 8-4 8-9V7z"/><path d="m9 12 2 2 4-4"/></svg></span>
+      <span><b>Qo‘shimcha garov kerak emas</b><p>20% to‘langan bo‘lsa, bank do‘konning o‘zini garovga oladi.</p></span>
+      <a class="btn" href="#ariza" data-need="Savdo do‘konini kreditga olish">Ariza qoldirish</a>
+    </div>
+  </section>
+
+  <section class="s wrap" id="zona">
+    <div class="about">
+      <div class="txt">
+        <div class="s-h" style="margin-bottom:20px"><span class="eyebrow">Zona haqida</span><h2>Vodiy charm-poyabzal ustalari bir majmuada</h2></div>
+        <p>Zona vodiydagi charm mahsulotlari va tayyor poyabzal ishlab chiqaruvchi tadbirkorlar, kosiblar hamda klasterlarni birlashtiradi. Bu yerda xomashyoni qayta ishlashdan tayyor mahsulot va sotuvgacha bo‘lgan to‘liq zanjir shakllantirilmoqda.</p>
+        <p>Zonani «Oltinko‘l tuman charm-poyabzal kichik sanoat zonasini boshqarish direksiyasi» MChJ boshqaradi.</p>
+        <h3>Ishlab chiqarish yo‘nalishlari</h3>
+        <div class="chips"><span>Poyabzal va tagcharm</span><span>Sun’iy charm</span><span>Poyabzal yelimi</span><span>Rezina poyabzal</span><span>Poyabzal ustki qismlari</span><span>Teri tayyorlash</span></div>
+      </div>
+      <div class="inzone">
+        <div><span class="ii"><svg class="ico" viewBox="0 0 24 24"><path d="M3 20V10l5 3V10l5 3V10l5 3V4h3v16z"/></svg></span><span><b>Ishlab chiqarish binolari</b><small>Tayyor bino va inshootlar — bo‘lib to‘lash imkoniyati bilan</small></span></div>
+        <div><span class="ii"><svg class="ico" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg></span><span><b>Dual ta’lim markazi</b><small>Kadrlar ishlab chiqarishda o‘qitiladi</small></span></div>
+        <div><span class="ii"><svg class="ico" viewBox="0 0 24 24"><path d="M4 9h16l-1-4H5zM5 9v11h14V9M10 20v-6h4v6"/></svg></span><span><b>Savdo shoxobchalari</b><small>Mahsulotni fabrika narxida ulgurji va dona xarid qilish</small></span></div>
+        <div><span class="ii"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><span><b>Xorijlik tajriba</b><small>Turkiya, Xitoy va Italiyada malaka oshirgan mutaxassislar</small></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="s wrap" id="kimlar">
+    <div class="s-h"><span class="eyebrow">Hamkorlik</span><h2>Siz kim bo‘lsangiz ham — zonada o‘rningiz bor</h2><p>Ishlab chiqaruvchi, ulgurji yoki donali savdo — har biriga o‘z shartlari va imkoniyatlari.</p></div>
+    <div class="types" id="types"></div>
+  </section>
+
+  <section class="s wrap" id="xizmatlar">
+    <div class="s-h"><span class="eyebrow">Xizmatlar</span><h2>Mutaxassislar bilan to‘g‘ridan-to‘g‘ri bog‘laning</h2><p>Har bir xizmat uchun mas’ul mutaxassis bor. Xizmatlar ro‘yxati ko‘payib boradi.</p></div>
+    <div class="pros" id="pros"></div>
+  </section>
+
+  <section class="s wrap">
+    <div class="s-h"><span class="eyebrow">Qanday ishlaydi</span><h2>Zonaga kirish — to‘rt qadam</h2></div>
+    <div class="steps">
+      <div class="step"><b>01</b><h3>Ariza qoldiring</h3><p>Faoliyatingiz va nima kerakligini yozing — 1 daqiqa.</p></div>
+      <div class="step"><b>02</b><h3>Direksiya bog‘lanadi</h3><p>Mutaxassis qo‘ng‘iroq qilib, shartlarni tushuntiradi.</p></div>
+      <div class="step"><b>03</b><h3>Joyni ko‘ring</h3><p>Zonaga kelib, bino va infratuzilmani o‘z ko‘zingiz bilan ko‘rasiz.</p></div>
+      <div class="step"><b>04</b><h3>Ishni boshlang</h3><p>Hujjatlar rasmiylashtiriladi, direksiya keyin ham hamroh bo‘ladi.</p></div>
+    </div>
+  </section>
+
+  <section class="s wrap" id="yangiliklar">
+    <div class="s-h"><span class="eyebrow">Yangiliklar</span><h2>Zonadagi voqealar</h2><p>Yangi loyihalar, tadbirlar va imkoniyatlar — doim yangilanib turadi.</p></div>
+    <div class="news" id="news"></div>
+    <div class="ig">
+      <div class="l"><span class="ii"><svg class="ico" viewBox="0 0 24 24" style="color:#fff"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6"/></svg></span>
+        <div><b>Yangiliklar <span data-notr>Instagram</span>’da ham</b><p>Saytga chiqqan har bir xabar <span data-notr>Instagram</span> va <span data-notr>Telegram</span>’ga o‘zi joylanadi.</p></div></div>
+      <div class="r"><a class="btn sm" href="#yangiliklar">Instagram’ga obuna</a><a class="btn sm ghost" href="#yangiliklar"><span data-notr>Telegram</span> kanal</a></div>
+    </div>
+  </section>
+
+  <section class="s wrap" id="savollar">
+    <div class="s-h"><span class="eyebrow">Savol-javob</span><h2>Ko‘p so‘raladigan savollar</h2></div>
+    <div class="faq" id="faq"></div>
+  </section>
+
+  <section class="s wrap" id="aloqa">
+    <div class="s-h"><span class="eyebrow">Aloqa</span><h2>Direksiya bilan bog‘lanish</h2></div>
+    <div class="contact">
+      <div class="cbox">
+        <h3>Manzil va telefon</h3>
+        <div class="crow"><span class="ci"><svg class="ico" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><span><small>Manzil</small><b>Andijon viloyati, Oltinko‘l tumani, Sadda MFY, Gulbaxor ko‘chasi, 100-uy</b></span></div>
+        <div class="crow"><span class="ci"><svg class="ico" viewBox="0 0 24 24"><path d="M5 4h4l2 5-3 2a11 11 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></span><span><small>Telefon</small><b class="num"><a href="tel:+998934104599" data-notr>+998 93 410-45-99</a></b></span></div>
+        <div class="crow"><span class="ci"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span><small>Ish vaqti</small><b>[Direksiya ish vaqti]</b></span></div>
+        <a class="btn ghost" href="https://www.google.com/maps/search/?api=1&query=Oltinko%E2%80%98l+charm-poyabzal+kichik+sanoat+zonasi" target="_blank" rel="noopener">Xaritada ochish</a>
+      </div>
+      <div class="cbox">
+        <h3>Rekvizitlar</h3>
+        <dl class="req" id="req">
+          <dt>Tashkilot</dt><dd>«Oltinko‘l tuman charm-poyabzal kichik sanoat zonasini boshqarish direksiyasi» MChJ</dd>
+          <dt>STIR</dt><dd class="num" data-notr>311815252</dd>
+          <dt>Bank</dt><dd>AT Xalq banki Andijon shahar BXM</dd>
+          <dt>Hisob raqami</dt><dd class="num" data-notr>20208000707185245001</dd>
+          <dt>MFO</dt><dd class="num" data-notr>01125</dd>
+        </dl>
+        <button class="copy" id="copyReq"><svg class="ico" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg>Rekvizitlarni nusxalash</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="apply" id="ariza"><div class="wrap">
+    <div class="l">
+      <span class="eyebrow">Hamkorlikka taklif qilamiz</span>
+      <h2>Biznesingizni biz bilan boshlang</h2>
+      <p>Ariza qoldiring — direksiya siz bilan bog‘lanib, bo‘sh do‘konlar, kredit shartlari va keyingi qadamlarni tushuntiradi.</p>
+      <p class="call">Yoki hoziroq qo‘ng‘iroq qiling:<b class="num" data-notr>+998 93 410-45-99</b></p>
+    </div>
+    <form class="f" id="form" novalidate>
+      <div class="row2">
+        <label class="fld" for="f-name">Ismingiz *<input id="f-name" autocomplete="name" required></label>
+        <label class="fld" for="f-tel">Telefon *<input id="f-tel" type="tel" inputmode="tel" value="+998 " autocomplete="tel" required><small>Shu raqamga qo‘ng‘iroq qilamiz.</small></label>
+      </div>
+      <label class="fld" for="f-type">Siz kimsiz?<select id="f-type"><option value="">Tanlang</option><option value="prod">Ishlab chiqaruvchi</option><option value="ulg">Ulgurji xaridor</option><option value="don">Donali xaridor</option><option value="inv">Investor</option><option value="oth">Boshqa</option></select></label>
+      <label class="fld" for="f-need">Nima kerak?<select id="f-need"><option>Savdo do‘konini kreditga olish</option><option>Zonada joy (bino) olish</option><option>Ulgurji xarid</option><option>Yuridik maslahat</option><option>Soliq maslahati</option><option>Shartnoma bo‘yicha maslahat</option><option>Ishlab chiqarishni boshlash</option><option>Eksport maslahati</option><option>Onlayn kassa bo‘yicha yordam</option><option>Ko‘rgazma va yarmarkada ishtirok</option><option>Boshqa savol</option></select></label>
+      <label class="fld" for="f-text">Izoh<textarea id="f-text" placeholder="Qisqacha yozing"></textarea></label>
+      <button class="btn" type="submit">Arizani yuborish</button>
+      <p class="note">Ma’lumotlaringiz faqat siz bilan bog‘lanish uchun ishlatiladi. Arizani yuborish orqali shaxsiy ma’lumotlarni qayta ishlashga rozilik bildirasiz.</p>
+      <div id="res" hidden></div>
+    </form>
+  </div></section>
+</main>
+
+<footer>
+  <div class="wrap c">
+    <div><div class="logo" style="margin-bottom:12px"><svg class="mk" role="img" aria-label="O‘ZCHARMSANOAT logotipi"><use href="#logo"/></svg><span><b>OLTINKO‘L</b><small>Charm-poyabzal kichik sanoat zonasi</small></span></div><p>Andijon viloyati, Oltinko‘l tumani, Sadda MFY, Gulbaxor ko‘chasi, 100-uy</p></div>
+    <div><h4>Sayt</h4><ul><li><a href="#zona">Zona haqida</a></li><li><a href="#kimlar">Kimlar uchun</a></li><li><a href="#xizmatlar">Xizmatlar</a></li><li><a href="#yangiliklar">Yangiliklar</a></li></ul></div>
+    <div><h4>Bog‘lanish</h4><ul><li class="num"><a href="tel:+998934104599" data-notr>+998 93 410-45-99</a></li><li><a href="#ariza">Ariza qoldirish</a></li><li><a href="#aloqa">Rekvizitlar</a></li></ul></div>
+    <div><h4>Ijtimoiy tarmoqlar</h4><ul><li data-notr>Instagram</li><li data-notr>Telegram</li><li data-notr>YouTube</li></ul></div>
+  </div>
+  <div class="b"><div class="wrap"><span>© 2026 «Oltinko‘l tuman charm-poyabzal kichik sanoat zonasini boshqarish direksiyasi» MChJ</span><span class="num">STIR <span data-notr>311815252</span></span></div></div>
+</footer>
+
+<div class="mbar"><a class="btn ghost" href="tel:+998934104599" aria-label="Qo‘ng‘iroq qilish"><svg class="ico" viewBox="0 0 24 24"><path d="M5 4h4l2 5-3 2a11 11 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a><a class="btn" href="#ariza">Hamkor bo‘lish</a></div>
+<div class="modal-bg" id="modal" hidden></div>
+<div class="drawer-bg" id="drawer" hidden><nav class="drawer" id="drawerNav" aria-label="Menyu"></nav></div>
+<div class="toast" id="toast" hidden role="status"></div>
+
+<script>
+const I = {
+  check: '<path d="M5 12l5 5 9-10"/>', arrow: '<path d="M5 12h14M13 6l6 6-6 6"/>', close: '<path d="M6 6l12 12M18 6 6 18"/>', plus: '<path d="M12 5v14M5 12h14"/>',
+  factory: '<path d="M3 20V10l5 3V10l5 3V10l5 3V4h3v16z"/>', boxes: '<path d="M3 13h8v7H3zM13 13h8v7h-8zM8 5h8v7H8z"/>', shop: '<path d="M4 9h16l-1-4H5zM5 9v11h14V9M10 20v-6h4v6"/>',
+  scale: '<path d="M12 3v18M6 21h12M5 7h14"/><path d="m5 7-3 6h6zM19 7l-3 6h6z"/>', percent: '<path d="M5 19 19 5"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/>',
+  kassa: '<rect x="4" y="9" width="16" height="11" rx="2"/><path d="M7 9V4h10v5M8 13h2M12 13h2M8 16h8"/>',
+  globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
+  doc: '<path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h6M9 17h3"/>',
+  phone: '<path d="M5 4h4l2 5-3 2a11 11 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/>', copy: '<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/>'
+};
+const ic = n => `<svg class="ico" viewBox="0 0 24 24" aria-hidden="true">${I[n]}</svg>`;
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+const TYPES = [
+  { k: "prod", n: "Ishlab chiqaruvchilarga", w: "Poyabzal, charm, tagcharm, furnitura", i: "factory", b: ["Zonada tayyor ishlab chiqarish binosi", "Bino uchun 7 yilgacha bo‘lib to‘lash", "Dual ta’lim markazidan tayyor kadrlar"] },
+  { k: "ulg", n: "Ulgurji xaridorlarga", w: "Do‘konlar tarmog‘i, distribyutorlar, eksportchilar", i: "boxes", b: ["To‘g‘ridan-to‘g‘ri ishlab chiqaruvchidan", "Katta partiyaga buyurtma", "Bir joyda — turli fabrikalar mahsuloti"] },
+  { k: "don", n: "Donali xaridorlarga", w: "Do‘kon egalari va oddiy xaridorlar", i: "shop", b: ["Zonadagi savdo shoxobchalari", "Fabrika narxida xarid", "Mahsulotni ko‘rib, tanlab olish"] }
+];
+const PROS = [
+  { kind: "Yuridik maslahat", n: "Ruxsatnoma, ro‘yxatdan o‘tish va huquqiy masalalar", i: "scale", who: "Xasanov Dilshodjon Abdumannobovich", tel: "+998 99 542-25-25", raw: "+998995422525" },
+  { kind: "Soliq maslahati", n: "Soliq rejimi, hisobot va imtiyozlar", i: "percent", who: "Abdurahmonov Zahriddin", tel: "+998 99 472-55-50", raw: "+998994725550" },
+  { kind: "Shartnomalar", n: "Shartnomalar bo‘yicha yuridik maslahat", i: "doc", who: "Jabborov Nurmuhammad Olmosboyevich", tel: "+998 93 057-02-14", raw: "+998930570214" },
+  { kind: "Eksport va ko‘rgazmalar", n: "Eksportga chiqish, ko‘rgazma va yarmarkalarda ishtirok", i: "globe", who: "Yuldashev Farxodjon", tel: "+998 93 788-11-10", raw: "+998937881110" },
+  { kind: "Onlayn kassa", n: "Onlayn nazorat-kassani ulash va sozlashda yordam", i: "kassa", who: "Abdullayev Abbosbek Karimjon o‘g‘li", tel: "+998 97 994-06-04", raw: "+998979940604" },
+  { kind: "Ishlab chiqarish", n: "Ishlab chiqarishni boshlash bo‘yicha maslahat", i: "factory", who: "Direksiya mutaxassisi", tel: "+998 93 410-45-99", raw: "+998934104599", dir: true }
+];
+const NEWS = [
+  { d: "23.09.2026", tag: "Tashrif", t: "Davlatimiz rahbari zonadagi loyihalar bilan tanishdi", l: "Prezident Andijon viloyatiga tashrifi chog‘ida Oltinko‘l tumanidagi charm-poyabzal kichik sanoat zonasida bo‘ldi." },
+  { d: "Sentabr, 2026", tag: "Eksport", t: "Zona mahsulotlari 7 davlatga eksport qilinmoqda", l: "Mahsulotlar Rossiya, Belarus, Qozog‘iston, Qirg‘iziston, Tojikiston, Turkmaniston va Afg‘onistonga yetkazilmoqda." },
+  { d: "Sentabr, 2026", tag: "Kadrlar", t: "Dual ta’lim markazida yoshlar kasb o‘rganmoqda", l: "Turkiya, Xitoy va Italiyada malaka oshirgan mutaxassislar yoshlarni ishlab chiqarishda o‘qitmoqda." }
+];
+const FAQ = [
+  ["Zonada joy olish uchun nima qilish kerak?", "Saytda ariza qoldiring yoki direksiyaga qo‘ng‘iroq qiling. Mutaxassis bo‘sh joylar va shartlarni tushuntiradi, keyin zonaga kelib ko‘rasiz."],
+  ["Savdo do‘konini kreditga olish shartlari qanday?", "Do‘kon qiymatining 20% i boshlang‘ich to‘lov sifatida to‘lanadi. Qolgan qismi AT Xalq banki tomonidan yillik 18% bilan 5 yilga kreditga beriladi, birinchi yil — imtiyozli davr. Taxminiy oylik to‘lovni sahifadagi kalkulyatorda hisoblang."],
+  ["Kredit uchun garov kerakmi?", "20% to‘langan bo‘lsa, do‘konning o‘zi garov sifatida qabul qilinadi — qo‘shimcha garov talab qilinmaydi."],
+  ["Qanday hujjatlar kerak?", "Oldi-sotdi shartnomasi, 20% to‘lov ma’lumotnomasi, kadastr va baholash hisobotini direksiya beradi. Sizdan ariza, ta’sis hujjatlari, kredit olishga rozilik va pul oqimlari prognozi kerak — ularning ko‘pini tayyorlashda bank xodimi yordam beradi."],
+  ["Ulgurji xarid qilmoqchiman — kim bilan gaplashaman?", "Arizada «Ulgurji xarid» ni tanlang. Direksiya sizni kerakli ishlab chiqaruvchilar bilan bog‘laydi."],
+  ["Dona xarid qilsa bo‘ladimi?", "Ha, zonadagi savdo shoxobchalarida mahsulotni ko‘rib, dona xarid qilish mumkin."],
+  ["Mutaxassislar maslahati pullikmi?", "Shartlarini mutaxassisning o‘zidan so‘rang — telefon raqamlari «Xizmatlar» bo‘limida."]
+];
+let cyr = false;
+const after = el => { if (cyr) translit(el, true); };
+
+function render() {
+  $("#types").innerHTML = TYPES.map(t => `<a class="type" href="#ariza" data-pick="${t.k}"><span class="ti">${ic(t.i)}</span><h3>${t.n}</h3><span class="who">${t.w}</span>
+    <ul>${t.b.map(x => `<li>${ic("check")}<span>${x}</span></li>`).join("")}</ul><span class="more">Hamkor bo‘lish ${ic("arrow")}</span></a>`).join("");
+  $("#pros").innerHTML = PROS.map(p => `<article class="pro"><div class="top"><span class="si">${ic(p.i)}</span><div><span class="kind">${p.kind}</span><h3>${p.n}</h3></div></div>
+    <div class="person"><span class="av">${p.dir ? "D" : p.who.split(" ").slice(0, 2).map(w => w[0]).join("")}</span><span><b>${p.who}</b><small>${p.dir ? "Direksiya telefoni" : "Mas’ul mutaxassis"}</small></span></div>
+    <span class="tel num" data-notr>${p.tel}</span>
+    <div class="acts"><a class="btn" href="tel:${p.raw}">${ic("phone")}Qo‘ng‘iroq</a><button class="btn ghost" data-copy="${p.raw}">${ic("copy")}Nusxa</button></div></article>`).join("") +
+    `<article class="pro soon"><div class="top"><span class="si">${ic("plus")}</span><div><span class="kind">Tez orada</span><h3>Yangi xizmatlar qo‘shiladi</h3></div></div><p>Direksiya xizmatlari ro‘yxati kengayib boradi.</p></article>`;
+  $("#news").innerHTML = NEWS.map((n, i) => `<button class="nc" data-news="${i}"><span class="ph">Rasm joyi</span><span class="meta"><span class="num">${n.d}</span><span class="tag">${n.tag}</span></span><h3>${esc(n.t)}</h3></button>`).join("");
+  $("#faq").innerHTML = FAQ.map(([q, a]) => `<details><summary>${q}<span class="pl" aria-hidden="true">+</span></summary><p>${a}</p></details>`).join("");
+  $("#drawerNav").innerHTML = `<button class="x" data-act="dclose" aria-label="Yopish" style="align-self:flex-end">${ic("close")}</button>` + $$("#menu a").map(a => a.outerHTML).join("") + `<a class="btn" href="#ariza">Ariza qoldirish</a>`;
+}
+let last = null;
+function lock() { document.body.style.overflow = (!$("#modal").hidden || !$("#drawer").hidden) ? "hidden" : ""; }
+function modal(html) { last = document.activeElement; $("#modal").innerHTML = `<div class="modal" role="dialog" aria-modal="true">${html}</div>`; $("#modal").hidden = false; lock(); after($("#modal")); $("#modal .x").focus(); }
+function closeModal() { $("#modal").hidden = true; $("#modal").innerHTML = ""; lock(); if (last) last.focus(); }
+function toast(t) { const el = $("#toast"); el.textContent = cyr ? toCyr(t) : t; el.hidden = false; clearTimeout(toast.h); toast.h = setTimeout(() => el.hidden = true, 2400); }
+function copy(text, ok) { navigator.clipboard.writeText(text).then(() => toast(ok), () => toast("Nusxalab bo‘lmadi — qo‘lda belgilab oling")); }
+
+/* lotin → kirill */
+const ORIG = new WeakMap();
+const MAP = { a: "а", b: "б", d: "д", e: "е", f: "ф", g: "г", h: "ҳ", i: "и", j: "ж", k: "к", l: "л", m: "м", n: "н", o: "о", p: "п", q: "қ", r: "р", s: "с", t: "т", u: "у", v: "в", x: "х", y: "й", z: "з", c: "с", w: "в" };
+function toCyr(s) {
+  const A = "[‘'ʻ`]";
+  s = s.replace(/(^|[^A-Za-z‘'ʻ`’])e/g, "$1э").replace(/(^|[^A-Za-z‘'ʻ`’])E/g, "$1Э");
+  s = s.replace(/([A-Za-z])[’ʼ](?=[A-Za-z])/g, "$1ъ");
+  s = s.replace(new RegExp("O" + A, "g"), "Ў").replace(new RegExp("o" + A, "g"), "ў").replace(new RegExp("G" + A, "g"), "Ғ").replace(new RegExp("g" + A, "g"), "ғ");
+  [["SH", "Ш"], ["Sh", "Ш"], ["sh", "ш"], ["CH", "Ч"], ["Ch", "Ч"], ["ch", "ч"], ["YO", "Ё"], ["Yo", "Ё"], ["yo", "ё"], ["YU", "Ю"], ["Yu", "Ю"], ["yu", "ю"], ["YA", "Я"], ["Ya", "Я"], ["ya", "я"], ["YE", "Е"], ["Ye", "Е"], ["ye", "е"]].forEach(([a, b]) => { s = s.split(a).join(b); });
+  return s.replace(/[A-Za-z]/g, ch => { const lo = ch.toLowerCase(), m = MAP[lo] || ch; return ch === lo ? m : m.toUpperCase(); });
+}
+function translit(root, on) {
+  const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: n => n.parentElement.closest("script,style,[data-notr]") || !n.nodeValue.trim() ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT });
+  const nodes = []; while (w.nextNode()) nodes.push(w.currentNode);
+  nodes.forEach(n => { if (on) { if (!ORIG.has(n)) ORIG.set(n, n.nodeValue); n.nodeValue = toCyr(ORIG.get(n)); } else if (ORIG.has(n)) n.nodeValue = ORIG.get(n); });
+  root.querySelectorAll("[placeholder]").forEach(el => { if (on) { if (!el.dataset.ph) el.dataset.ph = el.placeholder; el.placeholder = toCyr(el.dataset.ph); } else if (el.dataset.ph) el.placeholder = el.dataset.ph; });
+}
+
+document.addEventListener("click", e => {
+  const t = e.target;
+  const act = t.closest("[data-act]");
+  if (act) { if (act.dataset.act === "close") closeModal(); else if (act.dataset.act === "dclose") { $("#drawer").hidden = true; lock(); } return; }
+  const pk = t.closest("[data-pick]"); if (pk) { const v = { prod: "prod", ulg: "ulg", don: "don" }[pk.dataset.pick]; $("#f-type").value = v; $("#f-need").value = v === "prod" ? "Zonada joy (bino) olish" : "Ulgurji xarid"; return; }
+  const cp = t.closest("[data-copy]"); if (cp) { copy(cp.dataset.copy, "Raqam nusxalandi"); return; }
+  const nw = t.closest("[data-news]"); if (nw) { const n = NEWS[+nw.dataset.news]; modal(`<div class="modal-h"><div><span style="color:var(--ink-3);font-size:14.5px" class="num">${n.d} · ${n.tag}</span><h2 style="margin-top:6px">${esc(n.t)}</h2></div><button class="x" data-act="close" aria-label="Yopish">${ic("close")}</button></div><div class="ph">Rasm joyi</div><div class="txt"><p><b>${esc(n.l)}</b></p><p>To‘liq matnni direksiya boshqaruv panelidan yozadi; chiqqan zahoti Instagram va Telegram’ga ham joylanadi.</p></div>`); return; }
+  if (t.closest("#copyReq")) { copy([...$$("#req dt")].map((dt, i) => dt.textContent + ": " + $$("#req dd")[i].textContent).join("\n"), "Rekvizitlar nusxalandi"); return; }
+  if (t.closest("#themeBtn")) { const r = document.documentElement, d = r.dataset.siteTheme === "dark"; r.dataset.siteTheme = d ? "light" : "dark"; $("#themeBtn span").textContent = d ? (cyr ? "Тунги" : "Tungi") : (cyr ? "Кундузги" : "Kunduzgi"); return; }
+  if (t.closest("#langBtn")) { cyr = !cyr; translit(document.body, cyr); $("#langBtn").textContent = cyr ? "Lotincha" : "Кириллча"; document.documentElement.lang = cyr ? "uz-Cyrl" : "uz-Latn"; return; }
+  if (t.closest("#burger")) { $("#drawer").hidden = false; lock(); after($("#drawerNav")); return; }
+  if (t === $("#drawer") || t.closest("#drawerNav a")) { $("#drawer").hidden = true; lock(); }
+  if (t === $("#modal")) closeModal();
+});
+$("#form").addEventListener("submit", e => {
+  e.preventDefault();
+  const ok = $("#f-name").value.trim() && $("#f-tel").value.replace(/\D/g, "").length >= 12, r = $("#res");
+  r.hidden = false; r.className = ok ? "res" : "res err";
+  r.innerHTML = ok ? `<b>Arizangiz qabul qilindi.</b> Direksiya mutaxassisi tez orada qo‘ng‘iroq qiladi. (Namuna — hozircha hech qayerga yuborilmaydi.)` : `Ismingizni va to‘liq telefon raqamingizni (+998 va 9 raqam) yozing.`;
+  if (ok) { e.target.reset(); $("#f-tel").value = "+998 "; }
+  after(r);
+});
+document.addEventListener("keydown", e => { if (e.key !== "Escape") return; if (!$("#modal").hidden) { e.preventDefault(); closeModal(); } else if (!$("#drawer").hidden) { e.preventDefault(); $("#drawer").hidden = true; lock(); } });
+render();
+
+/* kredit kalkulyatori: 20% boshlang'ich, 18% yillik, 5 yil, 1-yil faqat foiz, keyin 48 oy teng to'lov */
+const som = n => Math.round(n).toLocaleString("ru-RU").replace(/\s/g, " ") + " so‘m";
+function calc(v) {
+  v = Math.max(0, Math.min(v, 50e9));
+  const first = v * .2, loan = v - first, r = .18 / 12, n = 48;
+  const grace = loan * r, month = loan * r / (1 - Math.pow(1 + r, -n));
+  const interest = grace * 12 + month * n - loan;
+  $("#o-first").textContent = som(first); $("#o-loan").textContent = som(loan);
+  $("#o-grace").textContent = som(grace); $("#o-month").textContent = som(month);
+  $("#o-int").textContent = som(interest); $("#o-all").textContent = som(first + loan + interest);
+}
+function setV(v, from) {
+  if (from !== "in") $("#cv").value = Math.round(v).toLocaleString("ru-RU").replace(/\s/g, " ");
+  if (from !== "range") $("#cr").value = Math.min(2e9, Math.max(1e8, v));
+  calc(v);
+}
+$("#cv").addEventListener("input", e => setV(+e.target.value.replace(/\D/g, "") || 0, "in"));
+$("#cv").addEventListener("blur", e => setV(+e.target.value.replace(/\D/g, "") || 0));
+$("#cr").addEventListener("input", e => setV(+e.target.value, "range"));
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-v]"); if (b) setV(+b.dataset.v);
+  const nd = e.target.closest("[data-need]"); if (nd) $("#f-need").value = nd.dataset.need;
+});
+setV(500000000);
+</script>
+
+</body>
+</html>
