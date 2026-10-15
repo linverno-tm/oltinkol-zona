@@ -782,19 +782,43 @@ html.gray { filter: grayscale(1); }
 @media (prefers-reduced-motion: reduce) { .fs-list { animation: none; } .fs-chev { transition: none; } }
 .fs-list li { user-select: none; -webkit-user-select: none; }
 
-/* maqola: raqamlar, suratlar, mavzuga oid */
-.article .nums { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 0 0 28px; }
-.article .nums div { background: var(--sand); border-radius: var(--r); padding: 16px 18px; display: grid; gap: 2px; }
-.article .nums b { font-family: var(--f-d); font-weight: 400; font-size: 40px; line-height: 1; color: var(--terra); letter-spacing: .02em; }
-.article .nums span { color: var(--ink-2); font-size: 15px; line-height: 1.3; }
-.article .gal { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 8px 0 26px; }
+/* maqola: ikki ustun — matn va yon panel */
+.art-w { max-width: 1180px; }
+.article .phero .wrap.art-w h1 { max-width: 22ch; }
+.article .phero .wrap.art-w .lead { max-width: 62ch; }
+.art-grid { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 44px; align-items: start; padding-bottom: 64px; }
+.art-main .prose { max-width: 70ch; }
+.art-side { display: grid; gap: 16px; position: sticky; top: 96px; margin-top: 48px; }
+.side-card { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); padding: 20px; display: grid; gap: 12px; }
+.side-k { font-size: 12.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--cognac-ink); margin: 0; }
+.side-card .nums { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.side-card .nums div { background: var(--sand); border-radius: 14px; padding: 12px 14px; display: grid; gap: 2px; }
+.side-card .nums b { font-family: var(--f-d); font-weight: 400; font-size: 32px; line-height: 1; color: var(--terra); letter-spacing: .02em; }
+.side-card .nums span { color: var(--ink-2); font-size: 13.5px; line-height: 1.3; }
+.side-card .nums div:only-child, .side-card .nums div:nth-child(3):last-child { grid-column: 1 / -1; }
+.who-what { margin: 0; font-weight: 600; line-height: 1.35; }
+.side-card .person { display: flex; gap: 12px; align-items: center; padding: 10px 12px; background: var(--sand); border-radius: 14px; }
+.side-card .person .av { width: 42px; height: 42px; border-radius: 50%; background: var(--navy); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 14px; flex: none; }
+.side-card .person b { display: block; font-size: 15px; line-height: 1.25; }
+.side-card .person small { color: var(--ink-3); font-size: 13px; }
+.side-card .btn.wide { width: 100%; justify-content: center; }
+.side-card.cta { background: var(--navy); border-color: var(--navy); color: #fff; }
+.side-card.cta h2 { font-size: 20px; line-height: 1.2; margin: 0; }
+.side-card.cta p { margin: 0; color: var(--on-navy-2); font-size: 15px; }
+.side-card .rel { list-style: none; margin: 0; padding: 0; display: grid; }
+.side-card .rel li + li { border-top: 1px solid var(--line); }
+.side-card .rel a { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 0; font-weight: 600; color: var(--navy); }
+.side-card .rel a:hover { color: var(--cognac-ink); }
+.side-card .rel .ico { width: 16px; height: 16px; flex: none; }
+.side-card.share { display: grid; padding: 16px 20px; }
+.side-card.share > div { display: flex; flex-wrap: wrap; gap: 8px; }
+.article .gal { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin: 8px 0 22px; }
 .article .gal figure { margin: 0; position: relative; border-radius: var(--r); overflow: hidden; aspect-ratio: 3 / 2; background: var(--sand); }
 .article .gal img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s var(--ease); }
 .article .gal figure:hover img { transform: scale(1.04); }
 .article .gal figcaption { position: absolute; right: 8px; bottom: 8px; font-size: 11px; font-weight: 600; color: #fff; background: rgba(19,35,106,.72); padding: 2px 8px; border-radius: 99px; }
-.article .rel { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; margin: 0 0 22px; }
-.article .rel > span { font-weight: 700; color: var(--ink-3); margin-right: 4px; }
-.article .rel a { display: inline-flex; align-items: center; gap: 6px; background: var(--sand); border-radius: 99px; padding: 8px 14px; font-weight: 600; font-size: 15px; color: var(--navy); }
-.article .rel a:hover { background: var(--peach); }
-.article .rel .ico { width: 16px; height: 16px; }
+@media (max-width: 1100px) {
+  .art-grid { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .art-side { position: static; margin-top: 0; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+}
 @media (prefers-reduced-motion: reduce) { .article .gal img { transition: none; } }
