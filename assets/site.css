@@ -783,10 +783,10 @@ html.gray { filter: grayscale(1); }
 .fs-list li { user-select: none; -webkit-user-select: none; }
 
 /* maqola: ikki ustun — matn va yon panel */
-.art-w { max-width: 1180px; }
+.art-w { max-width: var(--wrap); }   /* menyu bilan bir chiziqda */
 .article .phero .wrap.art-w h1 { max-width: 22ch; }
 .article .phero .wrap.art-w .lead { max-width: 62ch; }
-.art-grid { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 44px; align-items: start; padding-bottom: 64px; }
+.art-grid { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 48px; align-items: start; padding-bottom: 64px; }
 .art-main .prose { max-width: 70ch; }
 .art-side { display: grid; gap: 16px; position: sticky; top: 96px; margin-top: 48px; }
 .side-card { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); padding: 20px; display: grid; gap: 12px; }
