@@ -67,9 +67,66 @@
     const nodes = []; while (w.nextNode()) nodes.push(w.currentNode);
     nodes.forEach(n => { if (on) { if (!ORIG.has(n)) ORIG.set(n, n.nodeValue); n.nodeValue = toCyr(ORIG.get(n)); } else if (ORIG.has(n)) n.nodeValue = ORIG.get(n); });
   }
+
+  // tanlash ro'yxati: panel uslubida (kompyuterda); telefonda — telefonning o'z oynasi
+  const fancy = [];
+  function fancySelect(sel) {
+    const wrap = document.createElement("div"); wrap.className = "fs";
+    const btn = document.createElement("button"); btn.type = "button"; btn.className = "fs-btn";
+    btn.setAttribute("aria-haspopup", "listbox"); btn.setAttribute("aria-expanded", "false");
+    const lab = document.createElement("span"); lab.className = "fs-lab"; btn.appendChild(lab);
+    btn.insertAdjacentHTML("beforeend", '<svg class="fs-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>');
+    const list = document.createElement("ul"); list.className = "fs-list"; list.setAttribute("role", "listbox"); list.hidden = true; list.tabIndex = -1;
+    const uid = "fs" + fancy.length; list.id = uid + "-list"; btn.id = uid + "-btn"; btn.setAttribute("aria-controls", list.id);
+    [...sel.options].forEach((o, i) => {
+      const li = document.createElement("li"); li.setAttribute("role", "option"); li.id = uid + "-o" + i; li.dataset.i = i;
+      li.textContent = o.textContent; list.appendChild(li);
+    });
+    sel.parentNode.insertBefore(wrap, sel); wrap.append(sel, btn, list);
+    sel.classList.add("fs-native"); sel.tabIndex = -1; sel.setAttribute("aria-hidden", "true");
+    const label = sel.closest("label"); if (label && label.firstChild) btn.setAttribute("aria-label", label.firstChild.textContent.trim());
+    let act = 0;
+    const items = () => [...list.children];
+    const sync = () => { lab.textContent = items()[sel.selectedIndex] ? items()[sel.selectedIndex].textContent : ""; items().forEach((li, i) => li.setAttribute("aria-selected", i === sel.selectedIndex)); };
+    const mark = i => { act = Math.max(0, Math.min(i, items().length - 1)); items().forEach((li, k) => li.classList.toggle("act", k === act));
+      list.setAttribute("aria-activedescendant", items()[act].id); items()[act].scrollIntoView({ block: "nearest" }); };
+    const open = () => {
+      fancy.forEach(f => f !== api && f.close());
+      list.hidden = false; btn.setAttribute("aria-expanded", "true"); wrap.classList.add("open");
+      const r = btn.getBoundingClientRect(), below = innerHeight - r.bottom;
+      wrap.classList.toggle("up", below < Math.min(320, list.scrollHeight + 16) && r.top > below);
+      mark(sel.selectedIndex); list.focus({ preventScroll: true });
+    };
+    const close = focus => { if (list.hidden) return; list.hidden = true; btn.setAttribute("aria-expanded", "false"); wrap.classList.remove("open", "up"); if (focus) btn.focus(); };
+    const pick = i => { if (sel.selectedIndex !== i) { sel.selectedIndex = i; sel.dispatchEvent(new Event("change", { bubbles: true })); } sync(); close(true); };
+    btn.addEventListener("click", () => list.hidden ? open() : close());
+    btn.addEventListener("keydown", e => { if (["ArrowDown", "ArrowUp", "Enter", " "].includes(e.key)) { e.preventDefault(); open(); } });
+    list.addEventListener("click", e => { const li = e.target.closest("li"); if (li) pick(+li.dataset.i); });
+    list.addEventListener("mousemove", e => { const li = e.target.closest("li"); if (li && +li.dataset.i !== act) mark(+li.dataset.i); });
+    let typed = "", tt;
+    list.addEventListener("keydown", e => {
+      const k = e.key;
+      if (k === "ArrowDown") mark(act + 1); else if (k === "ArrowUp") mark(act - 1);
+      else if (k === "Home") mark(0); else if (k === "End") mark(items().length - 1);
+      else if (k === "Enter" || k === " ") pick(act);
+      else if (k === "Escape") { e.stopPropagation(); close(true); }
+      else if (k === "Tab") { close(); return; }
+      else if (k.length === 1) {
+        typed += k.toLowerCase(); clearTimeout(tt); tt = setTimeout(() => typed = "", 600);
+        const f = items().findIndex(li => li.textContent.toLowerCase().startsWith(typed)); if (f >= 0) mark(f); return;
+      } else return;
+      e.preventDefault();
+    });
+    document.addEventListener("mousedown", e => { if (!wrap.contains(e.target)) close(); });
+    sel.addEventListener("change", sync);
+    const api = { sel, sync, close }; fancy.push(api); sync();
+    return api;
+  }
+  if (matchMedia("(pointer: fine)").matches) $$("main select").forEach(fancySelect);
+  const syncFancy = () => fancy.forEach(f => f.sync());
   const cy = $("#cyr");
   let on = false; try { on = localStorage.getItem("panel_cyr") === "1"; } catch (e) {}
-  const set = v => { on = v; translit(v); if (cy) cy.textContent = v ? "Lotin" : "Кирилл"; try { v ? localStorage.setItem("panel_cyr", "1") : localStorage.removeItem("panel_cyr"); } catch (e) {} };
+  const set = v => { on = v; translit(v); syncFancy(); if (cy) cy.textContent = v ? "Lotin" : "Кирилл"; try { v ? localStorage.setItem("panel_cyr", "1") : localStorage.removeItem("panel_cyr"); } catch (e) {} };
   if (on) set(true);
   if (cy) cy.addEventListener("click", () => set(!on));
 })();
