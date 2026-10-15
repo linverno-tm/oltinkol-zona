@@ -163,6 +163,22 @@
   });
   document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#drawer").hidden) { e.preventDefault(); closeDrawer(); $("#burger").focus(); } });
 
+
+  /* ---------- maxsus imkoniyatlar: harf o'lchami va oq-qora ---------- */
+  (() => {
+    const btn = $("#a11yBtn"), pan = $("#a11y"), root = document.documentElement;
+    let fs = 0;
+    try { fs = +(localStorage.getItem("oz_fs") || 0); if (localStorage.getItem("oz_gray") === "1") { root.classList.add("gray"); $("#grayBtn") && $("#grayBtn").setAttribute("aria-pressed", "true"); } } catch (e) {}
+    const apply = () => { root.style.fontSize = fs ? (100 + fs * 12.5) + "%" : ""; document.body.style.fontSize = fs ? (17 * (1 + fs * .125)) + "px" : ""; };
+    apply();
+    if (btn) btn.addEventListener("click", () => { const on = pan.hidden; pan.hidden = !on; btn.setAttribute("aria-expanded", on); });
+    document.addEventListener("click", e => {
+      const f = e.target.closest("[data-fs]");
+      if (f) { const v = +f.dataset.fs; fs = v === 0 ? 0 : Math.max(-1, Math.min(2, fs + v)); apply(); try { localStorage.setItem("oz_fs", fs); } catch (err) {} }
+      if (e.target.closest("#grayBtn")) { const on = root.classList.toggle("gray"); $("#grayBtn").setAttribute("aria-pressed", on); try { localStorage.setItem("oz_gray", on ? "1" : "0"); } catch (err) {} }
+    });
+  })();
+
   let wantCyr = location.hash === "#cyr";
   try { wantCyr = wantCyr || localStorage.getItem("oz_cyr") === "1"; } catch (e) {}
   if (S.lang === "uz" && wantCyr) setCyr(true);
