@@ -293,13 +293,6 @@ nav.main a:hover { color: var(--ink); background: var(--sand); }
 .jb-note { font-size: 13.5px; color: var(--ink-3); margin-top: 12px; }
 
 /* ---------- fikrlar ---------- */
-.reviews { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-.rv { aspect-ratio: 4 / 5; border-radius: var(--r-lg); background: linear-gradient(160deg, var(--navy), var(--cognac) 150%); color: #fff; display: grid; place-items: center; position: relative; overflow: hidden; }
-.rv::before { content: ""; position: absolute; inset: 12px; border: 2px dashed rgba(255,204,153,.35); border-radius: 18px; }
-.rv .p { width: 72px; height: 72px; border-radius: 50%; background: var(--orange); color: var(--navy); display: grid; place-items: center; }
-.rv .p .ico { width: 30px; height: 30px; fill: currentColor; stroke: none; margin-left: 4px; }
-.rv > span:not(.p) { position: absolute; bottom: 26px; left: 0; right: 0; text-align: center; font-weight: 600; opacity: .85; }
-.rv-note { text-align: center; color: var(--ink-3); font-size: 14.5px; margin-top: 16px; }
 
 /* ---------- yangiliklar ---------- */
 .news { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
@@ -412,8 +405,7 @@ footer .b .wrap { display: flex; gap: 8px 24px; flex-wrap: wrap; padding-block: 
   .hero .wrap, .credit, .auc, .about, .jobs, .contact, .apply .grid, .docs { grid-template-columns: minmax(0, 1fr); gap: 36px; }
   .hero .wrap { padding-block: 44px 56px; }
   .stage { min-height: 400px; }
-  .news, .reviews { grid-template-columns: minmax(0, 1fr); }
-  .reviews { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .news { grid-template-columns: minmax(0, 1fr); }
   .facts .wrap { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 18px; }
   .facts .f:nth-child(3) { border-left: 0; padding-left: 0; }
   .ig { grid-template-columns: minmax(0, 1fr); }
@@ -447,8 +439,6 @@ footer .b .wrap { display: flex; gap: 8px 24px; flex-wrap: wrap; padding-block: 
   .calc, form.f, .dcol, .dual { padding: 22px; }
   .astep { grid-template-columns: 54px minmax(0, 1fr); padding: 18px; }
   .astep::before { font-size: 42px; }
-  .reviews { grid-template-columns: minmax(0, 1fr); }
-  .rv { aspect-ratio: 16 / 10; }
   .req { grid-template-columns: minmax(0, 1fr); gap: 2px; }
   .req dd { margin-bottom: 8px; }
   .pro.more { padding: 18px; }
