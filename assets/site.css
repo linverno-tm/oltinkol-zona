@@ -822,3 +822,18 @@ html.gray { filter: grayscale(1); }
   .art-side { position: static; margin-top: 0; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
 }
 @media (prefers-reduced-motion: reduce) { .article .gal img { transition: none; } }
+
+/* yon panel: boshqa yangiliklar (kichik ro'yxat) */
+.side-card .mini { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.side-card .mini a { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 12px; align-items: center; padding: 8px; margin: 0 -8px; border-radius: 12px; }
+.side-card .mini a:hover { background: var(--sand); }
+.side-card .mini img, .side-card .mini .noimg { width: 76px; height: 56px; border-radius: 10px; object-fit: cover; display: block; background: var(--peach); }
+.side-card .mini span { display: grid; gap: 2px; min-width: 0; }
+.side-card .mini time { font-size: 12.5px; color: var(--ink-3); }
+.side-card .mini b { font-size: 14.5px; line-height: 1.3; font-weight: 600; color: var(--ink); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.side-card .mini a:hover b { color: var(--cognac-ink); }
+
+/* suratli muqova: odamning boshi hech qachon kesilmasin */
+.cover > img { object-position: 50% 12%; }          /* kesish kerak bo'lsa — faqat pastdan */
+.cover.big:has(> img) { aspect-ratio: 3 / 2; }      /* katta muqova suratning o'z nisbatida — umuman kesilmaydi */
+.article .gal img, .press img, .side-card .mini img { object-position: 50% 15%; }
