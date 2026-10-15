@@ -75,6 +75,7 @@
   function toCyr(s) {
     if (S.lang !== "uz") return s;
     const A = "[‘'ʻ`]";
+    s = s.replace(/([Pp])oyabzal/g, (m, p) => (p === "P" ? "П" : "п") + "ойабзал").replace(/POYABZAL/g, "ПОЙАБЗАЛ");
     s = s.replace(/(^|[^A-Za-z‘'ʻ`’])e/g, "$1э").replace(/(^|[^A-Za-z‘'ʻ`’])E/g, "$1Э");
     s = s.replace(/([A-Za-z])[’ʼ](?=[A-Za-z])/g, "$1ъ");
     s = s.replace(new RegExp("O" + A, "g"), "Ў").replace(new RegExp("o" + A, "g"), "ў").replace(new RegExp("G" + A, "g"), "Ғ").replace(new RegExp("g" + A, "g"), "ғ");
