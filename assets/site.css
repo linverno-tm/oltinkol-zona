@@ -724,3 +724,8 @@ html.gray { filter: grayscale(1); }
 .cover .cv-foto { position: absolute; right: 10px; bottom: 8px; z-index: 1; font-size: 11px; font-weight: 600; color: #fff; background: rgba(19,35,106,.72); padding: 2px 8px; border-radius: 99px; }
 .cover:has(> img)::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,.5)); }
 .cover:has(> img) .cv-tag, .cover:has(> img) .cv-d, .cover .cv-foto { z-index: 2; }
+
+/* rezident sahifasi */
+.rz-img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: var(--r-lg); margin-bottom: 22px; }
+.rz-p { color: var(--ink-2); margin: 10px 0 0; }
+.dir .res a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }

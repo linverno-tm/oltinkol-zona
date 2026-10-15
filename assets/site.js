@@ -124,7 +124,7 @@
     if (data.website || Date.now() - opened < 2500) { r.className = "res"; r.textContent = T.f_ok; return; }   // bot
     if (!data.name.trim() || data.tel.replace(/\D/g, "").length < 12) { r.className = "res err"; r.textContent = T.f_err; after(r); return; }
     delete data.website;
-    data.need = form.need.selectedOptions[0].text; data.type = form.type.selectedOptions[0].text; data.page = location.href; data.lang = S.lang;
+    data.need = form.need.selectedOptions[0].text; data.type = form.type.selectedOptions[0].text; data.page = location.href; data.lang = S.lang; data.ms = Date.now() - opened;
     if (S.endpoint) {
       try {
         const res = await fetch(S.endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
@@ -153,7 +153,7 @@
     const vac = t.closest("[data-vac]");
     if (vac) { prefill(3, "job", vac.dataset.vac); return; }
     const pv = t.closest("[data-v]"); if (pv) { setV(+pv.dataset.v); return; }
-    const nd = t.closest("a[data-need], button[data-need]"); if (nd) prefill(nd.dataset.need, nd.dataset.type);
+    const nd = t.closest("a[data-need], button[data-need]"); if (nd) prefill(nd.dataset.need, nd.dataset.type, nd.dataset.text);
     const cp = t.closest("[data-copy]"); if (cp) { copy(cp.dataset.copy); return; }
     if (t.closest("#copyReq")) { copy($$("#req dt").map((dt, i) => dt.textContent + ": " + $$("#req dd")[i].textContent).join("\n")); return; }
     if (t.closest("#cyrBtn, [data-cyr]")) { setCyr(!cyr); closeDrawer(); return; }
