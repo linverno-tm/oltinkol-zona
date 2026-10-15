@@ -116,6 +116,7 @@
     if (need != null && need !== "") form.need.value = String(need);
     if (type) form.type.value = type;
     if (text) form.text.value = text;
+    syncFancy();
   }
   if (form) form.addEventListener("submit", async e => {
     e.preventDefault();
@@ -198,6 +199,70 @@
   };
   $$('input[type="tel"]').forEach(el => liveFmt(el, telFmt));
   $$("#cv, [data-money]").forEach(el => liveFmt(el, v => { const d = v.replace(/\D/g, "").replace(/^0+(?=\d)/, "").slice(0, 12); return d ? fmt(+d) : ""; }));
+
+  /* ---------- tanlash ro'yxati: sayt uslubida (kompyuterda); telefonda — telefonning o'z oynasi ---------- */
+  const fancy = [];
+  function fancySelect(sel) {
+    const wrap = document.createElement("div"); wrap.className = "fs";
+    const btn = document.createElement("button"); btn.type = "button"; btn.className = "fs-btn"; btn.id = sel.id + "-btn";
+    btn.setAttribute("aria-haspopup", "listbox"); btn.setAttribute("aria-expanded", "false");
+    const lab = document.createElement("span"); lab.className = "fs-lab"; btn.appendChild(lab);
+    btn.insertAdjacentHTML("beforeend", '<svg class="fs-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>');
+    const list = document.createElement("ul"); list.className = "fs-list"; list.id = sel.id + "-list"; list.setAttribute("role", "listbox"); list.hidden = true; list.tabIndex = -1;
+    btn.setAttribute("aria-controls", list.id);
+    [...sel.options].forEach((o, i) => {
+      const li = document.createElement("li"); li.setAttribute("role", "option"); li.id = sel.id + "-o" + i; li.dataset.i = i;
+      li.textContent = o.textContent; if (o.value === "" && i === 0) li.classList.add("ph"); list.appendChild(li);
+    });
+    sel.parentNode.insertBefore(wrap, sel); wrap.append(sel, btn, list);
+    sel.classList.add("fs-native"); sel.tabIndex = -1; sel.setAttribute("aria-hidden", "true");
+    const label = sel.closest("label"); if (label) { label.htmlFor = btn.id; btn.setAttribute("aria-label", label.firstChild.textContent.trim()); }
+    let act = 0;
+    const items = () => [...list.children];
+    const sync = () => {
+      const o = sel.options[sel.selectedIndex]; lab.textContent = o ? o.textContent : "";
+      btn.classList.toggle("ph", !o || (o.value === "" && sel.selectedIndex === 0));
+      items().forEach((li, i) => li.setAttribute("aria-selected", i === sel.selectedIndex));
+    };
+    const mark = i => {
+      act = Math.max(0, Math.min(i, items().length - 1)); items().forEach((li, k) => li.classList.toggle("act", k === act));
+      list.setAttribute("aria-activedescendant", items()[act].id); items()[act].scrollIntoView({ block: "nearest" });
+    };
+    const open = () => {
+      fancy.forEach(f => f !== api && f.close());
+      list.hidden = false; btn.setAttribute("aria-expanded", "true"); wrap.classList.add("open");
+      const r = btn.getBoundingClientRect(), below = innerHeight - r.bottom;
+      wrap.classList.toggle("up", below < Math.min(340, list.scrollHeight + 16) && r.top > below);
+      mark(sel.selectedIndex); list.focus({ preventScroll: true });
+    };
+    const close = focus => { if (list.hidden) return; list.hidden = true; btn.setAttribute("aria-expanded", "false"); wrap.classList.remove("open", "up"); if (focus) btn.focus(); };
+    const pick = i => { if (sel.selectedIndex !== i) { sel.selectedIndex = i; sel.dispatchEvent(new Event("change", { bubbles: true })); } sync(); close(true); };
+    btn.addEventListener("click", () => list.hidden ? open() : close());
+    btn.addEventListener("keydown", e => { if (["ArrowDown", "ArrowUp", "Enter", " "].includes(e.key)) { e.preventDefault(); open(); } });
+    list.addEventListener("click", e => { const li = e.target.closest("li"); if (li) pick(+li.dataset.i); });
+    list.addEventListener("mousemove", e => { const li = e.target.closest("li"); if (li && +li.dataset.i !== act) mark(+li.dataset.i); });
+    let typed = "", tt;
+    list.addEventListener("keydown", e => {
+      const k = e.key;
+      if (k === "ArrowDown") mark(act + 1); else if (k === "ArrowUp") mark(act - 1);
+      else if (k === "Home") mark(0); else if (k === "End") mark(items().length - 1);
+      else if (k === "Enter" || k === " ") pick(act);
+      else if (k === "Escape") { e.stopPropagation(); close(true); }
+      else if (k === "Tab") { close(); return; }
+      else if (k.length === 1) {
+        typed += k.toLowerCase(); clearTimeout(tt); tt = setTimeout(() => typed = "", 600);
+        const f = items().findIndex(li => li.textContent.toLowerCase().startsWith(typed)); if (f >= 0) mark(f); return;
+      } else return;
+      e.preventDefault();
+    });
+    document.addEventListener("mousedown", e => { if (!wrap.contains(e.target)) close(); });
+    sel.addEventListener("change", sync);
+    const api = { sel, sync, close }; fancy.push(api); sync();
+    return api;
+  }
+  if (matchMedia("(pointer: fine)").matches) $$(".f select").forEach(fancySelect);
+  function syncFancy() { fancy.forEach(f => f.sync()); }
+  if (form) form.addEventListener("reset", () => setTimeout(syncFancy));
 
   /* ---------- soha yangiliklari: uzcharm.uz dan jonli ---------- */
   const soha = $("#soha-list");
