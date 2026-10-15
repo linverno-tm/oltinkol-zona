@@ -736,3 +736,10 @@ html.gray { filter: grayscale(1); }
 .rz-img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: var(--r-lg); margin-bottom: 22px; }
 .rz-p { color: var(--ink-2); margin: 10px 0 0; }
 .dir .res a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+
+/* mutaxassis kartasi: burchakda o'zimizning gerbsimon belgi (fon) */
+.pro { position: relative; overflow: hidden; isolation: isolate; }
+.pro .em { position: absolute; right: -54px; top: -54px; width: 236px; height: 236px; color: var(--cognac); opacity: .1; z-index: -1; pointer-events: none;
+  transform: rotate(-10deg); transition: opacity .35s var(--ease), transform .8s var(--ease); }
+.pro:hover .em { opacity: .17; transform: rotate(0deg) scale(1.03); }
+@media (prefers-reduced-motion: reduce) { .pro .em { transition: none; } }
