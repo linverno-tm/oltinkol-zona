@@ -837,3 +837,13 @@ html.gray { filter: grayscale(1); }
 .cover > img { object-position: 50% 12%; }          /* kesish kerak bo'lsa — faqat pastdan */
 .cover.big:has(> img) { aspect-ratio: 3 / 2; }      /* katta muqova suratning o'z nisbatida — umuman kesilmaydi */
 .article .gal img, .press img, .side-card .mini img { object-position: 50% 15%; }
+
+/* imtiyozlar sahifasi */
+.imt-h { margin-bottom: 22px; }
+.imt { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.imt-c { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); padding: 22px; display: grid; gap: 8px; align-content: start; }
+.band.sand .imt-c { border-color: transparent; }
+.imt-c .si { width: 50px; height: 50px; border-radius: 14px; background: var(--sand-2); color: var(--cognac-ink); display: grid; place-items: center; }
+.imt-c .si .ico { width: 24px; height: 24px; }
+.imt-c b { font-family: var(--f-d); font-weight: 400; font-size: 46px; line-height: 1; color: var(--terra); letter-spacing: .02em; margin-top: 6px; }
+.imt-c p { margin: 0; color: var(--ink-2); font-size: 16px; line-height: 1.45; }
