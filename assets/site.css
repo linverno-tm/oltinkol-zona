@@ -847,3 +847,12 @@ html.gray { filter: grayscale(1); }
 .imt-c .si .ico { width: 24px; height: 24px; }
 .imt-c b { font-family: var(--f-d); font-weight: 400; font-size: 46px; line-height: 1; color: var(--terra); letter-spacing: .02em; margin-top: 6px; }
 .imt-c p { margin: 0; color: var(--ink-2); font-size: 16px; line-height: 1.45; }
+
+/* menyu 8 band: o'rta ekranlarda logo yozuvi ustiga chiqmasin */
+header.top .brand { flex: none; }
+@media (max-width: 1500px) {
+  header.top .brand small { display: none; }
+  header.top .wrap { gap: 14px; }
+  nav.main a { padding: 8px 8px; font-size: 15px; }
+}
+@media (max-width: 1320px) { nav.main a { padding: 8px 6px; font-size: 14.5px; } }
