@@ -396,7 +396,7 @@ footer .b .wrap { display: flex; gap: 8px 24px; flex-wrap: wrap; padding-block: 
 .mbar { display: none; }
 
 /* ---------- moslashuv ---------- */
-@media (max-width: 1220px) {
+@media (max-width: 1260px) {
   nav.main { display: none; }
   .burger { display: grid; }
   .h-act { margin-left: auto; }
