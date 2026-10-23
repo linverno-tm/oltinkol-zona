@@ -423,6 +423,36 @@
     });
   })();
 
+  /* ---------- galereya: to'liq rasmni ko'rish (lightbox) ---------- */
+  (() => {
+    if (!$(".gallery .gx")) return;
+    let box, lastFocus;
+    function build() {
+      box = document.createElement("div");
+      box.className = "lightbox"; box.hidden = true;
+      box.setAttribute("role", "dialog"); box.setAttribute("aria-modal", "true");
+      box.innerHTML = '<button type="button" class="lb-x" aria-label="' + esc(T.close || "yopish") + '">×</button><img alt=""><p class="lb-cap"></p>';
+      document.body.appendChild(box);
+      box.addEventListener("click", e => { if (e.target === box || e.target.closest(".lb-x")) close(); });
+      box.addEventListener("keydown", e => { if (e.key === "Tab") { e.preventDefault(); box.querySelector(".lb-x").focus(); } });
+    }
+    function open(src, cap) {
+      if (!box) build();
+      lastFocus = document.activeElement;
+      const im = box.querySelector("img"); im.src = src; im.alt = cap || "";
+      box.querySelector(".lb-cap").textContent = cap || "";
+      box.hidden = false; document.body.style.overflow = "hidden";
+      box.querySelector(".lb-x").focus();
+    }
+    function close() { if (!box || box.hidden) return; box.hidden = true; document.body.style.overflow = ""; if (lastFocus) lastFocus.focus(); }
+    document.addEventListener("click", e => {
+      const b = e.target.closest(".gallery .gx"); if (!b) return;
+      const im = b.querySelector("img"), fc = b.closest("figure").querySelector("figcaption");
+      open(im.currentSrc || im.src, fc ? fc.textContent : b.getAttribute("aria-label"));
+    });
+    document.addEventListener("keydown", e => { if (e.key === "Escape" && box && !box.hidden) { e.preventDefault(); close(); } });
+  })();
+
   let wantCyr = location.hash === "#cyr";
   try { wantCyr = wantCyr || localStorage.getItem("oz_cyr") === "1"; } catch (e) {}
   if (S.lang === "uz" && wantCyr) setCyr(true);

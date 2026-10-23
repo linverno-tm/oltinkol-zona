@@ -862,13 +862,7 @@ header.top .brand { flex: none; }
    ===================================================================== */
 
 /* sahifalararo silliq o'tish */
-@media (prefers-reduced-motion: no-preference) {
-  @view-transition { navigation: auto; }
-  ::view-transition-old(root) { animation: vt-out .26s var(--ease) both; }
-  ::view-transition-new(root) { animation: vt-in .34s var(--ease) both; }
-  @keyframes vt-out { to { opacity: 0; } }
-  @keyframes vt-in { from { opacity: 0; transform: translateY(8px); } }
-}
+/* View Transitions olib tashlandi — sahifalar tez ochilsin (23.10) */
 
 /* hero — sekin nafas oluvchi yorug'lik va parallaks chuqurligi */
 .hero .wrap { z-index: 1; }
@@ -1027,3 +1021,16 @@ html:not(.js) .se-btn, html:not(.js) .se-item { display: none; }
 .band.navy .gallery figure { background: rgba(255,255,255,.06); }
 @media (max-width: 1080px) { .gallery.four { grid-template-columns: repeat(2, minmax(0,1fr)); } }
 @media (max-width: 600px) { .gallery, .gallery.four, .gallery.two { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; } .gallery figcaption { font-size: 12px; padding: 18px 10px 9px; } }
+
+/* ---------- galereya rasmini to'liq ko'rish (lightbox) ---------- */
+.gallery .gx { display: block; width: 100%; padding: 0; margin: 0; border: 0; background: none; cursor: zoom-in; font: inherit; }
+.gallery .gx:focus-visible { outline: 3px solid var(--orange); outline-offset: -3px; }
+.lightbox { position: fixed; inset: 0; z-index: 200; background: rgba(8,12,38,.93); display: grid; place-items: center; padding: 24px; }
+.lightbox img { max-width: min(1200px, 96vw); max-height: 90vh; border-radius: var(--r); box-shadow: 0 30px 80px rgba(0,0,0,.55); }
+.lb-x { position: fixed; top: 14px; right: 16px; width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,.15); color: #fff; font-size: 30px; line-height: 1; display: grid; place-items: center; }
+.lb-x:hover { background: rgba(255,255,255,.26); }
+.lb-cap { position: fixed; left: 0; right: 0; bottom: 18px; margin: 0; text-align: center; color: #fff; font-size: 15px; font-weight: 600; padding: 0 16px; text-shadow: 0 1px 6px rgba(0,0,0,.5); }
+@media (prefers-reduced-motion: no-preference) {
+  .lightbox { animation: lb-in .2s ease-out; } @keyframes lb-in { from { opacity: 0; } }
+  .lightbox img { animation: lb-pop .25s var(--ease); } @keyframes lb-pop { from { transform: scale(.96); opacity: .6; } }
+}
