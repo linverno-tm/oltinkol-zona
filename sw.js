@@ -1,6 +1,6 @@
 /* Oltinko'l zona — PWA: offline va tez qayta ochilish */
-const V = "oltinkol-202610231539";
-const CORE = ["/oltinkol-zona/", "/oltinkol-zona/assets/site.css?v=202610231539", "/oltinkol-zona/assets/site.js?v=202610231539"];
+const V = "oltinkol-202610231544";
+const CORE = ["/oltinkol-zona/", "/oltinkol-zona/assets/site.css?v=202610231544", "/oltinkol-zona/assets/site.js?v=202610231544"];
 self.addEventListener("install", e => { self.skipWaiting(); e.waitUntil(caches.open(V).then(c => c.addAll(CORE).catch(() => {}))); });
 self.addEventListener("activate", e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== V).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
 self.addEventListener("fetch", e => {
