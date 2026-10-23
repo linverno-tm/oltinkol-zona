@@ -955,3 +955,6 @@ header.top .brand { flex: none; }
 @media (prefers-reduced-motion: no-preference) {
   .press a:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(19,35,106,.12); }
 }
+
+/* audit tuzatishi: raqamlar manbasi matni kontrasti (WCAG AA) */
+.facts .src { opacity: 1; color: var(--navy-2); }
