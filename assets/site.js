@@ -23,11 +23,15 @@
     requestAnimationFrame(step);
   }
   if ("IntersectionObserver" in window) {
-    const io = new IntersectionObserver(es => es.forEach(e => {
-      if (!e.isIntersecting) return;
-      e.target.classList.add("in"); io.unobserve(e.target);
-      e.target.querySelectorAll("[data-count]").forEach(countUp);
-    }), { rootMargin: "0px 0px -8% 0px", threshold: .08 });
+    const io = new IntersectionObserver(es => {
+      let i = 0;
+      es.forEach(e => {
+        if (!e.isIntersecting) return;
+        if (!RM) e.target.style.transitionDelay = Math.min(i++, 6) * 70 + "ms";   // qatordagi elementlar ketma-ket (stagger)
+        e.target.classList.add("in"); io.unobserve(e.target);
+        e.target.querySelectorAll("[data-count]").forEach(countUp);
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: .08 });
     $$(".rv").forEach(el => io.observe(el));
   } else $$(".rv").forEach(el => el.classList.add("in"));
 

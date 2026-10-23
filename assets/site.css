@@ -873,12 +873,14 @@ header.top .brand { flex: none; }
 /* hero — sekin nafas oluvchi yorug'lik va parallaks chuqurligi */
 .hero .wrap { z-index: 1; }
 @media (prefers-reduced-motion: no-preference) {
-  .hero::after { content: ""; position: absolute; inset: -12%; z-index: 0; pointer-events: none;
-    background: radial-gradient(640px 460px at 24% 92%, rgba(255,140,0,.14), transparent 60%);
-    animation: hero-drift 20s ease-in-out infinite alternate; }
+  .hero::after { content: ""; position: absolute; inset: -14%; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(680px 500px at 22% 92%, rgba(255,140,0,.24), transparent 62%),
+      radial-gradient(520px 440px at 92% 26%, rgba(181,101,29,.22), transparent 60%);
+    animation: hero-drift 16s ease-in-out infinite alternate; }
   @keyframes hero-drift {
-    from { transform: translate3d(-2%, 1%, 0) scale(1); opacity: .55; }
-    to   { transform: translate3d(3%, -3%, 0) scale(1.12); opacity: 1; } }
+    from { transform: translate3d(-3%, 2%, 0) scale(1); opacity: .5; }
+    to   { transform: translate3d(4%, -4%, 0) scale(1.16); opacity: 1; } }
   .stage .orbit { transition: transform .5s var(--ease); will-change: transform; }
 }
 
@@ -907,4 +909,49 @@ header.top .brand { flex: none; }
     background: linear-gradient(100deg, transparent, rgba(255,255,255,.38), transparent); transform: skewX(-18deg);
     transition: left .6s var(--ease); pointer-events: none; }
   .btn:not(.ghost):not(.line-light):hover::after { left: 150%; }
+}
+
+/* =====================================================================
+   BUTUN SAYT — boyitishni barcha sahifalarga, sezilarliroq (23.10.2026)
+   ===================================================================== */
+
+/* reveal sezilarliroq (har bir .rv — barcha sahifalarda) */
+@media (prefers-reduced-motion: no-preference) {
+  .js .rv { transform: translateY(32px); transition-duration: .75s; }
+}
+
+/* subsahifa hero (.phero) — iliq drift yorug'lik + kirish animatsiyasi */
+.phero .wrap { z-index: 1; }
+@media (prefers-reduced-motion: no-preference) {
+  .phero::after { content: ""; position: absolute; inset: -14%; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(620px 470px at 88% 4%, rgba(255,140,0,.26), transparent 60%),
+      radial-gradient(480px 400px at 4% 98%, rgba(181,101,29,.20), transparent 60%);
+    animation: hero-drift 16s ease-in-out infinite alternate; }
+  .phero .kick, .phero h1, .phero .lead, .phero .crumbs, .phero .meta, .phero .row {
+    animation: phero-in .7s var(--ease) both; }
+  .phero h1 { animation-delay: .05s; }
+  .phero .lead { animation-delay: .11s; }
+  .phero .row, .phero .meta { animation-delay: .16s; }
+  @keyframes phero-in { from { opacity: 0; transform: translateY(18px); } }
+}
+
+/* kartalarga chuqur soya + hover ko'tarilish — butun sayt */
+.why .w, .countries li, .policy li, .zitems div, .pro, .team figure img {
+  box-shadow: 0 2px 10px rgba(19,35,106,.05); }
+.why .w:hover { box-shadow: 0 22px 48px rgba(19,35,106,.16); transform: translateY(-5px); }
+.countries li, .policy li, .zitems div { transition: transform .25s var(--ease), box-shadow .25s, background .25s; }
+.countries li:hover, .policy li:hover, .zitems div:hover { box-shadow: 0 14px 34px rgba(19,35,106,.12); transform: translateY(-3px); }
+.pro { transition: transform .28s var(--ease), box-shadow .28s; }
+.pro:hover { box-shadow: 0 22px 46px rgba(19,35,106,.15); transform: translateY(-4px); }
+.team figure img { transition: transform .35s var(--ease), box-shadow .35s; }
+.team figure:hover img { transform: translateY(-4px); box-shadow: 0 22px 46px rgba(19,35,106,.17); }
+.dir { transition: transform .25s var(--ease), background .2s; }
+.dir:hover { transform: translateY(-3px); background: rgba(255,255,255,.12); }
+.mapbox.teaser:hover { box-shadow: 0 30px 58px rgba(19,35,106,.17); }
+.stable tr { transition: background .18s; }
+
+/* jadval/ro'yxat qatorlari — kirishda biroz urg'u (reveal bilan birga) */
+@media (prefers-reduced-motion: no-preference) {
+  .press a:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(19,35,106,.12); }
 }
