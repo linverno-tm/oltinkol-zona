@@ -958,3 +958,19 @@ header.top .brand { flex: none; }
 
 /* audit tuzatishi: raqamlar manbasi matni kontrasti (WCAG AA) */
 .facts .src { opacity: 1; color: var(--navy-2); }
+
+/* ---------- chop etish (print) ko'rinishi ---------- */
+@media print {
+  header.top, footer, .drawer, #a11y, .a11y-t, .skip, nav.main, .h-act, .langs, .burger, .cta, .burger, .maptools, .mapnote, #soha-list, .social .r, .share, form, .btn, .toast { display: none !important; }
+  *, *::before, *::after { background: #fff !important; color: #000 !important; box-shadow: none !important; text-shadow: none !important; filter: none !important; }
+  body { font: 11.5pt/1.5 var(--f); }
+  .hero, .phero, .band { padding: 10px 0 !important; }
+  .wrap { max-width: 100% !important; padding-inline: 0 !important; }
+  .rv { opacity: 1 !important; transform: none !important; }
+  h1 { font-size: 22pt; } h2 { font-size: 16pt; } h3 { font-size: 13pt; }
+  h1, h2, h3, .head { page-break-after: avoid; }
+  .w, .dir, .pro, tr, .countries li, .policy li, .specs div, .hcard, .nc { page-break-inside: avoid; }
+  img, svg { max-width: 100% !important; }
+  a { text-decoration: underline; }
+  .facts b, .bignum b, .steps4 b, .press b { color: #000 !important; }
+}
