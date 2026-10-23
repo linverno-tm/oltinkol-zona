@@ -36,8 +36,10 @@
   } else $$(".rv").forEach(el => el.classList.add("in"));
 
   /* ---------- menyu ---------- */
-  const lock = () => { document.body.style.overflow = !$("#drawer").hidden ? "hidden" : ""; };
-  const closeDrawer = () => { $("#drawer").hidden = true; $("#burger").setAttribute("aria-expanded", "false"); lock(); };
+  const lock = () => { document.body.style.overflow = (!$("#drawer").hidden || ($("#search") && $("#search").open)) ? "hidden" : ""; };
+  const bgEls = () => [$("header.top"), $("main"), $("footer"), $(".mbar")].filter(Boolean);
+  const inertBg = on => bgEls().forEach(el => on ? el.setAttribute("inert", "") : el.removeAttribute("inert"));   // fokus faqat ochiq oynada qoladi
+  const closeDrawer = () => { if ($("#drawer").hidden) return; $("#drawer").hidden = true; $("#burger").setAttribute("aria-expanded", "false"); inertBg(false); lock(); };
   function toast(t, err) { const el = $("#toast"); el.textContent = cyr ? toCyr(t) : t; el.classList.toggle("err", !!err); el.hidden = false; clearTimeout(toast.h); toast.h = setTimeout(() => el.hidden = true, 2400); }
   function copy(text) { navigator.clipboard.writeText(text).then(() => toast(T.copied), () => toast(T.copy_fail, true)); }
 
@@ -163,7 +165,7 @@
     if (t.closest("#copyReq")) { copy($$("#req dt").map((dt, i) => dt.textContent + ": " + $$("#req dd")[i].textContent).join("\n")); return; }
     if (t.closest("#cyrBtn, [data-cyr]")) { setCyr(!cyr); closeDrawer(); return; }
     if (t.closest("#latBtn") && cyr) { e.preventDefault(); setCyr(false); return; }
-    if (t.closest("#burger")) { $("#drawer").hidden = false; $("#burger").setAttribute("aria-expanded", "true"); lock(); $("#drawer .x").focus(); return; }
+    if (t.closest("#burger")) { $("#drawer").hidden = false; $("#burger").setAttribute("aria-expanded", "true"); inertBg(true); lock(); $("#drawer .x").focus(); return; }
     if (t === $("#drawer") || t.closest(".drawer a")) closeDrawer();
   });
   document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#drawer").hidden) { e.preventDefault(); closeDrawer(); $("#burger").focus(); } });
@@ -293,6 +295,132 @@
       raf = requestAnimationFrame(() => { orbit.style.transform = "translate3d(" + (dx * 16).toFixed(1) + "px," + (dy * 16).toFixed(1) + "px,0)"; });
     });
     hero.addEventListener("mouseleave", () => { cancelAnimationFrame(raf); orbit.style.transform = ""; });
+  })();
+
+  /* ---------- sayt qidiruvi (do'konlar, yangiliklar, sahifalar) ---------- */
+  (() => {
+    const dlg = $("#search");
+    if (!dlg || !dlg.showModal) return;
+    const SE = S.search || {};
+    const input = $("#seInput"), box = $("#seResults"), note = $("#seEmpty"), live = $("#seLive");
+    const openBtn = $("#searchBtn");
+    let data = null, loading = null, items = [], active = -1, opener = null;
+
+    const strip = s => String(s).toLowerCase().replace(/[‘’ʻʼ`']/g, "").replace(/\s+/g, " ").trim();
+    const CY = { а: "a", б: "b", в: "v", г: "g", ғ: "g", д: "d", е: "e", ё: "yo", ж: "j", з: "z", и: "i", й: "y", к: "k", қ: "q", л: "l", м: "m", н: "n", о: "o", п: "p", р: "r", с: "s", т: "t", у: "u", ў: "o", ф: "f", х: "x", ҳ: "h", ц: "s", ч: "ch", ш: "sh", ъ: "", ь: "", э: "e", ю: "yu", я: "ya" };
+    const cy2la = s => s.replace(/[а-яёўғқҳ]/gi, c => { const lo = c.toLowerCase(), m = CY[lo] != null ? CY[lo] : c; return c === lo ? m : m.toUpperCase(); });
+    // uz sahifalarda kirillcha yozilgan so'rov ham lotin indeksga mos keladi
+    const queries = q => { const out = [strip(q)]; if (S.lang === "uz" && /[а-яёўғқҳ]/i.test(q)) out.push(strip(cy2la(q))); return out.filter(Boolean); };
+
+    function loadData() {
+      if (data) return Promise.resolve();
+      if (loading) return loading;
+      if (!SE.url) { data = []; return Promise.resolve(); }
+      loading = fetch(SE.url).then(r => r.ok ? r.json() : { items: [] })
+        .then(j => { data = (j.items || []).map(it => Object.assign({}, it, { _n: strip(it.title + " " + (it.text || "")) })); })
+        .catch(() => { data = []; });
+      return loading;
+    }
+
+    function search(q) {
+      const qs = queries(q);
+      const toks = qs.map(x => x.split(" ").filter(Boolean)).filter(a => a.length);
+      if (!toks.length) return [];
+      const out = [];
+      for (const it of (data || [])) {
+        let best = 0;
+        for (let i = 0; i < qs.length; i++) {
+          const t = toks[i]; if (!t) continue;
+          if (t.every(tk => it._n.includes(tk))) {
+            const title = strip(it.title);
+            best = Math.max(best, 1 + (title.includes(qs[i]) ? 2 : 0) + (title.startsWith(t[0]) ? 2 : 0) + (it.type === "page" ? 0.5 : 0));
+          }
+        }
+        if (best) out.push([best, it]);
+      }
+      return out.sort((a, b) => b[0] - a[0]).slice(0, 12).map(x => x[1]);
+    }
+
+    const suggestions = () => (data || []).filter(it => it.type === "page").slice(0, 6);
+
+    function optionHTML(it, i) {
+      const label = (SE.types && SE.types[it.type]) || "";
+      return '<a class="se-opt se-' + it.type + '" role="option" id="se-o' + i + '" tabindex="-1" aria-selected="false" href="' + esc(it.url) + '">' +
+        '<span class="se-tag">' + esc(label) + '</span><span class="se-ot">' + esc(it.title) + '</span></a>';
+    }
+
+    function say(msg) { if (live) live.textContent = msg || ""; }
+
+    function paint(q) {
+      const isQ = !!q;
+      items = isQ ? search(q) : suggestions();
+      active = -1;
+      input.removeAttribute("aria-activedescendant");
+      if (isQ && !items.length) {
+        box.innerHTML = "";
+        note.hidden = false;
+        note.innerHTML = "<b>" + esc(SE.none) + "</b><span>" + esc(SE.none_p) + "</span>";
+        input.setAttribute("aria-expanded", "false");
+        say(SE.none);
+        return;
+      }
+      box.innerHTML = items.map(optionHTML).join("");
+      note.hidden = isQ;
+      if (!isQ) { note.hidden = false; note.textContent = SE.hint || ""; }
+      input.setAttribute("aria-expanded", items.length ? "true" : "false");
+      if (cyr) after(box);                                  // kirill rejimida natijalar ham kirillcha
+      if (isQ) say(items.length + " " + (SE.found || ""));
+    }
+
+    function applyActive() {
+      const opts = [...box.children];
+      opts.forEach((o, i) => { const on = i === active; o.setAttribute("aria-selected", on); o.classList.toggle("act", on); });
+      const cur = opts[active];
+      if (cur) { input.setAttribute("aria-activedescendant", cur.id); cur.scrollIntoView({ block: "nearest" }); }
+      else input.removeAttribute("aria-activedescendant");
+    }
+    function move(d) {
+      if (!items.length) return;
+      active = active < 0 ? (d > 0 ? 0 : items.length - 1) : (active + d + items.length) % items.length;
+      applyActive();
+    }
+
+    function openSearch(from) {
+      opener = from || openBtn;
+      loadData().then(() => paint(input.value.trim()));
+      if (!dlg.open) dlg.showModal();
+      openBtn && openBtn.setAttribute("aria-expanded", "true");
+      lock();
+      input.focus(); input.select();
+    }
+    dlg.addEventListener("close", () => {
+      openBtn && openBtn.setAttribute("aria-expanded", "false");
+      lock();
+      if (opener && document.contains(opener) && opener.offsetParent !== null) opener.focus();
+      else if (openBtn) openBtn.focus();
+    });
+
+    let tt;
+    input.addEventListener("input", () => { clearTimeout(tt); tt = setTimeout(() => paint(input.value.trim()), 110); });
+    input.addEventListener("keydown", e => {
+      if (e.key === "ArrowDown") { e.preventDefault(); move(1); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); move(-1); }
+      else if (e.key === "Home") { if (items.length) { e.preventDefault(); active = 0; applyActive(); } }
+      else if (e.key === "End") { if (items.length) { e.preventDefault(); active = items.length - 1; applyActive(); } }
+    });
+    dlg.querySelector("form").addEventListener("submit", e => { e.preventDefault(); if (items[active < 0 ? 0 : active]) location.href = items[active < 0 ? 0 : active].url; });
+    box.addEventListener("mousemove", e => { const o = e.target.closest(".se-opt"); if (o) { const i = [...box.children].indexOf(o); if (i !== active) { active = i; applyActive(); } } });
+    dlg.addEventListener("click", e => { if (e.target.closest("[data-act='seclose']")) dlg.close(); else if (e.target === dlg) dlg.close(); });   // tashqariga bosish yopadi
+
+    openBtn && openBtn.addEventListener("click", () => openSearch(openBtn));
+    const mBtn = $("#searchBtnM");
+    mBtn && mBtn.addEventListener("click", () => { closeDrawer(); openSearch($("#burger")); });
+    document.addEventListener("keydown", e => {
+      if (e.key !== "/" || dlg.open) return;
+      const a = document.activeElement, tag = a && a.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || (a && a.isContentEditable)) return;
+      e.preventDefault(); openSearch(openBtn);
+    });
   })();
 
   let wantCyr = location.hash === "#cyr";

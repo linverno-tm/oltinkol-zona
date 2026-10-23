@@ -31,7 +31,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Bebas+Neue&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Bebas+Neue&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Bebas+Neue&display=swap"></noscript>
-<link rel="stylesheet" href="/oltinkol-zona/assets/site.css?v=202610231544">
+<link rel="stylesheet" href="/oltinkol-zona/assets/site.css?v=202610231616">
 <script>document.documentElement.classList.add("js")</script>
 
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "LocalBusiness", "name": "ООО «Дирекция по управлению малой промышленной зоной кожи и обуви Алтынкульского района»", "url": "https://linverno-tm.github.io/oltinkol-zona/", "logo": "https://linverno-tm.github.io/oltinkol-zona/assets/logo-512.png", "telephone": "+998934104599", "taxID": "311815252", "address": {"@type": "PostalAddress", "streetAddress": "Андижанская обл., Алтынкульский р-н, МСГ Садда, ул. Гулбахор, 100", "addressLocality": "Oltinko‘l", "addressRegion": "Andijon", "addressCountry": "UZ"}, "geo": {"@type": "GeoCoordinates", "latitude": "40.8000", "longitude": "72.1667"}}, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://linverno-tm.github.io/oltinkol-zona/"}, {"@type": "ListItem", "position": 2, "name": "Магазины", "item": "https://linverno-tm.github.io/oltinkol-zona/ru/dokonlar/"}]}]</script>
@@ -83,6 +83,7 @@
   <a class="brand" href="/oltinkol-zona/ru/"><svg class="mk" role="img" aria-label="O‘ZCHARMSANOAT"><use href="#logo"/></svg><span><b>АЛТЫНКУЛЬ</b><small>Малая промзона кожи и обуви</small></span></a>
   <nav class="main" aria-label="Меню"><a href="/oltinkol-zona/ru/zona/">О зоне</a><a href="/oltinkol-zona/ru/kredit/">Кредит</a><a href="/oltinkol-zona/ru/imtiyozlar/">Льготы</a><a href="/oltinkol-zona/ru/dokonlar/" aria-current="page">Магазины</a><a href="/oltinkol-zona/ru/rezidentlar/">Резиденты</a><a href="/oltinkol-zona/ru/investorlarga/">Инвесторам</a><a href="/oltinkol-zona/ru/yangiliklar/">Новости</a><a href="/oltinkol-zona/ru/aloqa/">Контакты</a></nav>
   <div class="h-act">
+    <button class="se-btn" id="searchBtn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-label="Поиск" title="Поиск"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
     <div class="langs" role="group" aria-label="Til · Язык · Language">
       <a href="/oltinkol-zona/dokonlar/"  lang="uz" data-notr>O‘z</a>
       <a href="/oltinkol-zona/dokonlar/#cyr" lang="uz-Cyrl" data-notr>Ўз</a>
@@ -100,196 +101,18 @@
 
 <section class="phero"><div class="wrap">
   <nav class="crumbs" aria-label="breadcrumb"><a href="/oltinkol-zona/ru/">Главная</a><span aria-hidden="true">/</span><span aria-current="page">Магазины</span></nav>
-  <span class="kick">Схема магазинов</span>
-  <h1>Выберите свободный магазин</h1>
-  <p class="lead">Нажмите на магазин — увидите площадь, цену и ежемесячный платёж.</p>
+  <span class="kick">Магазины</span>
+  <h1>Свободные магазины и площади</h1>
+  <p class="lead">Готовые магазины и производственные площади в зоне — в рассрочку или аренду.</p>
 </div></section>
 
-<section class="band" id="sxema"><div class="wrap">
-  <h2 class="sr">Выберите магазин на схеме</h2>
-  <div class="shops">
-    <div class="mapbox rv">
-      <div class="maptools">
-        <div class="chips" role="group"><button type="button" data-sf="all" aria-pressed="true">Все</button><button type="button" data-sf="free" aria-pressed="false">Свободные</button><button type="button" data-sf="sold" aria-pressed="false">Заняты</button></div>
-        <div class="legend"><span><i class="lg-free"></i>Свободен</span><span><i class="lg-sold"></i>Занят</span></div>
-      </div>
-      <div class="mapscroll"><svg viewBox="0 0 1000 500" role="group" aria-label="Схема магазинов" class="plan">
-  <text class="blk" x="40" y="44">Блок A</text>
-  <text class="blk" x="40" y="490">Блок B</text>
-  <g class="hall"><rect x="40" y="226" width="920" height="48" rx="10"/><text x="500" y="256" text-anchor="middle">Главная торговая галерея</text></g>
-  <text class="door" x="14" y="255" transform="rotate(-90 14 255)" text-anchor="middle">Вход</text>
-  <text class="door" x="988" y="255" transform="rotate(90 988 255)" text-anchor="middle">Вход</text>
-  <a class="cell sold" data-shop="A-01" href="/oltinkol-zona/ru/dokonlar/A-01/" aria-label="A-01, 24 m², Занят">
-    <rect x="40" y="58" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="94" y="90" text-anchor="middle">A-01</text>
-    <text class="ar" x="94" y="112" text-anchor="middle">24 m²</text>
-  </a>
-  <a class="cell sold" data-shop="A-02" href="/oltinkol-zona/ru/dokonlar/A-02/" aria-label="A-02, 30 m², Занят">
-    <rect x="156" y="58" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="210" y="90" text-anchor="middle">A-02</text>
-    <text class="ar" x="210" y="112" text-anchor="middle">30 m²</text>
-  </a>
-  <a class="cell free" data-shop="A-03" href="/oltinkol-zona/ru/dokonlar/A-03/" aria-label="A-03, 36 m², Свободен">
-    <rect x="272" y="58" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="326" y="90" text-anchor="middle">A-03</text>
-    <text class="ar" x="326" y="112" text-anchor="middle">36 m²</text>
-  </a>
-  <a class="cell sold" data-shop="A-04" href="/oltinkol-zona/ru/dokonlar/A-04/" aria-label="A-04, 42 m², Занят">
-    <rect x="388" y="58" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="442" y="90" text-anchor="middle">A-04</text>
-    <text class="ar" x="442" y="112" text-anchor="middle">42 m²</text>
-  </a>
-  <a class="cell sold" data-shop="A-05" href="/oltinkol-zona/ru/dokonlar/A-05/" aria-label="A-05, 30 m², Занят">
-    <rect x="504" y="58" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="558" y="90" text-anchor="middle">A-05</text>
-    <text class="ar" x="558" y="112" text-anchor="middle">30 m²</text>
-  </a>
-  <a class="cell free" data-shop="A-06" href="/oltinkol-zona/ru/dokonlar/A-06/" aria-label="A-06, 48 m², Свободен">
-    <rect x="620" y="58" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="674" y="90" text-anchor="middle">A-06</text>
-    <text class="ar" x="674" y="112" text-anchor="middle">48 m²</text>
-  </a>
-  <a class="cell sold" data-shop="A-07" href="/oltinkol-zona/ru/dokonlar/A-07/" aria-label="A-07, 36 m², Занят">
-    <rect x="736" y="58" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="790" y="90" text-anchor="middle">A-07</text>
-    <text class="ar" x="790" y="112" text-anchor="middle">36 m²</text>
-  </a>
-  <a class="cell free" data-shop="A-08" href="/oltinkol-zona/ru/dokonlar/A-08/" aria-label="A-08, 60 m², Свободен">
-    <rect x="852" y="58" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="906" y="90" text-anchor="middle">A-08</text>
-    <text class="ar" x="906" y="112" text-anchor="middle">60 m²</text>
-  </a>
-  <a class="cell sold" data-shop="A-09" href="/oltinkol-zona/ru/dokonlar/A-09/" aria-label="A-09, 42 m², Занят">
-    <rect x="40" y="138" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="94" y="170" text-anchor="middle">A-09</text>
-    <text class="ar" x="94" y="192" text-anchor="middle">42 m²</text>
-  </a>
-  <a class="cell sold" data-shop="A-10" href="/oltinkol-zona/ru/dokonlar/A-10/" aria-label="A-10, 30 m², Занят">
-    <rect x="156" y="138" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="210" y="170" text-anchor="middle">A-10</text>
-    <text class="ar" x="210" y="192" text-anchor="middle">30 m²</text>
-  </a>
-  <a class="cell free" data-shop="A-11" href="/oltinkol-zona/ru/dokonlar/A-11/" aria-label="A-11, 48 m², Свободен">
-    <rect x="272" y="138" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="326" y="170" text-anchor="middle">A-11</text>
-    <text class="ar" x="326" y="192" text-anchor="middle">48 m²</text>
-  </a>
-  <a class="cell sold" data-shop="A-12" href="/oltinkol-zona/ru/dokonlar/A-12/" aria-label="A-12, 36 m², Занят">
-    <rect x="388" y="138" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="442" y="170" text-anchor="middle">A-12</text>
-    <text class="ar" x="442" y="192" text-anchor="middle">36 m²</text>
-  </a>
-  <a class="cell free" data-shop="A-13" href="/oltinkol-zona/ru/dokonlar/A-13/" aria-label="A-13, 60 m², Свободен">
-    <rect x="504" y="138" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="558" y="170" text-anchor="middle">A-13</text>
-    <text class="ar" x="558" y="192" text-anchor="middle">60 m²</text>
-  </a>
-  <a class="cell sold" data-shop="A-14" href="/oltinkol-zona/ru/dokonlar/A-14/" aria-label="A-14, 24 m², Занят">
-    <rect x="620" y="138" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="674" y="170" text-anchor="middle">A-14</text>
-    <text class="ar" x="674" y="192" text-anchor="middle">24 m²</text>
-  </a>
-  <a class="cell sold" data-shop="A-15" href="/oltinkol-zona/ru/dokonlar/A-15/" aria-label="A-15, 30 m², Занят">
-    <rect x="736" y="138" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="790" y="170" text-anchor="middle">A-15</text>
-    <text class="ar" x="790" y="192" text-anchor="middle">30 m²</text>
-  </a>
-  <a class="cell free" data-shop="A-16" href="/oltinkol-zona/ru/dokonlar/A-16/" aria-label="A-16, 36 m², Свободен">
-    <rect x="852" y="138" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="906" y="170" text-anchor="middle">A-16</text>
-    <text class="ar" x="906" y="192" text-anchor="middle">36 m²</text>
-  </a>
-  <a class="cell sold" data-shop="B-01" href="/oltinkol-zona/ru/dokonlar/B-01/" aria-label="B-01, 48 m², Занят">
-    <rect x="40" y="288" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="94" y="320" text-anchor="middle">B-01</text>
-    <text class="ar" x="94" y="342" text-anchor="middle">48 m²</text>
-  </a>
-  <a class="cell sold" data-shop="B-02" href="/oltinkol-zona/ru/dokonlar/B-02/" aria-label="B-02, 36 m², Занят">
-    <rect x="156" y="288" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="210" y="320" text-anchor="middle">B-02</text>
-    <text class="ar" x="210" y="342" text-anchor="middle">36 m²</text>
-  </a>
-  <a class="cell free" data-shop="B-03" href="/oltinkol-zona/ru/dokonlar/B-03/" aria-label="B-03, 60 m², Свободен">
-    <rect x="272" y="288" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="326" y="320" text-anchor="middle">B-03</text>
-    <text class="ar" x="326" y="342" text-anchor="middle">60 m²</text>
-  </a>
-  <a class="cell sold" data-shop="B-04" href="/oltinkol-zona/ru/dokonlar/B-04/" aria-label="B-04, 24 m², Занят">
-    <rect x="388" y="288" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="442" y="320" text-anchor="middle">B-04</text>
-    <text class="ar" x="442" y="342" text-anchor="middle">24 m²</text>
-  </a>
-  <a class="cell free" data-shop="B-05" href="/oltinkol-zona/ru/dokonlar/B-05/" aria-label="B-05, 30 m², Свободен">
-    <rect x="504" y="288" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="558" y="320" text-anchor="middle">B-05</text>
-    <text class="ar" x="558" y="342" text-anchor="middle">30 m²</text>
-  </a>
-  <a class="cell free" data-shop="B-06" href="/oltinkol-zona/ru/dokonlar/B-06/" aria-label="B-06, 36 m², Свободен">
-    <rect x="620" y="288" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="674" y="320" text-anchor="middle">B-06</text>
-    <text class="ar" x="674" y="342" text-anchor="middle">36 m²</text>
-  </a>
-  <a class="cell sold" data-shop="B-07" href="/oltinkol-zona/ru/dokonlar/B-07/" aria-label="B-07, 42 m², Занят">
-    <rect x="736" y="288" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="790" y="320" text-anchor="middle">B-07</text>
-    <text class="ar" x="790" y="342" text-anchor="middle">42 m²</text>
-  </a>
-  <a class="cell free" data-shop="B-08" href="/oltinkol-zona/ru/dokonlar/B-08/" aria-label="B-08, 30 m², Свободен">
-    <rect x="852" y="288" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="906" y="320" text-anchor="middle">B-08</text>
-    <text class="ar" x="906" y="342" text-anchor="middle">30 m²</text>
-  </a>
-  <a class="cell sold" data-shop="B-09" href="/oltinkol-zona/ru/dokonlar/B-09/" aria-label="B-09, 24 m², Занят">
-    <rect x="40" y="368" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="94" y="400" text-anchor="middle">B-09</text>
-    <text class="ar" x="94" y="422" text-anchor="middle">24 m²</text>
-  </a>
-  <a class="cell sold" data-shop="B-10" href="/oltinkol-zona/ru/dokonlar/B-10/" aria-label="B-10, 30 m², Занят">
-    <rect x="156" y="368" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="210" y="400" text-anchor="middle">B-10</text>
-    <text class="ar" x="210" y="422" text-anchor="middle">30 m²</text>
-  </a>
-  <a class="cell free" data-shop="B-11" href="/oltinkol-zona/ru/dokonlar/B-11/" aria-label="B-11, 36 m², Свободен">
-    <rect x="272" y="368" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="326" y="400" text-anchor="middle">B-11</text>
-    <text class="ar" x="326" y="422" text-anchor="middle">36 m²</text>
-  </a>
-  <a class="cell sold" data-shop="B-12" href="/oltinkol-zona/ru/dokonlar/B-12/" aria-label="B-12, 42 m², Занят">
-    <rect x="388" y="368" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="442" y="400" text-anchor="middle">B-12</text>
-    <text class="ar" x="442" y="422" text-anchor="middle">42 m²</text>
-  </a>
-  <a class="cell free" data-shop="B-13" href="/oltinkol-zona/ru/dokonlar/B-13/" aria-label="B-13, 30 m², Свободен">
-    <rect x="504" y="368" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="558" y="400" text-anchor="middle">B-13</text>
-    <text class="ar" x="558" y="422" text-anchor="middle">30 m²</text>
-  </a>
-  <a class="cell sold" data-shop="B-14" href="/oltinkol-zona/ru/dokonlar/B-14/" aria-label="B-14, 48 m², Занят">
-    <rect x="620" y="368" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="674" y="400" text-anchor="middle">B-14</text>
-    <text class="ar" x="674" y="422" text-anchor="middle">48 m²</text>
-  </a>
-  <a class="cell free" data-shop="B-15" href="/oltinkol-zona/ru/dokonlar/B-15/" aria-label="B-15, 36 m², Свободен">
-    <rect x="736" y="368" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="790" y="400" text-anchor="middle">B-15</text>
-    <text class="ar" x="790" y="422" text-anchor="middle">36 m²</text>
-  </a>
-  <a class="cell free" data-shop="B-16" href="/oltinkol-zona/ru/dokonlar/B-16/" aria-label="B-16, 60 m², Свободен">
-    <rect x="852" y="368" width="108" height="72" rx="10" stroke-width="1.5"/>
-    <text class="id" x="906" y="400" text-anchor="middle">B-16</text>
-    <text class="ar" x="906" y="422" text-anchor="middle">60 m²</text>
-  </a>
-</svg></div>
-      <p class="mapnote">Схема и цены ориентировочные. Точный план, площади и цены подтверждает дирекция.</p>
-    </div>
-    <div class="panel rv" id="shopPanel" role="region" aria-label="Выберите магазин на схеме" aria-live="polite">
-      <div class="empty"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3v10l3-2 2 5 2-1-2-5h4z"/></svg><span>Выберите магазин на схеме</span></div>
-    </div>
-  </div>
+<section class="band" id="maydonlar"><div class="wrap">
+  <div class="head rv"><span class="kick">Площади</span><h2>Свободные производственные площади</h2><p>Готовые здания с инфраструктурой — в рассрочку или аренду.</p></div>
+  <div class="gallery rv"><figure><img src="/oltinkol-zona/rasmlar/maydon-1.webp" alt="Готовая свободная площадь" width="800" height="600" loading="lazy"><figcaption>Готовая свободная площадь</figcaption></figure><figure><img src="/oltinkol-zona/rasmlar/maydon-2.webp" alt="Просторный этаж с колоннами" width="800" height="600" loading="lazy"><figcaption>Просторный этаж с колоннами</figcaption></figure><figure><img src="/oltinkol-zona/rasmlar/maydon-3.webp" alt="Производственная площадь" width="800" height="600" loading="lazy"><figcaption>Производственная площадь</figcaption></figure><figure><img src="/oltinkol-zona/rasmlar/maydon-4.webp" alt="Светлое помещение с окнами" width="800" height="600" loading="lazy"><figcaption>Светлое помещение с окнами</figcaption></figure></div>
 </div></section>
 
 <section class="band sand stitch"><div class="wrap">
-  <div class="head rv"><span class="kick">Схема магазинов</span><h2>Свободные магазины</h2></div>
+  <div class="head rv"><span class="kick">Список</span><h2>Свободные магазины</h2></div>
   <div class="tablewrap rv"><table class="stable">
     <thead><tr><th>Магазин</th><th>Блок</th><th>Площадь</th><th>Цена</th><th>В месяц (2–5 г.)</th><th><span class="sr">Подробнее</span></th></tr></thead>
     <tbody><tr>
@@ -386,14 +209,27 @@
 <div class="modal-bg" id="modal" hidden></div>
 <div class="drawer-bg" id="drawer" hidden><nav class="drawer" aria-label="Меню">
   <button class="x" data-act="dclose" aria-label="Закрыть" style="align-self:flex-end"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <button class="nl se-item" type="button" id="searchBtnM" aria-haspopup="dialog"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>Поиск</span></button>
   <a class="nl" href="/oltinkol-zona/ru/zona/">О зоне</a><a class="nl" href="/oltinkol-zona/ru/kredit/">Кредит</a><a class="nl" href="/oltinkol-zona/ru/imtiyozlar/">Льготы</a><a class="nl" href="/oltinkol-zona/ru/dokonlar/">Магазины</a><a class="nl" href="/oltinkol-zona/ru/rezidentlar/">Резиденты</a><a class="nl" href="/oltinkol-zona/ru/investorlarga/">Инвесторам</a><a class="nl" href="/oltinkol-zona/ru/yangiliklar/">Новости</a><a class="nl" href="/oltinkol-zona/ru/aloqa/">Контакты</a><a class="nl" href="/oltinkol-zona/ru/xizmatlar/">Специалисты</a><a class="nl" href="/oltinkol-zona/ru/ish/">Вакансии</a>
   <a class="btn" href="#ariza">Стать партнёром</a>
   <div class="langs"><a href="/oltinkol-zona/dokonlar/"  data-notr>O‘z</a><a href="/oltinkol-zona/dokonlar/#cyr" data-notr>Ўз</a><a href="/oltinkol-zona/ru/dokonlar/" aria-current="true" data-notr>Ру</a><a href="/oltinkol-zona/en/dokonlar/"  data-notr>En</a></div>
 </nav></div>
+<dialog class="se-dialog" id="search" aria-label="Поиск">
+  <form class="se-top" role="search" autocomplete="off">
+    <svg class="se-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="seInput" type="search" role="combobox" aria-expanded="false" aria-controls="seResults" aria-autocomplete="list" aria-label="Поиск" placeholder="Поиск: магазин, новость или страница…" enterkeyhint="search" autocapitalize="off" autocorrect="off" spellcheck="false">
+    <button type="button" class="se-x" data-act="seclose" aria-label="Закрыть"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </form>
+  <div class="se-body">
+    <div id="seResults" role="listbox" aria-label="Поиск"></div>
+    <p class="se-empty" id="seEmpty">Введите запрос — поиск по магазинам, новостям и страницам.</p>
+  </div>
+  <p class="sr" id="seLive" aria-live="polite"></p>
+</dialog>
 <div class="toast" id="toast" hidden role="status"></div>
 
-<script>window.SITE = {"lang": "ru", "phone": "+998 93 410 45 99", "endpoint": "", "soha": "/oltinkol-zona/assets/soha.json", "months": ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"], "shops": [{"id": "A-01", "b": "A", "row": 0, "col": 0, "area": 24, "price": 216000000, "free": false, "corner": true, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/A-01/"}, {"id": "A-02", "b": "A", "row": 0, "col": 1, "area": 30, "price": 270000000, "free": false, "corner": false, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/A-02/"}, {"id": "A-03", "b": "A", "row": 0, "col": 2, "area": 36, "price": 324000000, "free": true, "corner": false, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/A-03/"}, {"id": "A-04", "b": "A", "row": 0, "col": 3, "area": 42, "price": 378000000, "free": false, "corner": false, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/A-04/"}, {"id": "A-05", "b": "A", "row": 0, "col": 4, "area": 30, "price": 270000000, "free": false, "corner": false, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/A-05/"}, {"id": "A-06", "b": "A", "row": 0, "col": 5, "area": 48, "price": 432000000, "free": true, "corner": false, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/A-06/"}, {"id": "A-07", "b": "A", "row": 0, "col": 6, "area": 36, "price": 324000000, "free": false, "corner": false, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/A-07/"}, {"id": "A-08", "b": "A", "row": 0, "col": 7, "area": 60, "price": 540000000, "free": true, "corner": true, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/A-08/"}, {"id": "A-09", "b": "A", "row": 1, "col": 0, "area": 42, "price": 378000000, "free": false, "corner": true, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/A-09/"}, {"id": "A-10", "b": "A", "row": 1, "col": 1, "area": 30, "price": 270000000, "free": false, "corner": false, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/A-10/"}, {"id": "A-11", "b": "A", "row": 1, "col": 2, "area": 48, "price": 432000000, "free": true, "corner": false, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/A-11/"}, {"id": "A-12", "b": "A", "row": 1, "col": 3, "area": 36, "price": 324000000, "free": false, "corner": false, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/A-12/"}, {"id": "A-13", "b": "A", "row": 1, "col": 4, "area": 60, "price": 540000000, "free": true, "corner": false, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/A-13/"}, {"id": "A-14", "b": "A", "row": 1, "col": 5, "area": 24, "price": 216000000, "free": false, "corner": false, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/A-14/"}, {"id": "A-15", "b": "A", "row": 1, "col": 6, "area": 30, "price": 270000000, "free": false, "corner": false, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/A-15/"}, {"id": "A-16", "b": "A", "row": 1, "col": 7, "area": 36, "price": 324000000, "free": true, "corner": true, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/A-16/"}, {"id": "B-01", "b": "B", "row": 0, "col": 0, "area": 48, "price": 432000000, "free": false, "corner": true, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/B-01/"}, {"id": "B-02", "b": "B", "row": 0, "col": 1, "area": 36, "price": 324000000, "free": false, "corner": false, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/B-02/"}, {"id": "B-03", "b": "B", "row": 0, "col": 2, "area": 60, "price": 540000000, "free": true, "corner": false, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/B-03/"}, {"id": "B-04", "b": "B", "row": 0, "col": 3, "area": 24, "price": 216000000, "free": false, "corner": false, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/B-04/"}, {"id": "B-05", "b": "B", "row": 0, "col": 4, "area": 30, "price": 270000000, "free": true, "corner": false, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/B-05/"}, {"id": "B-06", "b": "B", "row": 0, "col": 5, "area": 36, "price": 324000000, "free": true, "corner": false, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/B-06/"}, {"id": "B-07", "b": "B", "row": 0, "col": 6, "area": 42, "price": 378000000, "free": false, "corner": false, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/B-07/"}, {"id": "B-08", "b": "B", "row": 0, "col": 7, "area": 30, "price": 270000000, "free": true, "corner": true, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/B-08/"}, {"id": "B-09", "b": "B", "row": 1, "col": 0, "area": 24, "price": 216000000, "free": false, "corner": true, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/B-09/"}, {"id": "B-10", "b": "B", "row": 1, "col": 1, "area": 30, "price": 270000000, "free": false, "corner": false, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/B-10/"}, {"id": "B-11", "b": "B", "row": 1, "col": 2, "area": 36, "price": 324000000, "free": true, "corner": false, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/B-11/"}, {"id": "B-12", "b": "B", "row": 1, "col": 3, "area": 42, "price": 378000000, "free": false, "corner": false, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/B-12/"}, {"id": "B-13", "b": "B", "row": 1, "col": 4, "area": 30, "price": 270000000, "free": true, "corner": false, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/B-13/"}, {"id": "B-14", "b": "B", "row": 1, "col": 5, "area": 48, "price": 432000000, "free": false, "corner": false, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/B-14/"}, {"id": "B-15", "b": "B", "row": 1, "col": 6, "area": 36, "price": 324000000, "free": true, "corner": false, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/B-15/"}, {"id": "B-16", "b": "B", "row": 1, "col": 7, "area": 60, "price": 540000000, "free": true, "corner": true, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/B-16/"}], "t": {"sh_free": "Свободен", "sh_sold": "Занят", "sh_area": "Площадь", "sh_price": "Цена", "sh_first": "Первый взнос 20%", "sh_month": "2–5-й годы: в месяц", "sh_apply": "Заявка на этот магазин", "sh_page": "Страница магазина", "sh_soldnote": "Этот магазин занят. Выберите один из свободных.", "f_ok": "Заявка принята. Специалист дирекции скоро позвонит.", "f_demo": "(Демо: заявка пока никуда не отправляется.)", "f_err": "Укажите имя и полный номер телефона (+998 и 9 цифр).", "f_fail": "Не удалось отправить. Пожалуйста, позвоните:", "copied": "Скопировано", "copy_fail": "Не удалось скопировать — выделите вручную", "close": "Закрыть", "sum": "сум"}};</script>
-<script src="/oltinkol-zona/assets/site.js?v=202610231544" defer></script>
+<script>window.SITE = {"lang": "ru", "phone": "+998 93 410 45 99", "endpoint": "", "soha": "/oltinkol-zona/assets/soha.json", "months": ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"], "shops": [{"id": "A-01", "b": "A", "row": 0, "col": 0, "area": 24, "price": 216000000, "free": false, "corner": true, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/A-01/"}, {"id": "A-02", "b": "A", "row": 0, "col": 1, "area": 30, "price": 270000000, "free": false, "corner": false, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/A-02/"}, {"id": "A-03", "b": "A", "row": 0, "col": 2, "area": 36, "price": 324000000, "free": true, "corner": false, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/A-03/"}, {"id": "A-04", "b": "A", "row": 0, "col": 3, "area": 42, "price": 378000000, "free": false, "corner": false, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/A-04/"}, {"id": "A-05", "b": "A", "row": 0, "col": 4, "area": 30, "price": 270000000, "free": false, "corner": false, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/A-05/"}, {"id": "A-06", "b": "A", "row": 0, "col": 5, "area": 48, "price": 432000000, "free": true, "corner": false, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/A-06/"}, {"id": "A-07", "b": "A", "row": 0, "col": 6, "area": 36, "price": 324000000, "free": false, "corner": false, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/A-07/"}, {"id": "A-08", "b": "A", "row": 0, "col": 7, "area": 60, "price": 540000000, "free": true, "corner": true, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/A-08/"}, {"id": "A-09", "b": "A", "row": 1, "col": 0, "area": 42, "price": 378000000, "free": false, "corner": true, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/A-09/"}, {"id": "A-10", "b": "A", "row": 1, "col": 1, "area": 30, "price": 270000000, "free": false, "corner": false, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/A-10/"}, {"id": "A-11", "b": "A", "row": 1, "col": 2, "area": 48, "price": 432000000, "free": true, "corner": false, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/A-11/"}, {"id": "A-12", "b": "A", "row": 1, "col": 3, "area": 36, "price": 324000000, "free": false, "corner": false, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/A-12/"}, {"id": "A-13", "b": "A", "row": 1, "col": 4, "area": 60, "price": 540000000, "free": true, "corner": false, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/A-13/"}, {"id": "A-14", "b": "A", "row": 1, "col": 5, "area": 24, "price": 216000000, "free": false, "corner": false, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/A-14/"}, {"id": "A-15", "b": "A", "row": 1, "col": 6, "area": 30, "price": 270000000, "free": false, "corner": false, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/A-15/"}, {"id": "A-16", "b": "A", "row": 1, "col": 7, "area": 36, "price": 324000000, "free": true, "corner": true, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/A-16/"}, {"id": "B-01", "b": "B", "row": 0, "col": 0, "area": 48, "price": 432000000, "free": false, "corner": true, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/B-01/"}, {"id": "B-02", "b": "B", "row": 0, "col": 1, "area": 36, "price": 324000000, "free": false, "corner": false, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/B-02/"}, {"id": "B-03", "b": "B", "row": 0, "col": 2, "area": 60, "price": 540000000, "free": true, "corner": false, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/B-03/"}, {"id": "B-04", "b": "B", "row": 0, "col": 3, "area": 24, "price": 216000000, "free": false, "corner": false, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/B-04/"}, {"id": "B-05", "b": "B", "row": 0, "col": 4, "area": 30, "price": 270000000, "free": true, "corner": false, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/B-05/"}, {"id": "B-06", "b": "B", "row": 0, "col": 5, "area": 36, "price": 324000000, "free": true, "corner": false, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/B-06/"}, {"id": "B-07", "b": "B", "row": 0, "col": 6, "area": 42, "price": 378000000, "free": false, "corner": false, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/B-07/"}, {"id": "B-08", "b": "B", "row": 0, "col": 7, "area": 30, "price": 270000000, "free": true, "corner": true, "hall": true, "url": "/oltinkol-zona/ru/dokonlar/B-08/"}, {"id": "B-09", "b": "B", "row": 1, "col": 0, "area": 24, "price": 216000000, "free": false, "corner": true, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/B-09/"}, {"id": "B-10", "b": "B", "row": 1, "col": 1, "area": 30, "price": 270000000, "free": false, "corner": false, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/B-10/"}, {"id": "B-11", "b": "B", "row": 1, "col": 2, "area": 36, "price": 324000000, "free": true, "corner": false, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/B-11/"}, {"id": "B-12", "b": "B", "row": 1, "col": 3, "area": 42, "price": 378000000, "free": false, "corner": false, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/B-12/"}, {"id": "B-13", "b": "B", "row": 1, "col": 4, "area": 30, "price": 270000000, "free": true, "corner": false, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/B-13/"}, {"id": "B-14", "b": "B", "row": 1, "col": 5, "area": 48, "price": 432000000, "free": false, "corner": false, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/B-14/"}, {"id": "B-15", "b": "B", "row": 1, "col": 6, "area": 36, "price": 324000000, "free": true, "corner": false, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/B-15/"}, {"id": "B-16", "b": "B", "row": 1, "col": 7, "area": 60, "price": 540000000, "free": true, "corner": true, "hall": false, "url": "/oltinkol-zona/ru/dokonlar/B-16/"}], "t": {"sh_free": "Свободен", "sh_sold": "Занят", "sh_area": "Площадь", "sh_price": "Цена", "sh_first": "Первый взнос 20%", "sh_month": "2–5-й годы: в месяц", "sh_apply": "Заявка на этот магазин", "sh_page": "Страница магазина", "sh_soldnote": "Этот магазин занят. Выберите один из свободных.", "f_ok": "Заявка принята. Специалист дирекции скоро позвонит.", "f_demo": "(Демо: заявка пока никуда не отправляется.)", "f_err": "Укажите имя и полный номер телефона (+998 и 9 цифр).", "f_fail": "Не удалось отправить. Пожалуйста, позвоните:", "copied": "Скопировано", "copy_fail": "Не удалось скопировать — выделите вручную", "close": "Закрыть", "sum": "сум"}, "search": {"url": "/oltinkol-zona/assets/search-ru.json", "ph": "Поиск: магазин, новость или страница…", "hint": "Введите запрос — поиск по магазинам, новостям и страницам.", "none": "Ничего не найдено", "none_p": "Попробуйте другой запрос.", "found": "результатов", "types": {"page": "Страница", "shop": "Магазин", "news": "Новость", "resident": "Резидент"}}};</script>
+<script src="/oltinkol-zona/assets/site.js?v=202610231616" defer></script>
 <script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("/oltinkol-zona/sw.js",{scope:"/oltinkol-zona/"}).catch(()=>{}))</script>
 </body>
 </html>
