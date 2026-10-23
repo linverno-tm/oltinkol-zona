@@ -275,6 +275,22 @@
     after(soha);
   }).catch(() => {});
 
+
+  /* ---------- hero emblema: nozik parallaks (sichqoncha) ---------- */
+  (() => {
+    if (RM || !matchMedia("(pointer: fine)").matches) return;
+    const hero = $(".hero"), orbit = hero && hero.querySelector(".stage .orbit");
+    if (!orbit) return;
+    let raf = 0;
+    hero.addEventListener("mousemove", e => {
+      const r = hero.getBoundingClientRect();
+      const dx = (e.clientX - r.left) / r.width - .5, dy = (e.clientY - r.top) / r.height - .5;
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => { orbit.style.transform = "translate3d(" + (dx * 16).toFixed(1) + "px," + (dy * 16).toFixed(1) + "px,0)"; });
+    });
+    hero.addEventListener("mouseleave", () => { cancelAnimationFrame(raf); orbit.style.transform = ""; });
+  })();
+
   let wantCyr = location.hash === "#cyr";
   try { wantCyr = wantCyr || localStorage.getItem("oz_cyr") === "1"; } catch (e) {}
   if (S.lang === "uz" && wantCyr) setCyr(true);
