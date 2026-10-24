@@ -362,7 +362,7 @@ form.f { background: #fff; color: var(--ink); border-radius: 28px; padding: 30px
 /* ---------- pastki qism ---------- */
 footer { background: var(--navy-2); color: #B7C0E2; font-size: 15.5px; }
 footer .cols { display: grid; grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr)); gap: 32px; padding-block: 56px 36px; }
-footer h4 { margin: 0 0 14px; color: #fff; font-size: 15.5px; }
+footer h4, footer h3 { margin: 0 0 14px; color: #fff; font-size: 15.5px; }
 footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
 footer a:hover { color: var(--orange-2); }
 footer .brand b { color: #fff; }
@@ -1157,3 +1157,53 @@ nav.main a { padding: 8px 6px; font-size: 14px; }
 .js img.lz { opacity: 0; transition: opacity .5s ease; }
 .js img.lz.ok { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .js img.lz { transition: none; } }
+
+/* moslashuv: telefon va planshet tuzatishlari */
+.tablewrap { position: relative; }
+.stable td.num { white-space: nowrap; }
+.eco-news a { grid-template-columns: auto minmax(0, 1fr) 16px; }
+.eco-news time { white-space: nowrap; }
+.crumbs a { padding-block: 4px; }
+.calc input[type=range] { height: 28px; }
+.copy { min-height: 40px; }
+.cover .cv-foto, .zmap-note { font-size: 12px !important; }
+.mapcard .mbtns .btn { flex: 1 1 auto; }
+h1, h2, h3, .facts span { overflow-wrap: break-word; }
+.facts span { hyphens: auto; }
+@media (min-width: 601px) and (max-width: 900px) {
+  .news { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .news > :first-child { grid-column: 1 / -1; }
+  .langs a, .langs button { padding-block: 7px; }
+}
+@media (max-width: 640px) {
+  .tablewrap { overflow: visible; background: none; }
+  .stable { min-width: 0; font-size: 15px; }
+  .stable thead { display: none; }
+  .stable, .stable tbody { display: block; }
+  .stable tr { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 14px; align-items: center;
+    background: #fff; border-radius: var(--r); padding: 16px 18px; margin-bottom: 12px; box-shadow: 0 4px 16px rgba(19,35,106,.06); }
+  .stable td { display: block; padding: 0; border: 0; }
+  .stable tr:hover td { background: none; }
+  .stable td:first-child { grid-column: 1; grid-row: 1; }
+  .stable td:last-child { grid-column: 2; grid-row: 1; justify-self: end; }
+  .stable td[data-l]::before { content: attr(data-l); display: block; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; margin-bottom: 2px; white-space: normal; }
+  .stable .sid { font-size: 28px; }
+}
+@media (max-width: 400px) {
+  header.top .wrap { gap: 8px; }
+  .brand { gap: 8px; }
+  .brand .mk { width: 36px; height: 36px; }
+  .brand b { font-size: 21px; }
+  .h-act { gap: 6px; }
+  .burger, .se-btn { width: 42px; height: 42px; }
+  .hero h1 { font-size: 38px; }
+  .facts b { font-size: 40px; }
+  .facts span { font-size: 14.5px; }
+  .facts .f { padding-inline: 14px; }
+  .inv-facts b, .facts b.num { letter-spacing: 0; }
+  .out b { font-size: 22px; }
+  .vin input { font-size: 28px; }
+  .stable { font-size: 14px; }
+  .stable tr { padding-inline: 14px; }
+}
+.brand small { font-size: 11.5px; }
