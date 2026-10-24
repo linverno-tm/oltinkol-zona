@@ -117,6 +117,28 @@
 
   /* ---------- ariza ---------- */
   const form = $("#form"), opened = Date.now();
+  /* ---------- ariza: server bo'lmasa — Telegram / WhatsApp orqali to'g'ridan-to'g'ri direksiyaga ---------- */
+  const SVG = p => '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true">' + p + '</svg>';
+  const IC_TG = SVG('<path d="M21 4 3 11l6 2 2 6 3-4 5 4z"/><path d="m9 13 8-6"/>');
+  const IC_WA = SVG('<path d="M4 20l1.2-3.6A8 8 0 1 1 8 18.9z"/><path d="M9.2 8.6c.3 2.7 2.4 5 5.3 5.6l1.1-1.2 1.9.8-.3 1.7c-4 .4-8.4-3.7-8-7.9l1.7-.3.8 1.9z"/>');
+  function formText() {
+    const lines = [T.f_head + " — " + document.title];
+    form.querySelectorAll("input[name], select[name], textarea[name]").forEach(el => {
+      if (el.name === "website") return;
+      const v = el.tagName === "SELECT" ? (el.value === "" ? "" : el.selectedOptions[0].text) : el.value.trim();
+      if (!v || v === "+998") return;
+      const lab = el.closest("label"), f = lab && lab.firstChild;
+      lines.push((f && f.nodeType === 3 ? f.textContent.replace("*", "").trim() : el.name) + ": " + v);
+    });
+    lines.push(location.href);
+    return lines.join("\n");
+  }
+  function via(r) {
+    const txt = formText();
+    r.className = "res via";
+    r.innerHTML = "<p>" + esc(T.f_via) + '</p><div class="via-b"><a class="btn wa" href="https://wa.me/' + S.wa + "?text=" + encodeURIComponent(txt) + '" target="_blank" rel="noopener">' + IC_WA + esc(T.f_wa) + '</a><a class="btn tgb" href="' + S.tg + '" target="_blank" rel="noopener" data-tgcopy>' + IC_TG + esc(T.f_tg) + '</a></div><p class="via-h" hidden>' + esc(T.f_tg_hint) + "</p>";
+    r.querySelector("[data-tgcopy]").addEventListener("click", () => { try { navigator.clipboard.writeText(txt); } catch (e) {} r.querySelector(".via-h").hidden = false; });
+  }
   function prefill(need, type, text) {
     if (!form) return;
     if (need != null && need !== "") form.need.value = String(need);
@@ -138,7 +160,7 @@
         if (!res.ok) throw 0;
         r.className = "res"; r.textContent = T.f_ok;
       } catch (err) { r.className = "res err"; r.textContent = T.f_fail + " " + S.phone; }
-    } else { r.className = "res"; r.textContent = T.f_ok + " " + T.f_demo; }
+    } else via(r);
     if (r.className === "res") { form.reset(); form.tel.value = "+998 "; }
     after(r);
   });
@@ -460,7 +482,7 @@
     function go(d) { if (items.length < 2) return; idx = (idx + d + items.length) % items.length; show(); }
     function open(gallery, start) {
       if (!box) build();
-      items = [...gallery.querySelectorAll(".gx")].map(b => {
+      items = [...gallery.querySelectorAll("figure:not([hidden]) .gx")].map(b => {
         const im = b.querySelector("img"), fc = b.closest("figure").querySelector("figcaption");
         return [im.currentSrc || im.src, fc ? fc.textContent : b.getAttribute("aria-label")];
       });
@@ -472,7 +494,7 @@
     document.addEventListener("click", e => {
       const b = e.target.closest(".gallery .gx"); if (!b) return;
       const g = b.closest(".gallery");
-      open(g, [...g.querySelectorAll(".gx")].indexOf(b));
+      open(g, [...g.querySelectorAll("figure:not([hidden]) .gx")].indexOf(b));
     });
     document.addEventListener("keydown", e => {
       if (!box || box.hidden) return;
@@ -486,6 +508,28 @@
       }
     });
   })();
+
+  /* ---------- 3D zona xaritasi: raqamli nuqtalar ---------- */
+  (() => {
+    const map = $(".zmap"); if (!map) return;
+    const hs = [...map.querySelectorAll(".hs")], li = $$(".zmap-list li");
+    const show = i => hs.forEach((h, k) => {
+      const on = k === i;
+      h.classList.toggle("open", on); h.querySelector(".hs-dot").setAttribute("aria-expanded", String(on));
+      if (li[k]) li[k].classList.toggle("on", on);
+    });
+    hs.forEach((h, i) => h.querySelector(".hs-dot").addEventListener("click", e => { e.stopPropagation(); show(h.classList.contains("open") ? -1 : i); }));
+    li.forEach((l, i) => l.addEventListener("click", () => show(i)));
+    document.addEventListener("click", e => { if (!e.target.closest(".zmap, .zmap-list")) show(-1); });
+    document.addEventListener("keydown", e => { if (e.key === "Escape") show(-1); });
+  })();
+
+  /* ---------- fotogalereya: toifa bo'yicha filtr ---------- */
+  $$("[data-gf]").forEach(b => b.addEventListener("click", () => {
+    const c = b.dataset.gf;
+    $$("[data-gf]").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    $$(".gallery.all figure").forEach(f => { f.hidden = c !== "all" && f.dataset.cat !== c; });
+  }));
 
   let wantCyr = location.hash === "#cyr";
   try { wantCyr = wantCyr || localStorage.getItem("oz_cyr") === "1"; } catch (e) {}
