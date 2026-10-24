@@ -484,7 +484,7 @@
       if (!box) build();
       items = [...gallery.querySelectorAll("figure:not([hidden]) .gx")].map(b => {
         const im = b.querySelector("img"), fc = b.closest("figure").querySelector("figcaption");
-        return [im.currentSrc || im.src, fc ? fc.textContent : b.getAttribute("aria-label")];
+        return [im.src, fc ? fc.textContent : b.getAttribute("aria-label")];
       });
       idx = start; lastFocus = document.activeElement;
       show(); box.hidden = false; document.body.style.overflow = "hidden";
@@ -523,6 +523,12 @@
     document.addEventListener("click", e => { if (!e.target.closest(".zmap, .zmap-list")) show(-1); });
     document.addEventListener("keydown", e => { if (e.key === "Escape") show(-1); });
   })();
+
+  /* ---------- rasmlar: xira oldindan ko'rinish ustida, yuklanganda silliq paydo bo'ladi ---------- */
+  $$("img.lz").forEach(im => {
+    const ok = () => im.classList.add("ok");
+    if (im.complete && im.naturalWidth) ok(); else { im.addEventListener("load", ok, { once: true }); im.addEventListener("error", ok, { once: true }); }
+  });
 
   /* ---------- fotogalereya: toifa bo'yicha filtr ---------- */
   $$("[data-gf]").forEach(b => b.addEventListener("click", () => {

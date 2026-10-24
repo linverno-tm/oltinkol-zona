@@ -1150,3 +1150,10 @@ nav.main a { padding: 8px 6px; font-size: 14px; }
   .mbar .btn { padding: 12px 11px; }
   .mbar .btn:last-child { font-size: 14.5px; line-height: 1.15; padding-inline: 8px; }
 }
+
+/* rasmlar: yuklanguncha xira oldindan ko'rinish, keyin silliq paydo bo'lish */
+.gallery figure, .ad, .zmap { background-size: cover; background-position: center; background-repeat: no-repeat; }
+.zmap { border-radius: var(--r-lg); }
+.js img.lz { opacity: 0; transition: opacity .5s ease; }
+.js img.lz.ok { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .js img.lz { transition: none; } }
