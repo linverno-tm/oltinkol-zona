@@ -1461,3 +1461,11 @@ img.big-logo { height: auto; }
   .mbar { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; background: rgba(255,255,255,.98); }
   .gallery.all img.lz { transition: none; }
 }
+
+/* zanjir: kadrlar ketma-ketligi (3D kutubxonasiz) */
+.seq { position: absolute; inset: 0; touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none; }
+.seq:active { cursor: grabbing; }
+.seq img, .seq canvas { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block; -webkit-user-drag: none; }
+.seq canvas { opacity: 0; }
+.seq.on canvas { opacity: 1; }
+.seq.on .seq-0 { visibility: hidden; }

@@ -548,48 +548,62 @@
   const prog = (el, pin) => { const r = el.getBoundingClientRect(); return Math.min(1, Math.max(0, (stick(pin) - r.top) / Math.max(1, r.height - pin.offsetHeight))); };
   addEventListener("scroll", pinOn, { passive: true }); addEventListener("resize", pinOn);
 
-  /* ---------- zanjir: aylantirgan sari 3D model buriladi, bosqichlar ochiladi ---------- */
-  let mvLib = false;
+  /* ---------- zanjir: aylantirgan sari model buriladi (oldindan olingan kadrlar), bosqichlar ochiladi ---------- */
+  const idle = window.requestIdleCallback ? f => requestIdleCallback(f, { timeout: 2000 }) : f => setTimeout(f, 300);
   $$(".zchain").forEach(ch => {
-    const mv = ch.querySelector("model-viewer"), pinEl = ch.querySelector(".chain-pin"), steps = $$(".ch", ch), n = steps.length;
-    const K = JSON.parse(ch.dataset.orbits);   // kamera: [burilish, qiyalik, masofa %] har bosqich uchun
-    let cur = -1, hold = 0, got = false;
+    const seq = ch.querySelector(".seq"), cv = seq.querySelector("canvas"), cx = cv.getContext("2d");
+    const pinEl = ch.querySelector(".chain-pin"), steps = $$(".ch", ch), n = steps.length;
+    const N = +seq.dataset.n, dir = seq.dataset.seq, frames = new Array(N);
+    let cur = -1, want = 0, drawn = -1, off = 0, got = false;
+    const near = i => { for (let d = 0; d < N; d++) { if (frames[i - d]) return i - d; if (frames[i + d]) return i + d; } return -1; };
+    const draw = () => {
+      const i = near(Math.max(0, Math.min(N - 1, Math.round(want + off))));
+      if (i < 0 || i === drawn) return;
+      drawn = i; cx.clearRect(0, 0, cv.width, cv.height); cx.drawImage(frames[i], 0, 0, cv.width, cv.height);
+    };
+    // avval har 8-kadr (animatsiya darhol ishlaydi), keyin oraliqlar to'ldiriladi
     const load = () => {
       if (got) return; got = true;
-      if (!mvLib) { mvLib = true; const sc = document.createElement("script"); sc.type = "module"; sc.src = mv.dataset.lib; document.head.append(sc); }
-      mv.setAttribute("src", mv.dataset.src);
+      const order = [], seen = new Set();
+      [8, 4, 2, 1].forEach(st => { for (let i = 0; i < N; i += st) if (!seen.has(i)) { seen.add(i); order.push(i); } });
+      if (!seen.has(N - 1)) order.splice(9, 0, N - 1);
+      let k = 0, left = order.length;
+      const next = () => {
+        if (k >= order.length) return;
+        const i = order[k++], im = new Image();
+        im.decoding = "async"; im.src = dir + String(i).padStart(2, "0") + ".webp";
+        im.decode().then(() => { frames[i] = im; }, () => {}).finally(() => {
+          left--; if (left === order.length - 10 || !left) { seq.classList.add("on"); ch.classList.add("ready"); }
+          draw(); next();
+        });
+      };
+      for (let c = 0; c < 4; c++) next();   // bir vaqtda 4 tadan
     };
-    // og'ir 3D kutubxona: bo'lim yaqin bo'lsa VA foydalanuvchi sahifa bilan ishlay boshlagach yuklanadi (ochilish tezligi buzilmasin)
-    let near = false, acted = false;
-    // brauzer bo'sh paytini kutadi — aylantirish paytida qotib qolmasin
-    const idle = window.requestIdleCallback ? f => requestIdleCallback(f, { timeout: 2500 }) : f => setTimeout(f, 400);
-    let lastScroll = 0;
-    addEventListener("scroll", () => { lastScroll = performance.now(); }, { passive: true });
-    const tryLoad = () => {
-      if (!near || !acted || got) return;
-      if (performance.now() - lastScroll < 350) { setTimeout(tryLoad, 350); return; }   // aylantirish to'xtaguncha kutadi
-      idle(load);
+    new IntersectionObserver((es, o) => { if (es.some(e => e.isIntersecting)) { o.disconnect(); idle(load); } }, { rootMargin: "700px 0px" }).observe(ch);
+    // barmoq yoki sichqoncha bilan aylantirish: gorizontal surish kadrlarni suradi
+    let sx = null, off0 = 0, back = 0;
+    seq.addEventListener("pointerdown", e => { sx = e.clientX; off0 = off; cancelAnimationFrame(back); ch.classList.add("touched"); seq.setPointerCapture(e.pointerId); });
+    seq.addEventListener("pointermove", e => { if (sx == null) return; off = off0 + (e.clientX - sx) / seq.clientWidth * N * .6; draw(); });
+    const release = () => {
+      if (sx == null) return; sx = null;
+      if (!ch.classList.contains("live")) return;   // harakatsiz rejimda tanlangan burchak qoladi
+      const o0 = off, t0 = performance.now();
+      const ease = now => { const t = Math.min(1, (now - t0) / 700); off = o0 * (1 - (1 - Math.pow(1 - t, 3))); draw(); if (t < 1) back = requestAnimationFrame(ease); };
+      back = requestAnimationFrame(ease);
     };
-    new IntersectionObserver((es, o) => { if (es.some(e => e.isIntersecting)) { near = true; tryLoad(); o.disconnect(); } }, { rootMargin: "900px 0px" }).observe(ch);
-    const act = () => { acted = true; tryLoad(); ["scroll", "pointerdown", "keydown", "touchstart", "wheel"].forEach(t => removeEventListener(t, act)); };
-    ["scroll", "pointerdown", "keydown", "touchstart", "wheel"].forEach(t => addEventListener(t, act, { passive: true, once: true }));
-    mv.addEventListener("load", () => ch.classList.add("ready"));
-    mv.addEventListener("camera-change", e => { if (e.detail && e.detail.source === "user-interaction") { hold = performance.now() + 3500; ch.classList.add("touched"); } });
+    seq.addEventListener("pointerup", release); seq.addEventListener("pointercancel", release);
     const tick = () => {
       const p = prog(ch, pinEl);
       ch.style.setProperty("--p", p.toFixed(4));
       const i = Math.min(n - 1, Math.floor(p * n));
       if (i !== cur) { cur = i; steps.forEach((s, k) => { s.classList.toggle("on", k === i); s.classList.toggle("done", k < i); }); }
-      if (performance.now() > hold) {
-        const f = p * (K.length - 1), a = Math.min(K.length - 2, Math.floor(f)), t = f - a;
-        const v = K[a].map((x, j) => x + (K[a + 1][j] - x) * t);
-        mv.setAttribute("camera-orbit", `${v[0].toFixed(1)}deg ${v[1].toFixed(1)}deg ${v[2].toFixed(1)}%`);
-      }
+      want = p * (N - 1); draw();
     };
     const mode = () => {
-      const off = motionOff();
-      cur = -1; ch.classList.toggle("live", !off);
-      steps.forEach(s => { s.classList.toggle("on", off); s.classList.remove("done"); });
+      const off2 = motionOff();
+      cur = -1; ch.classList.toggle("live", !off2);
+      steps.forEach(s => { s.classList.toggle("on", off2); s.classList.remove("done"); });
+      if (off2) { want = 0; draw(); }
       pinOn();
     };
     still.addEventListener("change", mode); low.addEventListener("change", mode); mode();
