@@ -530,6 +530,54 @@
     if (im.complete && im.naturalWidth) ok(); else { im.addEventListener("load", ok, { once: true }); im.addEventListener("error", ok, { once: true }); }
   });
 
+  /* ---------- zanjir: aylantirgan sari 3D tufli buriladi, bosqichlar ochiladi ---------- */
+  const ch = $("#zanjir");
+  if (ch) {
+    const mv = ch.querySelector("model-viewer"), pinEl = ch.querySelector(".chain-pin"), steps = $$(".ch", ch), n = steps.length;
+    const still = matchMedia("(prefers-reduced-motion: reduce)"), low = matchMedia("(max-height: 519px)");   // past ekran (yotqizilgan telefon) — oddiy ko'rinish
+    // kamera: [burilish, qiyalik, masofa %] — teri yaqindan, chok yonidan, tayyor tufli, umumiy ko'rinish
+    const K = [[-30, 70, 100], [70, 80, 85], [200, 68, 105], [320, 52, 124]];
+    let cur = -1, raf = 0, hold = 0, got = false;
+    const load = () => {
+      if (got) return; got = true;
+      const sc = document.createElement("script"); sc.type = "module"; sc.src = mv.dataset.lib; document.head.append(sc);
+      mv.setAttribute("src", mv.dataset.src);
+    };
+    new IntersectionObserver((es, o) => { if (es.some(e => e.isIntersecting)) { load(); o.disconnect(); } }, { rootMargin: "900px 0px" }).observe(ch);
+    mv.addEventListener("load", () => ch.classList.add("ready"));
+    mv.addEventListener("camera-change", e => { if (e.detail && e.detail.source === "user-interaction") { hold = performance.now() + 3500; ch.classList.add("touched"); } });
+    const stick = () => parseFloat(getComputedStyle(pinEl).top) || 0;   // yopishgan bo'limning yuqori chegarasi (header balandligi)
+    const prog = () => { const r = ch.getBoundingClientRect(); return Math.min(1, Math.max(0, (stick() - r.top) / Math.max(1, r.height - pinEl.offsetHeight))); };
+    const tick = () => {
+      raf = 0;
+      if (!ch.classList.contains("live")) return;
+      const p = prog();
+      ch.style.setProperty("--p", p.toFixed(4));
+      const i = Math.min(n - 1, Math.floor(p * n));
+      if (i !== cur) { cur = i; steps.forEach((s, k) => { s.classList.toggle("on", k === i); s.classList.toggle("done", k < i); }); }
+      if (performance.now() > hold) {
+        const f = p * (K.length - 1), a = Math.min(K.length - 2, Math.floor(f)), t = f - a;
+        const v = K[a].map((x, j) => x + (K[a + 1][j] - x) * t);
+        mv.setAttribute("camera-orbit", `${v[0].toFixed(1)}deg ${v[1].toFixed(1)}deg ${v[2].toFixed(1)}%`);
+      }
+    };
+    const on = () => { if (!raf) raf = requestAnimationFrame(tick); };
+    const mode = () => {
+      const off = still.matches || low.matches;
+      cur = -1; ch.classList.toggle("live", !off);
+      steps.forEach(s => { s.classList.toggle("on", off); s.classList.remove("done"); });
+      on();
+    };
+    still.addEventListener("change", mode); low.addEventListener("change", mode); mode();
+    addEventListener("scroll", on, { passive: true }); addEventListener("resize", on);
+    // bosqich nomini bossa — o'sha bosqichga aylantiradi
+    $$(".ch-b", ch).forEach(b => b.addEventListener("click", () => {
+      if (!ch.classList.contains("live")) return;
+      const top = ch.getBoundingClientRect().top + scrollY - stick(), span = ch.offsetHeight - pinEl.offsetHeight;
+      scrollTo({ top: top + span * (+b.dataset.i + 0.5) / n, behavior: "smooth" });
+    }));
+  }
+
   /* ---------- fotogalereya: toifa bo'yicha filtr ---------- */
   $$("[data-gf]").forEach(b => b.addEventListener("click", () => {
     const c = b.dataset.gf;

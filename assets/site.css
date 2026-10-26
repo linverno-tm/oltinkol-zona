@@ -1227,3 +1227,93 @@ h1, h2, h3, .facts span { overflow-wrap: break-word; }
   .h-act .a11y-t .ico { width: 17px; height: 17px; }
 }
 @media (max-width: 900px) { .h-act > .btn { display: none; } }
+
+/* zanjir: teridan tayyor poyabzalgacha */
+.zchain { --p: 0; position: relative; background: radial-gradient(120% 90% at 78% 40%, #24318A 0%, var(--navy) 45%, var(--navy-2) 100%); color: #fff; }
+.chain-pin { padding-block: 88px; }
+.chain-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 56px; align-items: center; }
+.zchain .kick { color: var(--orange-2); }
+.zchain h2 { font-size: clamp(32px, 4vw, 52px); font-weight: 800; letter-spacing: -0.035em; margin: 10px 0 34px; max-width: 14ch; }
+.ch-list { list-style: none; margin: 0; padding: 0 0 0 4px; position: relative; display: grid; gap: 6px; }
+/* chok: uzuq chiziq, ustidan oranj ip aylantirgan sari tikilib boradi */
+.ch-list::before, .ch-list::after { content: ""; position: absolute; left: 25px; top: 26px; bottom: 26px; width: 2px;
+  background: repeating-linear-gradient(to bottom, currentColor 0 7px, transparent 7px 13px); }
+.ch-list::before { color: rgba(255,255,255,.22); }
+.ch-list::after { color: var(--orange); transform-origin: top; transform: scaleY(var(--p)); }
+.ch { position: relative; z-index: 1; }
+.ch-b { position: relative; z-index: 1; }
+.ch-b { display: flex; align-items: center; gap: 18px; width: 100%; text-align: left; padding: 8px 0; color: rgba(255,255,255,.55); transition: color .4s var(--ease); }
+.ch-b:hover { color: #fff; }
+.ch-n { flex: none; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-family: var(--f-d); font-size: 21px; letter-spacing: .04em; line-height: 1;
+  background: var(--navy-2); border: 2px dashed rgba(255,255,255,.3); transition: background .4s var(--ease), border-color .4s, color .4s; }
+.ch-b b { font-size: clamp(20px, 2vw, 26px); font-weight: 700; letter-spacing: -0.02em; }
+.ch.done .ch-n { border-color: var(--orange); color: var(--orange-2); }
+.ch.on .ch-b { color: #fff; }
+.ch.on .ch-n { background: var(--orange); border: 2px solid var(--orange); color: var(--navy); }
+.ch-more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .55s var(--ease); }
+.ch-more > div { overflow: hidden; padding-left: 62px; display: grid; grid-template-columns: minmax(0, 1fr) 132px; gap: 18px; align-items: start; }
+.ch.on .ch-more { grid-template-rows: 1fr; }
+.ch-more p { color: var(--on-navy-2); font-size: 16.5px; line-height: 1.55; padding: 2px 0 14px; }
+.ch-ph { margin: 0 0 14px; border-radius: 14px; overflow: hidden; aspect-ratio: 4/3; background-size: cover; }
+.ch-mt { display: none; }
+.ch-ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.chain-stage { position: relative; aspect-ratio: 1; max-height: calc(100svh - 150px); justify-self: center; width: 100%; }
+.chain-stage::before { content: ""; position: absolute; inset: 14%; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,140,0,.32), rgba(181,101,29,.12) 60%, transparent); filter: blur(10px); }
+.ch-ring { position: absolute; inset: 4%; width: 92%; height: 92%; overflow: visible; rotate: calc(var(--p) * 120deg); }
+.ch-ring circle { fill: none; stroke: rgba(255,255,255,.16); stroke-width: 1.6; stroke-dasharray: 6 9; }
+.ch-ring circle.t { stroke: var(--orange); stroke-width: 2.4; stroke-dasharray: calc(var(--p) * 100) 100; transform: rotate(-90deg); transform-origin: 200px 200px; }
+model-viewer.shoe { position: absolute; inset: 0; width: 100%; height: 100%; display: block; background: transparent; --poster-color: transparent; --progress-bar-color: transparent; outline: none; }
+.shoe-poster { width: 100%; height: 100%; object-fit: contain; }
+.ch-hint { position: absolute; left: 50%; bottom: 6%; translate: -50% 0; display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 600; color: var(--on-navy-2);
+  background: rgba(12,23,71,.6); padding: 6px 14px; border-radius: 99px; opacity: 0; transition: opacity .5s; pointer-events: none; }
+.zchain.ready .ch-hint { opacity: 1; }
+.zchain.touched .ch-hint { opacity: 0; }
+.ch-hint .ico { width: 16px; height: 16px; }
+.ch-credit { position: absolute; right: 0; bottom: -8px; font-size: 12px; color: rgba(201,208,238,.75); }
+.ch-credit a { text-decoration: underline; text-underline-offset: 2px; }
+.ch-credit a:hover { color: #fff; }
+/* harakat yoqilganda: bo'lim ekranga "yopishadi", aylantirish bosqichlarni almashtiradi */
+.zchain.live { height: 360vh; }
+.zchain.live .chain-pin { position: sticky; top: 76px; height: calc(100svh - 76px); display: flex; align-items: center; padding-block: 24px; overflow: clip; }
+.zchain.live .chain-pin > .wrap { width: 100%; }
+@media (prefers-reduced-motion: reduce) { .ch-more, .ch-b, .ch-n { transition: none; } }
+@media (max-width: 900px) {
+  .chain-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .zchain h2 { font-size: 30px; margin-bottom: 18px; max-width: none; }
+  .chain-stage { max-width: 440px; max-height: none; }
+  .ch-credit { left: 0; right: 0; bottom: 0; text-align: center; font-size: 11px; }
+  .ch-hint { bottom: 9%; }
+  .ch-more > div { grid-template-columns: minmax(0, 1fr) 104px; }
+  .zchain.live { height: 340vh; }
+  .zchain.live .chain-pin { top: 66px; height: calc(100svh - 66px); padding-block: 16px 90px; }
+  .zchain.live .chain-grid { grid-template-rows: minmax(0, 1fr) 236px; height: 100%; gap: 8px; align-items: center; }
+  .zchain.live .chain-txt { align-self: start; }
+  .zchain.live .chain-txt { order: 2; }
+  .zchain.live .chain-stage { order: 1; height: 100%; width: auto; max-width: 100%; max-height: 100%; }
+  .zchain.live .chain-txt .kick, .zchain.live h2 { display: none; }
+  /* telefonda faqat joriy bosqich ko'rinadi, qolganlari raqam bo'lib yuqorida turadi */
+  .zchain.live .ch-list { grid-template-columns: repeat(4, auto); justify-content: space-between; gap: 10px 12px; padding: 0; }
+  .zchain.live .ch-list::before, .zchain.live .ch-list::after { left: 22px; right: auto; top: 22px; bottom: auto; width: calc(100% - 44px); height: 2px;
+    background: repeating-linear-gradient(to right, currentColor 0 7px, transparent 7px 13px); transform-origin: left; }
+  .zchain.live .ch-list::after { transform: scaleX(var(--p)); }
+  .zchain.live .ch { display: contents; }
+  .zchain.live .ch-b { grid-row: 1; width: auto; padding: 0; }
+  .zchain.live .ch-b b { display: none; }
+  .zchain.live .ch-more { grid-row: 2; grid-column: 1 / -1; }
+  .zchain.live .ch:not(.on) .ch-more { display: none; }
+  .zchain.live .ch-more > div { padding-left: 0; padding-top: 12px; }
+  .zchain.live .ch-mt { display: block; color: #fff; font-size: 22px; letter-spacing: -0.02em; margin-bottom: 4px; }
+}
+@media (max-width: 900px) and (max-height: 700px) { .zchain.live .ch-ph { display: none; } .zchain.live .ch-more > div { grid-template-columns: minmax(0, 1fr); } .zchain.live .chain-grid { grid-template-rows: minmax(0, 1fr) 190px; } }
+
+/* aylantirishga bog'langan yengil effektlar: chok chiziqlari tikiladi, suratlar joyiga "o'tiradi" (faqat qo'llovchi brauzerlarda) */
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    @keyframes stitch-sew { from { transform: scaleX(0); } }
+    @keyframes img-settle { from { scale: 1.1; } }
+    .band.stitch { view-timeline: --band; }
+    .band.stitch::before { transform-origin: left; animation: stitch-sew linear both; animation-timeline: --band; animation-range: entry 0% entry 90%; }
+    .gallery figure img, .ad img { animation: img-settle linear both; animation-timeline: view(); animation-range: entry 0% cover 45%; }
+  }
+}
+@media (min-width: 901px) { .zchain:not(.live) .chain-grid { align-items: start; } .zchain:not(.live) .chain-stage { position: sticky; top: 110px; } }
