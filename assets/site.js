@@ -647,6 +647,13 @@
     if ($("#pp-first")) { $("#pp-first").textContent = som(c.first); $("#pp-grace").textContent = som(c.grace); $("#pp-month").textContent = som(c.month); }
   });
 
+  /* ---------- aloqa: xarita faqat bosilganda yuklanadi (begona cookie va og'ir skript sahifa ochilishida yo'q) ---------- */
+  $$(".map-facade").forEach(f => f.querySelector(".mf-load").addEventListener("click", () => {
+    const fr = document.createElement("iframe");
+    fr.title = f.dataset.title; fr.src = f.dataset.src; fr.allowFullscreen = true;
+    f.replaceWith(fr); fr.focus();
+  }));
+
   /* ---------- fotogalereya: toifa bo'yicha filtr ---------- */
   $$("[data-gf]").forEach(b => b.addEventListener("click", () => {
     const c = b.dataset.gf;
