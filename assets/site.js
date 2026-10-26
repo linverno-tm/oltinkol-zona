@@ -561,7 +561,9 @@
     };
     // og'ir 3D kutubxona: bo'lim yaqin bo'lsa VA foydalanuvchi sahifa bilan ishlay boshlagach yuklanadi (ochilish tezligi buzilmasin)
     let near = false, acted = false;
-    const tryLoad = () => { if (near && acted) load(); };
+    // brauzer bo'sh paytini kutadi — aylantirish paytida qotib qolmasin
+    const idle = window.requestIdleCallback ? f => requestIdleCallback(f, { timeout: 2500 }) : f => setTimeout(f, 400);
+    const tryLoad = () => { if (near && acted && !got) idle(load); };
     new IntersectionObserver((es, o) => { if (es.some(e => e.isIntersecting)) { near = true; tryLoad(); o.disconnect(); } }, { rootMargin: "900px 0px" }).observe(ch);
     const act = () => { acted = true; tryLoad(); ["scroll", "pointerdown", "keydown", "touchstart", "wheel"].forEach(t => removeEventListener(t, act)); };
     ["scroll", "pointerdown", "keydown", "touchstart", "wheel"].forEach(t => addEventListener(t, act, { passive: true, once: true }));

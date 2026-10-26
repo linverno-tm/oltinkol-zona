@@ -1311,7 +1311,7 @@ model-viewer.shoe { position: absolute; inset: 0; width: 100%; height: 100%; dis
     @keyframes img-settle { from { scale: 1.1; } }
     .band.stitch { view-timeline: --band; }
     .band.stitch::before { transform-origin: left; animation: stitch-sew linear both; animation-timeline: --band; animation-range: entry 0% entry 90%; }
-    .gallery figure img, .ad img { animation: img-settle linear both; animation-timeline: view(); animation-range: entry 0% cover 45%; }
+    @media (min-width: 901px) { .gallery:not(.all) figure img, .ad img { animation: img-settle linear both; animation-timeline: view(); animation-range: entry 0% cover 45%; } }
   }
 }
 @media (min-width: 901px) { .zchain:not(.live) .chain-grid { align-items: start; } .zchain:not(.live) .chain-stage { position: sticky; top: 110px; } }
@@ -1448,3 +1448,16 @@ model-viewer.shoe { position: absolute; inset: 0; width: 100%; height: 100%; dis
 .ft-a11y { display: inline-flex; align-items: center; gap: 8px; color: inherit; font: inherit; text-align: left; }
 .ft-a11y .ico { width: 17px; height: 17px; }
 .ft-a11y:hover { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+
+/* logotip rasm sifatida (keshlanadi) */
+img.mk, img.big-logo, img.em { display: block; object-fit: contain; }
+img.big-logo { height: auto; }
+.noimg img { width: 60%; height: 60%; object-fit: contain; }
+.press .noimg img { width: 52px; height: 52px; }
+
+/* telefonda aylantirish silliq bo'lsin: shaffof xiralashtirish (backdrop-filter) o'rniga deyarli to'liq fon */
+@media (max-width: 900px), (hover: none) {
+  header.top { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(255,255,255,.97); }
+  .mbar { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; background: rgba(255,255,255,.98); }
+  .gallery.all img.lz { transition: none; }
+}
