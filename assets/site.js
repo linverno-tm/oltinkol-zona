@@ -201,7 +201,8 @@
     try { fs = +(localStorage.getItem("oz_fs") || 0); if (localStorage.getItem("oz_gray") === "1") { root.classList.add("gray"); $("#grayBtn") && $("#grayBtn").setAttribute("aria-pressed", "true"); } } catch (e) {}
     const apply = () => { root.style.fontSize = fs ? (100 + fs * 12.5) + "%" : ""; document.body.style.fontSize = fs ? (17 * (1 + fs * .125)) + "px" : ""; };
     apply();
-    if (btn) btn.addEventListener("click", () => { const on = pan.hidden; pan.hidden = !on; btn.setAttribute("aria-expanded", on); });
+    // tugma footerda: panel yuqoridagi (yopishgan) headerda ochiladi va fokus unga o'tadi
+    if (btn) btn.addEventListener("click", () => { const on = pan.hidden; pan.hidden = !on; btn.setAttribute("aria-expanded", on); if (on) pan.querySelector("button").focus(); });
     document.addEventListener("click", e => {
       const f = e.target.closest("[data-fs]");
       if (f) { const v = +f.dataset.fs; fs = v === 0 ? 0 : Math.max(-1, Math.min(2, fs + v)); apply(); try { localStorage.setItem("oz_fs", fs); } catch (err) {} }
@@ -458,7 +459,7 @@
       box.setAttribute("role", "dialog"); box.setAttribute("aria-modal", "true");
       box.innerHTML = '<button type="button" class="lb-x" aria-label="' + esc(T.close || "yopish") + '">×</button>'
         + '<button type="button" class="lb-nav lb-prev" aria-label="' + esc(L.prev) + '">‹</button>'
-        + '<figure class="lb-fig"><img alt=""><figcaption class="lb-cap"></figcaption></figure>'
+        + '<figure class="lb-fig"><img alt=""><figcaption class="lb-cap"></figcaption></figure><span class="lb-count num" aria-live="polite"></span>'
         + '<button type="button" class="lb-nav lb-next" aria-label="' + esc(L.next) + '">›</button>';
       document.body.appendChild(box);
       box.addEventListener("click", e => { if (e.target === box || e.target.closest(".lb-x") || e.target.closest(".lb-fig")) { if (!e.target.closest(".lb-nav")) close(); } });
@@ -479,8 +480,13 @@
       box.querySelector(".lb-cap").textContent = it[1] || "";
       const one = items.length <= 1;
       box.querySelector(".lb-prev").hidden = one; box.querySelector(".lb-next").hidden = one;
+      box.querySelector(".lb-count").textContent = one ? "" : `${idx + 1} / ${items.length}`;
     }
-    function go(d) { if (items.length < 2) return; idx = (idx + d + items.length) % items.length; show(); }
+    function go(d) {
+      if (items.length < 2) return; idx = (idx + d + items.length) % items.length; show();
+      // keyingi rasm bosilgan tomondan suriladi
+      if (!RM) box.querySelector("img").animate([{ translate: `${d * 56}px 0`, opacity: .35 }, { translate: "0 0", opacity: 1 }], { duration: 320, easing: "cubic-bezier(.22,1,.36,1)" });
+    }
     function open(gallery, start) {
       if (!box) build();
       items = [...gallery.querySelectorAll("figure:not([hidden]) .gx")].map(b => {
