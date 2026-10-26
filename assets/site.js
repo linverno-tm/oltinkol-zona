@@ -434,7 +434,8 @@
     });
     dlg.querySelector("form").addEventListener("submit", e => { e.preventDefault(); if (items[active < 0 ? 0 : active]) location.href = items[active < 0 ? 0 : active].url; });
     box.addEventListener("mousemove", e => { const o = e.target.closest(".se-opt"); if (o) { const i = [...box.children].indexOf(o); if (i !== active) { active = i; applyActive(); } } });
-    dlg.addEventListener("click", e => { if (e.target.closest("[data-act='seclose']")) dlg.close(); else if (e.target === dlg) dlg.close(); });   // tashqariga bosish yopadi
+    dlg.addEventListener("click", e => { if (e.target.closest("[data-act='seclose']")) dlg.close(); else if (e.target === dlg) dlg.close(); });
+    input.addEventListener("keydown", e => { if (e.key === "Escape") { e.preventDefault(); dlg.close(); } });   // matn bo'lsa ham bitta Escape yopadi   // tashqariga bosish yopadi
 
     openBtn && openBtn.addEventListener("click", () => openSearch(openBtn));
     const mBtn = $("#searchBtnM");
