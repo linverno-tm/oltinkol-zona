@@ -559,7 +559,12 @@
       if (!mvLib) { mvLib = true; const sc = document.createElement("script"); sc.type = "module"; sc.src = mv.dataset.lib; document.head.append(sc); }
       mv.setAttribute("src", mv.dataset.src);
     };
-    new IntersectionObserver((es, o) => { if (es.some(e => e.isIntersecting)) { load(); o.disconnect(); } }, { rootMargin: "900px 0px" }).observe(ch);
+    // og'ir 3D kutubxona: bo'lim yaqin bo'lsa VA foydalanuvchi sahifa bilan ishlay boshlagach yuklanadi (ochilish tezligi buzilmasin)
+    let near = false, acted = false;
+    const tryLoad = () => { if (near && acted) load(); };
+    new IntersectionObserver((es, o) => { if (es.some(e => e.isIntersecting)) { near = true; tryLoad(); o.disconnect(); } }, { rootMargin: "900px 0px" }).observe(ch);
+    const act = () => { acted = true; tryLoad(); ["scroll", "pointerdown", "keydown", "touchstart", "wheel"].forEach(t => removeEventListener(t, act)); };
+    ["scroll", "pointerdown", "keydown", "touchstart", "wheel"].forEach(t => addEventListener(t, act, { passive: true, once: true }));
     mv.addEventListener("load", () => ch.classList.add("ready"));
     mv.addEventListener("camera-change", e => { if (e.detail && e.detail.source === "user-interaction") { hold = performance.now() + 3500; ch.classList.add("touched"); } });
     const tick = () => {
