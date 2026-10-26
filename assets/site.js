@@ -567,9 +567,12 @@
       const order = [], seen = new Set();
       [8, 4, 2, 1].forEach(st => { for (let i = 0; i < N; i += st) if (!seen.has(i)) { seen.add(i); order.push(i); } });
       if (!seen.has(N - 1)) order.splice(9, 0, N - 1);
-      let k = 0, left = order.length;
+      let k = 0, left = order.length, more = false;
+      const first = 10;   // 9 ta asosiy kadr + oxirgisi; qolganlari foydalanuvchi sahifa bilan ishlay boshlagach
+      const go = () => { if (more) return; more = true; for (let c = 0; c < 4; c++) next(); };
+      ["scroll", "pointerdown", "touchstart", "keydown", "wheel"].forEach(t => addEventListener(t, go, { passive: true, once: true }));
       const next = () => {
-        if (k >= order.length) return;
+        if (k >= order.length || (k >= first && !more)) return;
         const i = order[k++], im = new Image();
         im.decoding = "async"; im.src = dir + String(i).padStart(2, "0") + ".webp";
         im.decode().then(() => { frames[i] = im; }, () => {}).finally(() => {
