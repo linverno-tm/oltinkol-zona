@@ -58,6 +58,7 @@
     $("#o-first").textContent = som(c.first); $("#o-loan").textContent = som(c.loan);
     $("#o-grace").textContent = som(c.grace); $("#o-month").textContent = som(c.month);
     $("#o-int").textContent = som(c.interest); $("#o-all").textContent = som(v + c.interest);
+    document.dispatchEvent(new CustomEvent("kredit", { detail: c }));
   }
   if ($("#cv")) {
     $("#cv").addEventListener("input", e => setV(+e.target.value.replace(/\D/g, "") || 0, "in"));
@@ -447,7 +448,7 @@
 
   /* ---------- galereya: to'liq rasm + karusel (swipe / strelka) ---------- */
   (() => {
-    if (!$(".gallery .gx")) return;
+    if (!$(".gallery .gx, .bl-track .gx")) return;
     const L = { prev: S.lang === "ru" ? "Предыдущее" : S.lang === "en" ? "Previous" : "Oldingi",
                 next: S.lang === "ru" ? "Следующее" : S.lang === "en" ? "Next" : "Keyingi" };
     let box, items = [], idx = 0, lastFocus;
@@ -492,8 +493,8 @@
     }
     function close() { if (!box || box.hidden) return; box.hidden = true; document.body.style.overflow = ""; if (lastFocus) lastFocus.focus(); }
     document.addEventListener("click", e => {
-      const b = e.target.closest(".gallery .gx"); if (!b) return;
-      const g = b.closest(".gallery");
+      const b = e.target.closest(".gallery .gx, .bl-track .gx"); if (!b) return;
+      const g = b.closest(".gallery, .bl-track");
       open(g, [...g.querySelectorAll("figure:not([hidden]) .gx")].indexOf(b));
     });
     document.addEventListener("keydown", e => {
@@ -530,28 +531,33 @@
     if (im.complete && im.naturalWidth) ok(); else { im.addEventListener("load", ok, { once: true }); im.addEventListener("error", ok, { once: true }); }
   });
 
-  /* ---------- zanjir: aylantirgan sari 3D tufli buriladi, bosqichlar ochiladi ---------- */
-  const ch = $("#zanjir");
-  if (ch) {
+  /* ---------- aylantirishga bog'langan bo'limlar: umumiy yordamchilar ---------- */
+  const still = matchMedia("(prefers-reduced-motion: reduce)"), low = matchMedia("(max-height: 519px)");   // past ekran (yotqizilgan telefon) — oddiy ko'rinish
+  const motionOff = () => still.matches || low.matches;
+  const pinned = [];   // har biri: { el, pin, tick }
+  let pRaf = 0;
+  const pinTick = () => { pRaf = 0; pinned.forEach(x => x.el.classList.contains("live") && x.tick()); };
+  const pinOn = () => { if (!pRaf) pRaf = requestAnimationFrame(pinTick); };
+  const stick = pin => parseFloat(getComputedStyle(pin).top) || 0;   // yopishgan qismning yuqori chegarasi (header balandligi)
+  const prog = (el, pin) => { const r = el.getBoundingClientRect(); return Math.min(1, Math.max(0, (stick(pin) - r.top) / Math.max(1, r.height - pin.offsetHeight))); };
+  addEventListener("scroll", pinOn, { passive: true }); addEventListener("resize", pinOn);
+
+  /* ---------- zanjir: aylantirgan sari 3D model buriladi, bosqichlar ochiladi ---------- */
+  let mvLib = false;
+  $$(".zchain").forEach(ch => {
     const mv = ch.querySelector("model-viewer"), pinEl = ch.querySelector(".chain-pin"), steps = $$(".ch", ch), n = steps.length;
-    const still = matchMedia("(prefers-reduced-motion: reduce)"), low = matchMedia("(max-height: 519px)");   // past ekran (yotqizilgan telefon) — oddiy ko'rinish
-    // kamera: [burilish, qiyalik, masofa %] — teri yaqindan, chok yonidan, tayyor tufli, umumiy ko'rinish
-    const K = [[-30, 70, 100], [70, 80, 85], [200, 68, 105], [320, 52, 124]];
-    let cur = -1, raf = 0, hold = 0, got = false;
+    const K = JSON.parse(ch.dataset.orbits);   // kamera: [burilish, qiyalik, masofa %] har bosqich uchun
+    let cur = -1, hold = 0, got = false;
     const load = () => {
       if (got) return; got = true;
-      const sc = document.createElement("script"); sc.type = "module"; sc.src = mv.dataset.lib; document.head.append(sc);
+      if (!mvLib) { mvLib = true; const sc = document.createElement("script"); sc.type = "module"; sc.src = mv.dataset.lib; document.head.append(sc); }
       mv.setAttribute("src", mv.dataset.src);
     };
     new IntersectionObserver((es, o) => { if (es.some(e => e.isIntersecting)) { load(); o.disconnect(); } }, { rootMargin: "900px 0px" }).observe(ch);
     mv.addEventListener("load", () => ch.classList.add("ready"));
     mv.addEventListener("camera-change", e => { if (e.detail && e.detail.source === "user-interaction") { hold = performance.now() + 3500; ch.classList.add("touched"); } });
-    const stick = () => parseFloat(getComputedStyle(pinEl).top) || 0;   // yopishgan bo'limning yuqori chegarasi (header balandligi)
-    const prog = () => { const r = ch.getBoundingClientRect(); return Math.min(1, Math.max(0, (stick() - r.top) / Math.max(1, r.height - pinEl.offsetHeight))); };
     const tick = () => {
-      raf = 0;
-      if (!ch.classList.contains("live")) return;
-      const p = prog();
+      const p = prog(ch, pinEl);
       ch.style.setProperty("--p", p.toFixed(4));
       const i = Math.min(n - 1, Math.floor(p * n));
       if (i !== cur) { cur = i; steps.forEach((s, k) => { s.classList.toggle("on", k === i); s.classList.toggle("done", k < i); }); }
@@ -561,22 +567,48 @@
         mv.setAttribute("camera-orbit", `${v[0].toFixed(1)}deg ${v[1].toFixed(1)}deg ${v[2].toFixed(1)}%`);
       }
     };
-    const on = () => { if (!raf) raf = requestAnimationFrame(tick); };
     const mode = () => {
-      const off = still.matches || low.matches;
+      const off = motionOff();
       cur = -1; ch.classList.toggle("live", !off);
       steps.forEach(s => { s.classList.toggle("on", off); s.classList.remove("done"); });
-      on();
+      pinOn();
     };
     still.addEventListener("change", mode); low.addEventListener("change", mode); mode();
-    addEventListener("scroll", on, { passive: true }); addEventListener("resize", on);
+    pinned.push({ el: ch, tick });
     // bosqich nomini bossa — o'sha bosqichga aylantiradi
     $$(".ch-b", ch).forEach(b => b.addEventListener("click", () => {
       if (!ch.classList.contains("live")) return;
-      const top = ch.getBoundingClientRect().top + scrollY - stick(), span = ch.offsetHeight - pinEl.offsetHeight;
+      const top = ch.getBoundingClientRect().top + scrollY - stick(pinEl), span = ch.offsetHeight - pinEl.offsetHeight;
       scrollTo({ top: top + span * (+b.dataset.i + 0.5) / n, behavior: "smooth" });
     }));
-  }
+  });
+
+  /* ---------- qurilish lentasi: pastga aylantirish suratlarni chapga suradi ---------- */
+  $$(".bline").forEach(bl => {
+    const pin = bl.querySelector(".bl-pin"), track = bl.querySelector(".bl-track"), bar = bl.querySelector(".bl-prog i");
+    let dist = 0;
+    const size = () => {
+      if (!bl.classList.contains("live")) { bl.style.height = ""; track.style.translate = ""; return; }
+      dist = Math.max(0, track.scrollWidth - track.clientWidth);
+      bl.style.height = (pin.offsetHeight + dist) + "px";   // gorizontal masofa = vertikal aylantirish
+    };
+    const tick = () => {
+      const p = prog(bl, pin);
+      track.style.translate = `${(-p * dist).toFixed(1)}px 0`;
+      bar.style.transform = `scaleX(${p.toFixed(4)})`;
+    };
+    const mode = () => { bl.classList.toggle("live", !motionOff()); size(); pinOn(); };
+    still.addEventListener("change", mode); low.addEventListener("change", mode);
+    addEventListener("resize", size); addEventListener("load", size);
+    mode();
+    pinned.push({ el: bl, tick });
+  });
+
+  /* ---------- to'lov yo'li: kalkulyator bilan birga yangilanadi ---------- */
+  document.addEventListener("kredit", e => {
+    const c = e.detail;
+    if ($("#pp-first")) { $("#pp-first").textContent = som(c.first); $("#pp-grace").textContent = som(c.grace); $("#pp-month").textContent = som(c.month); }
+  });
 
   /* ---------- fotogalereya: toifa bo'yicha filtr ---------- */
   $$("[data-gf]").forEach(b => b.addEventListener("click", () => {
