@@ -147,6 +147,30 @@
     apply();
   }
 
+  /* ---------- 3D model (model-viewer): avval poster, model faqat ekranga yaqinlashganda; kuchsiz telefonda yengil fayl ---------- */
+  const m3ds = $$(".m3d");
+  if (m3ds.length && "IntersectionObserver" in window) {
+    const lite = (navigator.connection && navigator.connection.saveData) || (navigator.deviceMemory || 8) <= 4 || matchMedia("(max-width: 700px)").matches;
+    const mio = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      mio.unobserve(e.target);
+      const f = e.target, st = f.querySelector(".m3d-st"), img = st.querySelector("img");
+      import(f.dataset.mv).then(() => {
+        const MV = customElements.get("model-viewer");   // meshopt dekoderi o'zimizdan (standartda yo'q)
+        if (!MV.meshoptDecoderLocation) MV.meshoptDecoderLocation = f.dataset.mv.replace("model-viewer.min.js", "meshopt_decoder.js");
+        const mv = document.createElement("model-viewer");
+        const a = { src: lite ? f.dataset.lite : f.dataset.glb, alt: f.dataset.alt, poster: img.currentSrc || img.src, "camera-orbit": f.dataset.orbit,
+                    "camera-controls": "", "disable-zoom": "", "touch-action": "pan-y", "interaction-prompt": "none", "shadow-intensity": "1", "environment-image": "neutral" };
+        if (!RM) Object.assign(a, { "auto-rotate": "", "auto-rotate-delay": "0", "rotation-per-second": "14deg" });
+        for (const k in a) mv.setAttribute(k, a[k]);
+        mv.addEventListener("load", () => st.classList.add("live"), { once: true });
+        mv.addEventListener("pointerdown", () => st.classList.add("touched"), { once: true });
+        st.append(mv);
+      }).catch(() => {});   // yuklanmasa poster qoladi
+    }), { rootMargin: "250px" });
+    m3ds.forEach(f => mio.observe(f));
+  }
+
   /* ---------- ariza ---------- */
   const form = $("#form"), opened = Date.now();
   /* ---------- ariza: server bo'lmasa — Telegram / WhatsApp orqali to'g'ridan-to'g'ri direksiyaga ---------- */
