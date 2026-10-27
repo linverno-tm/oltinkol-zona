@@ -116,6 +116,37 @@
     try { on ? localStorage.setItem("oz_cyr", "1") : localStorage.removeItem("oz_cyr"); } catch (e) {}
   }
 
+  /* ---------- do'konlar ro'yxati: filtr, saralash, «Yana yuklash». Holat URL'da — do'kon sahifasidan Orqaga qaytilganda tanlov saqlanadi ---------- */
+  const sf = $("#sfilt");
+  if (sf) {
+    const tb = $(".stable tbody"), rows = [...tb.rows], more = $("#sfMore"), out = sf.querySelector(".sf-n"), empty = $(".sf-empty"), PAGE = 15, KEYS = ["b", "m", "p"];
+    let shown = PAGE;
+    const inBand = (v, band) => { const [a, b] = band.split("-"); return v >= a * 1e6 && (b === "" || v < b * 1e6); };
+    const apply = () => {
+      const fd = new FormData(sf), sel = Object.fromEntries(KEYS.map(k => [k, fd.getAll(k)])), s = fd.get("s") || "";
+      const ok = rows.filter(r => (!sel.b.length || sel.b.includes(r.dataset.b)) && (!sel.m.length || sel.m.includes(r.dataset.m)) && (!sel.p.length || sel.p.some(b => inBand(+r.dataset.p, b))));
+      const key = s.replace("-", ""), dir = s[0] === "-" ? -1 : 1;
+      const list = s ? [...ok].sort((x, y) => dir * (x.dataset[key] - y.dataset[key])) : ok;
+      rows.forEach(r => { r.hidden = true; });
+      list.forEach((r, i) => { tb.appendChild(r); r.hidden = i >= shown; });
+      more.hidden = list.length <= shown; empty.hidden = list.length > 0;
+      out.textContent = out.dataset.t.replace("{n}", list.length); after(out);
+      const q = new URLSearchParams();
+      KEYS.forEach(k => { if (sel[k].length) q.set(k, sel[k].join(",")); }); if (s) q.set("s", s); if (shown > PAGE) q.set("n", shown);
+      history.replaceState(history.state, "", location.pathname + (q.toString() ? "?" + q : "") + location.hash);
+    };
+    // URL'dan tiklash: faqat sahifadagi mavjud qiymatlar belgilanadi (boshqasi e'tiborsiz)
+    const q0 = new URLSearchParams(location.search);
+    KEYS.concat("s").forEach(k => { const v = (q0.get(k) || "").split(","); sf.querySelectorAll(`input[name="${k}"]`).forEach(i => { if (v.includes(i.value) && (k !== "s" || q0.has("s"))) i.checked = true; }); });
+    shown = Math.min(rows.length, Math.max(PAGE, parseInt(q0.get("n"), 10) || PAGE));
+    sf.hidden = false;
+    sf.addEventListener("change", () => { shown = PAGE; apply(); });
+    sf.addEventListener("submit", e => e.preventDefault());
+    sf.addEventListener("reset", () => setTimeout(() => { shown = PAGE; apply(); }));
+    more.addEventListener("click", () => { const first = shown; shown += PAGE; apply(); const r = [...tb.rows].filter(x => !x.hidden)[first]; if (r) r.querySelector("a").focus(); });
+    apply();
+  }
+
   /* ---------- ariza ---------- */
   const form = $("#form"), opened = Date.now();
   /* ---------- ariza: server bo'lmasa — Telegram / WhatsApp orqali to'g'ridan-to'g'ri direksiyaga ---------- */
@@ -147,12 +178,27 @@
     if (text) form.text.value = text;
     syncFancy();
   }
+  // maydondan chiqqanda tekshiruv: yozilgan, lekin noto'g'ri bo'lsa darhol belgilanadi; tuzatilganda belgi o'chadi
+  const okField = { name: v => !!v.trim(), tel: v => v.replace(/\D/g, "").length >= 12 };
+  const mark = (el, bad) => {
+    const desc = [el.name === "tel" && "f-tel-s", bad && "res"].filter(Boolean).join(" ");
+    bad ? el.setAttribute("aria-invalid", "true") : el.removeAttribute("aria-invalid");
+    desc ? el.setAttribute("aria-describedby", desc) : el.removeAttribute("aria-describedby");
+  };
+  if (form) Object.keys(okField).forEach(n => {
+    const el = form.elements[n];
+    el.addEventListener("blur", () => { if (n === "tel" ? el.value.replace(/\D/g, "").length > 3 : el.value !== "") mark(el, !okField[n](el.value)); });
+    el.addEventListener("input", () => { if (el.hasAttribute("aria-invalid") && okField[n](el.value)) mark(el, false); });
+  });
   if (form) form.addEventListener("submit", async e => {
     e.preventDefault();
     const r = $("#res"), data = Object.fromEntries(new FormData(form));
     r.hidden = false;
     if (data.website || Date.now() - opened < 2500) { r.className = "res"; r.textContent = T.f_ok; return; }   // bot
-    if (!data.name.trim() || data.tel.replace(/\D/g, "").length < 12) { r.className = "res err"; r.textContent = T.f_err; after(r); return; }
+    // xato maydonlar belgilanadi, xabar ularga bog'lanadi, fokus birinchi xatoga (WCAG 3.3.1)
+    const bad = Object.keys(okField).map(n => form.elements[n]).filter(el => !okField[el.name](el.value));
+    Object.keys(okField).forEach(n => mark(form.elements[n], bad.includes(form.elements[n])));
+    if (bad.length) { r.className = "res err"; r.textContent = T.f_err; after(r); bad[0].focus(); return; }
     delete data.website;
     data.need = form.need.selectedOptions[0].text; data.type = form.type.value ? form.type.selectedOptions[0].text : ""; data.page = location.href; data.lang = S.lang; data.ms = Date.now() - opened;
     if (S.endpoint) {
@@ -452,7 +498,8 @@
   (() => {
     if (!$(".gallery .gx, .bl-track .gx")) return;
     const L = { prev: S.lang === "ru" ? "Предыдущее" : S.lang === "en" ? "Previous" : "Oldingi",
-                next: S.lang === "ru" ? "Следующее" : S.lang === "en" ? "Next" : "Keyingi" };
+                next: S.lang === "ru" ? "Следующее" : S.lang === "en" ? "Next" : "Keyingi",
+                thumbs: S.lang === "ru" ? "Все фото" : S.lang === "en" ? "All photos" : "Barcha suratlar" };
     let box, items = [], idx = 0, lastFocus;
     function build() {
       box = document.createElement("div");
@@ -460,7 +507,7 @@
       box.setAttribute("role", "dialog"); box.setAttribute("aria-modal", "true");
       box.innerHTML = '<button type="button" class="lb-x" aria-label="' + esc(T.close || "yopish") + '">×</button>'
         + '<button type="button" class="lb-nav lb-prev" aria-label="' + esc(L.prev) + '">‹</button>'
-        + '<figure class="lb-fig"><img alt=""><figcaption class="lb-cap"></figcaption></figure><span class="lb-count num" aria-live="polite"></span>'
+        + '<figure class="lb-fig"><img alt=""><figcaption class="lb-cap"></figcaption></figure><span class="lb-count num" aria-live="polite"></span><div class="lb-thumbs" role="group" aria-label="' + esc(L.thumbs) + '"></div>'
         + '<button type="button" class="lb-nav lb-next" aria-label="' + esc(L.next) + '">›</button>';
       document.body.appendChild(box);
       box.addEventListener("click", e => { if (e.target === box || e.target.closest(".lb-x") || e.target.closest(".lb-fig")) { if (!e.target.closest(".lb-nav")) close(); } });
@@ -482,6 +529,7 @@
       const one = items.length <= 1;
       box.querySelector(".lb-prev").hidden = one; box.querySelector(".lb-next").hidden = one;
       box.querySelector(".lb-count").textContent = one ? "" : `${idx + 1} / ${items.length}`;
+      box.querySelectorAll(".lb-t").forEach((t, i) => { i === idx ? t.setAttribute("aria-current", "true") : t.removeAttribute("aria-current"); if (i === idx) t.scrollIntoView({ block: "nearest", inline: "nearest" }); });
     }
     function go(d) {
       if (items.length < 2) return; idx = (idx + d + items.length) % items.length; show();
@@ -495,6 +543,10 @@
         return [im.src, fc ? fc.textContent : b.getAttribute("aria-label")];
       });
       idx = start; lastFocus = document.activeElement;
+      const th = box.querySelector(".lb-thumbs");
+      th.innerHTML = items.length < 2 ? "" : items.map((it, i) => '<button type="button" class="lb-t" aria-label="' + (i + 1) + " / " + items.length + '"><img src="' + esc(it[0]) + '" alt="" loading="lazy" decoding="async"></button>').join("");
+      box.classList.toggle("has-t", items.length > 1);
+      th.querySelectorAll(".lb-t").forEach((t, i) => t.addEventListener("click", e => { e.stopPropagation(); const d = i - idx; if (d) { idx = i; show(); } }));
       show(); box.hidden = false; document.body.style.overflow = "hidden";
       box.querySelector(".lb-x").focus();
     }
@@ -543,7 +595,9 @@
   const motionOff = () => still.matches || low.matches;
   const pinned = [];   // har biri: { el, pin, tick }
   let pRaf = 0;
-  const pinTick = () => { pRaf = 0; pinned.forEach(x => x.el.classList.contains("live") && x.tick()); };
+  const pinTick = () => { pRaf = 0; pinned.forEach(x => x.el.vis !== false && x.el.classList.contains("live") && x.tick()); };
+  // ekrandan uzoq bo'limlar har skrollda hisoblanmaydi; chiqib-kirishda bir marta yangilanadi (oxirgi holat to'g'ri qoladi)
+  const visIO = "IntersectionObserver" in window && new IntersectionObserver(es => { es.forEach(e => { e.target.vis = e.isIntersecting; }); pinOn(); }, { rootMargin: "300px 0px" });
   const pinOn = () => { if (!pRaf) pRaf = requestAnimationFrame(pinTick); };
   const stick = pin => parseFloat(getComputedStyle(pin).top) || 0;   // yopishgan qismning yuqori chegarasi (header balandligi)
   const prog = (el, pin) => { const r = el.getBoundingClientRect(); return Math.min(1, Math.max(0, (stick(pin) - r.top) / Math.max(1, r.height - pin.offsetHeight))); };
@@ -566,7 +620,9 @@
     const load = () => {
       if (got) return; got = true;
       const order = [], seen = new Set();
-      [8, 4, 2, 1].forEach(st => { for (let i = 0; i < N; i += st) if (!seen.has(i)) { seen.add(i); order.push(i); } });
+      // zaif telefon yoki "Trafikni tejash" rejimi: har 4-kadr (18 ta) yetadi, oraliqni near() yopadi
+      const lite = (navigator.connection && navigator.connection.saveData) || (navigator.deviceMemory || 8) <= 2;
+      (lite ? [8, 4] : [8, 4, 2, 1]).forEach(st => { for (let i = 0; i < N; i += st) if (!seen.has(i)) { seen.add(i); order.push(i); } });
       if (!seen.has(N - 1)) order.splice(9, 0, N - 1);
       let k = 0, left = order.length, more = false;
       const first = 10;   // 9 ta asosiy kadr + oxirgisi; qolganlari foydalanuvchi sahifa bilan ishlay boshlagach
@@ -611,7 +667,7 @@
       pinOn();
     };
     still.addEventListener("change", mode); low.addEventListener("change", mode); mode();
-    pinned.push({ el: ch, tick });
+    pinned.push({ el: ch, tick }); if (visIO) visIO.observe(ch);
     // bosqich nomini bossa — o'sha bosqichga aylantiradi
     $$(".ch-b", ch).forEach(b => b.addEventListener("click", () => {
       if (!ch.classList.contains("live")) return;
@@ -638,7 +694,7 @@
     still.addEventListener("change", mode); low.addEventListener("change", mode);
     addEventListener("resize", size); addEventListener("load", size);
     mode();
-    pinned.push({ el: bl, tick });
+    pinned.push({ el: bl, tick }); if (visIO) visIO.observe(bl);
   });
 
   /* ---------- to'lov yo'li: kalkulyator bilan birga yangilanadi ---------- */
