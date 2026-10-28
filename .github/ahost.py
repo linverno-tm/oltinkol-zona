@@ -4,6 +4,8 @@ import hashlib
 import os
 import re
 import shutil
+import ssl
+import urllib.request
 
 DOMEN = "https://andijoncharmpoyabzal.uz"
 PAGES = "https://linverno-tm.github.io/oltinkol-zona"
@@ -51,3 +53,24 @@ print(f"{CHIQ}: {soni} ta fayl domenga moslandi")
 with open(os.path.join(CHIQ, "robots.txt"), "w", encoding="utf-8", newline="\n") as r:
     r.write(f"User-agent: *\nAllow: /\nSitemap: {DOMEN}/sitemap.xml\n")
 print("robots.txt: Google'ga ochiq")
+
+# HTTPS'ga yo'naltirish faqat domen sertifikati haqiqiy bo'lsa yoqiladi — aks holda sayt ochilmay qoladi.
+try:
+    urllib.request.urlopen(DOMEN + "/robots.txt", timeout=20, context=ssl.create_default_context())
+    sertifikat = True
+except Exception as e:
+    sertifikat = False
+    print(f"HTTPS hali tayyor emas ({type(e).__name__}) — yo'naltirish qo'yilmadi")
+if sertifikat:
+    with open(os.path.join(CHIQ, ".htaccess"), "w", encoding="utf-8", newline="\n") as h:
+        h.write(
+            r"RewriteEngine On" "\n"
+            r"RewriteCond %{REQUEST_URI} !^/\.well-known/" "\n"
+            r"RewriteCond %{HTTPS} off" "\n"
+            r"RewriteCond %{HTTP:X-Forwarded-Proto} !https" "\n"
+            r"RewriteRule ^ https://andijoncharmpoyabzal.uz%{REQUEST_URI} [L,R=301]" "\n"
+            r"RewriteCond %{REQUEST_URI} !^/\.well-known/" "\n"
+            r"RewriteCond %{HTTP_HOST} ^www\. [NC]" "\n"
+            r"RewriteRule ^ https://andijoncharmpoyabzal.uz%{REQUEST_URI} [L,R=301]" "\n"
+        )
+    print(".htaccess: HTTPS'ga yo'naltirish yoqildi")
