@@ -1,0 +1,28 @@
+name: ahost'ga joylash
+# Sayt andijoncharmpoyabzal.uz (ahost, cPanel) ga ham yuklanadi: har push va har soha yangilanishidan keyin.
+# FTP hisobi faqat public_html'ga ruxsatli; parol GitHub Secrets'da (AHOST_FTP_*).
+on:
+  push:
+    branches: [main]
+  workflow_run:
+    workflows: ["Soha yangiliklari"]
+    types: [completed]
+  workflow_dispatch:
+permissions: {contents: read}
+concurrency: {group: ahost, cancel-in-progress: false}
+jobs:
+  joyla:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: main}
+      - run: python3 .github/ahost.py
+      - uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.AHOST_FTP_SERVER }}
+          username: ${{ secrets.AHOST_FTP_USER }}
+          password: ${{ secrets.AHOST_FTP_PASS }}
+          protocol: ftps
+          local-dir: ./_ahost/
+          server-dir: ./
