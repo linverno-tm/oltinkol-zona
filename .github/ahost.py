@@ -1,4 +1,6 @@
 """GitHub Pages build'idan ahost nusxasi (_ahost/): yo'llar /oltinkol-zona/ → /, havolalar → andijoncharmpoyabzal.uz."""
+import base64
+import hashlib
 import os
 import re
 import shutil
@@ -7,6 +9,23 @@ DOMEN = "https://andijoncharmpoyabzal.uz"
 PAGES = "https://linverno-tm.github.io/oltinkol-zona"
 CHIQ = "_ahost"
 MATN = (".html", ".xml", ".txt", ".js", ".css", ".json", ".webmanifest", ".svg", ".mjs")
+
+
+def csp_xesh(html):
+    """Yo'llar almashgach ichki skriptlar o'zgaradi — CSP'dagi sha256 xeshlarini qayta hisoblaymiz."""
+    xesh = []
+    for m in re.finditer(r"<script(?![^>]*\bsrc=)([^>]*)>(.*?)</script>", html, re.S):
+        if "application/ld+json" in m.group(1):
+            continue
+        h = "'sha256-" + base64.b64encode(hashlib.sha256(m.group(2).encode("utf-8", "surrogateescape")).digest()).decode() + "'"
+        if h not in xesh:
+            xesh.append(h)
+
+    def almashtir(m):
+        qism = re.sub(r"\s*'sha256-[^']+'", "", m.group(0))
+        return qism + "".join(" " + h for h in xesh)
+    return re.sub(r"script-src [^;\"]*", almashtir, html, count=1)
+
 
 shutil.rmtree(CHIQ, ignore_errors=True)
 shutil.copytree(".", CHIQ, ignore=shutil.ignore_patterns(".git", ".github", ".nojekyll", CHIQ))
@@ -21,6 +40,8 @@ for root, _, files in os.walk(CHIQ):
         n = re.sub(r'(["\'(])/oltinkol-zona(["\')])', r"\1/\2", n)
         if f.endswith(".html") and f != "404.html":
             n = re.sub(r'<meta name="robots" content="noindex, ?nofollow">', '<meta name="robots" content="index, follow">', n)
+        if f.endswith(".html"):
+            n = csp_xesh(n)
         if n != t:
             open(p, "w", encoding="utf-8", errors="surrogateescape", newline="").write(n)
             soni += 1
