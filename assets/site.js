@@ -171,6 +171,26 @@
     m3ds.forEach(f => mio.observe(f));
   }
 
+  /* ---------- bosh sahifa: bosiladigan bosh reja ---------- */
+  const zx = $("[data-zx]");
+  if (zx) {
+    const tabs = [...zx.querySelectorAll('[role="tab"]')], panels = [...zx.querySelectorAll(".zx-panel")];
+    const pick = (k, focus) => {
+      tabs.forEach(b => { const on = b.dataset.zxT === k; b.setAttribute("aria-selected", on); b.tabIndex = on ? 0 : -1; if (on && focus) b.focus(); });
+      panels.forEach(p => p.classList.toggle("on", p.dataset.zxT === k));
+      zx.dataset.on = k;
+    };
+    tabs.forEach((b, i) => {
+      b.addEventListener("click", () => pick(b.dataset.zxT));
+      b.addEventListener("keydown", e => {
+        const d = { ArrowRight: 1, ArrowLeft: -1 }[e.key]; if (!d) return;
+        e.preventDefault(); pick(tabs[(i + d + tabs.length) % tabs.length].dataset.zxT, true);
+      });
+    });
+    zx.querySelectorAll(".zx-g").forEach(g => g.addEventListener("click", () => { pick(g.dataset.zxT); zx.classList.add("used"); }));
+    pick("savdo");
+  }
+
   /* ---------- ariza ---------- */
   const form = $("#form"), opened = Date.now();
   /* ---------- ariza: server bo'lmasa — Telegram / WhatsApp orqali to'g'ridan-to'g'ri direksiyaga ---------- */
