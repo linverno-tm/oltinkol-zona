@@ -59,6 +59,11 @@ INDEXNOW = "f599f5f0d043d577731d71229570bdbf"
 with open(os.path.join(CHIQ, f"{INDEXNOW}.txt"), "w", encoding="utf-8", newline="\n") as k:
     k.write(INDEXNOW)
 
+# Google Search Console egalik fayli (Qidiruv MCP orqali tasdiqlangan) — o'chirilsa egalik yo'qoladi.
+GOOGLE = "google7d9a42a374645eb1.html"
+with open(os.path.join(CHIQ, GOOGLE), "w", encoding="utf-8", newline="\n") as g:
+    g.write(f"google-site-verification: {GOOGLE}")
+
 # HTTPS'ga yo'naltirish faqat domen sertifikati haqiqiy bo'lsa yoqiladi — aks holda sayt ochilmay qoladi.
 try:
     urllib.request.urlopen(DOMEN + "/robots.txt", timeout=20, context=ssl.create_default_context())
