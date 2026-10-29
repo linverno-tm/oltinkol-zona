@@ -96,6 +96,7 @@
     s = s.replace(/([Pp])oyabzal/g, (m, p) => (p === "P" ? "П" : "п") + "ойабзал").replace(/POYABZAL/g, "ПОЙАБЗАЛ");
     s = s.replace(/(^|[^A-Za-z‘'ʻ`’])e/g, "$1э").replace(/(^|[^A-Za-z‘'ʻ`’])E/g, "$1Э");
     s = s.replace(/([A-Za-z])[’ʼ](?=[A-Za-z])/g, "$1ъ");
+    s = s.replace(/ksi(?=y)/g, "кци").replace(/tsi(?=y)/g, "ци");
     s = s.replace(new RegExp("O" + A, "g"), "Ў").replace(new RegExp("o" + A, "g"), "ў").replace(new RegExp("G" + A, "g"), "Ғ").replace(new RegExp("g" + A, "g"), "ғ");
     [["SH", "Ш"], ["Sh", "Ш"], ["sh", "ш"], ["CH", "Ч"], ["Ch", "Ч"], ["ch", "ч"], ["YO", "Ё"], ["Yo", "Ё"], ["yo", "ё"], ["YU", "Ю"], ["Yu", "Ю"], ["yu", "ю"], ["YA", "Я"], ["Ya", "Я"], ["ya", "я"], ["YE", "Е"], ["Ye", "Е"], ["ye", "е"]].forEach(([a, b]) => { s = s.split(a).join(b); });
     return s.replace(/[A-Za-z]/g, ch => { const lo = ch.toLowerCase(), m = MAP[lo] || ch; return ch === lo ? m : m.toUpperCase(); });
@@ -113,7 +114,6 @@
     document.documentElement.lang = on ? "uz-Cyrl" : "uz-Latn";
     $$("#latBtn, .drawer .langs a:first-child").forEach(a => on ? a.removeAttribute("aria-current") : a.setAttribute("aria-current", "true"));
     $$("#cyrBtn, [data-cyr]").forEach(b => on ? b.setAttribute("aria-current", "true") : b.removeAttribute("aria-current"));
-    try { on ? localStorage.setItem("oz_cyr", "1") : localStorage.removeItem("oz_cyr"); } catch (e) {}
   }
 
   /* ---------- do'konlar ro'yxati: filtr, saralash, «Yana yuklash». Holat URL'da — do'kon sahifasidan Orqaga qaytilganda tanlov saqlanadi ---------- */
@@ -761,7 +761,8 @@
     $$(".gallery.all figure").forEach(f => { f.hidden = c !== "all" && f.dataset.cat !== c; });
   }));
 
-  let wantCyr = location.hash === "#cyr";
-  try { wantCyr = wantCyr || localStorage.getItem("oz_cyr") === "1"; } catch (e) {}
-  if (S.lang === "uz" && wantCyr) setCyr(true);
+  // kirillcha sahifalar endi alohida (/kr/): matni serverda o'girilgan, faqat keyin chiqadigan matn (oyna, xabar) o'giriladi
+  try { localStorage.removeItem("oz_cyr"); } catch (e) {}
+  if (S.lang === "uz" && document.documentElement.lang === "uz-Cyrl") cyr = true;
+  else if (S.lang === "uz" && location.hash === "#cyr") location.replace(S.soha.split("assets/")[0] + "kr/" + location.pathname.slice(S.soha.split("assets/")[0].length));
 })();
