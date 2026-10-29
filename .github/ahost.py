@@ -64,6 +64,12 @@ GOOGLE = "google7d9a42a374645eb1.html"
 with open(os.path.join(CHIQ, GOOGLE), "w", encoding="utf-8", newline="\n") as g:
     g.write(f"google-site-verification: {GOOGLE}")
 
+# Yandex Webmaster egalik fayli — o'chirilsa egalik yo'qoladi.
+YANDEX = "f9ccaad1c6ee8b5e"
+with open(os.path.join(CHIQ, f"yandex_{YANDEX}.html"), "w", encoding="utf-8", newline="\n") as y:
+    y.write('<html>\n    <head>\n        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">\n'
+            f'    </head>\n    <body>Verification: {YANDEX}</body>\n</html>\n')
+
 # HTTPS'ga yo'naltirish faqat domen sertifikati haqiqiy bo'lsa yoqiladi — aks holda sayt ochilmay qoladi.
 try:
     urllib.request.urlopen(DOMEN + "/robots.txt", timeout=20, context=ssl.create_default_context())
