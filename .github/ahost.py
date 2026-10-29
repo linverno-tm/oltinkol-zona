@@ -54,6 +54,11 @@ with open(os.path.join(CHIQ, "robots.txt"), "w", encoding="utf-8", newline="\n")
     r.write(f"User-agent: *\nAllow: /\nSitemap: {DOMEN}/sitemap.xml\n")
 print("robots.txt: Google'ga ochiq")
 
+# IndexNow kaliti (ochiq bo'lishi shart): Yandex va Bing yangi sahifalarni akkauntsiz shu orqali qabul qiladi.
+INDEXNOW = "f599f5f0d043d577731d71229570bdbf"
+with open(os.path.join(CHIQ, f"{INDEXNOW}.txt"), "w", encoding="utf-8", newline="\n") as k:
+    k.write(INDEXNOW)
+
 # HTTPS'ga yo'naltirish faqat domen sertifikati haqiqiy bo'lsa yoqiladi — aks holda sayt ochilmay qoladi.
 try:
     urllib.request.urlopen(DOMEN + "/robots.txt", timeout=20, context=ssl.create_default_context())
