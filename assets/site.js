@@ -396,21 +396,6 @@
   }).catch(() => {});
 
 
-  /* ---------- hero emblema: nozik parallaks (sichqoncha) ---------- */
-  (() => {
-    if (RM || !matchMedia("(pointer: fine)").matches) return;
-    const hero = $(".hero"), orbit = hero && hero.querySelector(".stage .orbit");
-    if (!orbit) return;
-    let raf = 0;
-    hero.addEventListener("mousemove", e => {
-      const r = hero.getBoundingClientRect();
-      const dx = (e.clientX - r.left) / r.width - .5, dy = (e.clientY - r.top) / r.height - .5;
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => { orbit.style.transform = "translate3d(" + (dx * 16).toFixed(1) + "px," + (dy * 16).toFixed(1) + "px,0)"; });
-    });
-    hero.addEventListener("mouseleave", () => { cancelAnimationFrame(raf); orbit.style.transform = ""; });
-  })();
-
   /* ---------- sayt qidiruvi (do'konlar, yangiliklar, sahifalar) ---------- */
   (() => {
     const dlg = $("#search");
@@ -646,6 +631,19 @@
   const stick = pin => parseFloat(getComputedStyle(pin).top) || 0;   // yopishgan qismning yuqori chegarasi (header balandligi)
   const prog = (el, pin) => { const r = el.getBoundingClientRect(); return Math.min(1, Math.max(0, (stick(pin) - r.top) / Math.max(1, r.height - pin.offsetHeight))); };
   addEventListener("scroll", pinOn, { passive: true }); addEventListener("resize", pinOn);
+
+  /* ---------- bosh sahifa hikoyasi: o'rtaga kelgan bosqich chap tomondagi suratni almashtiradi ---------- */
+  $$("[data-story]").forEach(sec => {
+    if (!("IntersectionObserver" in window)) return;
+    const steps = [...sec.querySelectorAll(".st")], figs = [...sec.querySelectorAll(".sv")], n = sec.querySelector(".sv-n b");
+    const on = i => {
+      steps.forEach((s, k) => s.classList.toggle("on", k === i));
+      figs.forEach((f, k) => f.classList.toggle("on", k === i));
+      if (n) n.textContent = String(i + 1).padStart(2, "0");
+    };
+    const sio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) on(+e.target.dataset.i); }), { rootMargin: "-45% 0px -45% 0px" });
+    steps.forEach(s => sio.observe(s));
+  });
 
   /* ---------- zanjir: aylantirgan sari model buriladi (oldindan olingan kadrlar), bosqichlar ochiladi ---------- */
   const idle = window.requestIdleCallback ? f => requestIdleCallback(f, { timeout: 2000 }) : f => setTimeout(f, 300);
