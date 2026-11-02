@@ -88,5 +88,12 @@ if sertifikat:
             r"RewriteCond %{REQUEST_URI} !^/\.well-known/" "\n"
             r"RewriteCond %{HTTP_HOST} ^www\. [NC]" "\n"
             r"RewriteRule ^ https://andijoncharmpoyabzal.uz%{REQUEST_URI} [L,R=301]" "\n"
+            # 3D modellar (.glb): server turini bilmaydi va keshlamaydi — rasm/shriftlar kabi uzoq kesh (60 kun)
+            r"AddType model/gltf-binary .glb" "\n"
+            r"<IfModule mod_headers.c>" "\n"
+            r'<FilesMatch "\.glb$">' "\n"
+            r'Header set Cache-Control "public, max-age=5184000"' "\n"
+            r"</FilesMatch>" "\n"
+            r"</IfModule>" "\n"
         )
-    print(".htaccess: HTTPS'ga yo'naltirish yoqildi")
+    print(".htaccess: HTTPS'ga yo'naltirish va .glb keshi yoqildi")

@@ -7,6 +7,27 @@
   const fmt = n => Math.round(n).toLocaleString("ru-RU").replace(/\s/g, " ");
   const som = n => fmt(n) + " " + T.sum;
   const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- yuklanish holati: rasm/3D kelguncha idish ustida nur + amber chiziq (CSS: .yukl) ----------
+     yukl(idish) → { foiz(0..1), tayyor() }. Foiz ma'lum bo'lsa chiziq to'ladi va % yoziladi, bo'lmasa yuguradi.
+     Idishda xira oldindan ko'rinish (LQIP) bo'lmasa — qatlamning o'zi qum rangida (bo'sh joy ko'rinmaydi). */
+  const yukl = box => {
+    if (box._yk) return box._yk;
+    const q = document.createElement("span"), i = document.createElement("i"), b = document.createElement("b");
+    q.className = "yukl-q"; q.setAttribute("aria-hidden", "true"); q.append(i, b);
+    const cs = getComputedStyle(box);
+    if (cs.position === "static") box.classList.add("yukl-nisbiy");
+    if (cs.backgroundImage === "none") q.classList.add("yukl-bosh");
+    box.classList.add("yukl"); box.append(q);
+    const h = box._yk = {
+      foiz(p) { if (h.bitdi || !(p >= 0)) return; p = Math.min(1, p); box.classList.add("yukl-f"); q.style.setProperty("--p", p.toFixed(3)); b.textContent = Math.round(p * 100) + "%"; },
+      tayyor() {
+        if (h.bitdi) return; h.bitdi = true; q.classList.add("bitdi");
+        setTimeout(() => { q.remove(); box.classList.remove("yukl", "yukl-f", "yukl-nisbiy"); box._yk = null; }, RM ? 0 : 480);
+      }
+    };
+    return h;
+  };
   let cyr = false;
 
   /* ---------- paydo bo'lish va raqamlar ---------- */
@@ -154,7 +175,7 @@
     const mio = new IntersectionObserver(es => es.forEach(e => {
       if (!e.isIntersecting) return;
       mio.unobserve(e.target);
-      const f = e.target, st = f.querySelector(".m3d-st"), img = st.querySelector("img");
+      const f = e.target, st = f.querySelector(".m3d-st"), img = st.querySelector("img"), h = yukl(st);
       import(f.dataset.mv).then(() => {
         const MV = customElements.get("model-viewer");   // meshopt dekoderi o'zimizdan (standartda yo'q)
         if (!MV.meshoptDecoderLocation) MV.meshoptDecoderLocation = f.dataset.mv.replace("model-viewer.min.js", "meshopt_decoder.js");
@@ -163,10 +184,12 @@
                     "camera-controls": "", "disable-zoom": "", "touch-action": "pan-y", "interaction-prompt": "none", "shadow-intensity": "1", "environment-image": "neutral" };
         if (!RM) Object.assign(a, { "auto-rotate": "", "auto-rotate-delay": "0", "rotation-per-second": "14deg" });
         for (const k in a) mv.setAttribute(k, a[k]);
-        mv.addEventListener("load", () => st.classList.add("live"), { once: true });
+        mv.addEventListener("progress", ev => h.foiz(ev.detail.totalProgress));
+        mv.addEventListener("load", () => { st.classList.add("live"); h.tayyor(); }, { once: true });
+        mv.addEventListener("error", h.tayyor, { once: true });
         mv.addEventListener("pointerdown", () => st.classList.add("touched"), { once: true });
         st.append(mv);
-      }).catch(() => {});   // yuklanmasa poster qoladi
+      }).catch(h.tayyor);   // yuklanmasa poster qoladi
     }), { rootMargin: "250px" });
     m3ds.forEach(f => mio.observe(f));
   }
@@ -618,6 +641,21 @@
     const ok = () => im.classList.add("ok");
     if (im.complete && im.naturalWidth) ok(); else { im.addEventListener("load", ok, { once: true }); im.addEventListener("error", ok, { once: true }); }
   });
+  // kech yuklanadigan rasm ekranga yaqinlashganda hali kelmagan bo'lsa — idishida yuklanish holati (3D poster va kadrlar o'zi boshqaradi)
+  (() => {
+    const r = $$('main img[loading="lazy"]').filter(im => !im.closest(".m3d, .seq") && !(im.complete && im.naturalWidth));
+    if (!r.length || !("IntersectionObserver" in window)) return;
+    const box = im => { let p = im.parentElement; if (p.tagName === "PICTURE" || p.tagName === "A") p = p.parentElement; return p; };
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      const im = e.target; io.unobserve(im);
+      if ((im.complete && im.naturalWidth) || im.getBoundingClientRect().width < 120) return;
+      const h = yukl(box(im));
+      im.addEventListener("load", h.tayyor, { once: true }); im.addEventListener("error", h.tayyor, { once: true });
+      if (im.complete && im.naturalWidth) h.tayyor();
+    }), { rootMargin: "300px 0px" });
+    r.forEach(im => io.observe(im));
+  })();
 
   /* ---------- aylantirishga bog'langan bo'limlar: umumiy yordamchilar ---------- */
   const still = matchMedia("(prefers-reduced-motion: reduce)"), low = matchMedia("(max-height: 519px)");   // past ekran (yotqizilgan telefon) — oddiy ko'rinish
@@ -661,7 +699,7 @@
     // avval har 8-kadr (animatsiya darhol ishlaydi), keyin oraliqlar to'ldiriladi
     const load = () => {
       if (got) return; got = true;
-      const order = [], seen = new Set();
+      const order = [], seen = new Set(), h = yukl(seq);
       // zaif telefon yoki "Trafikni tejash" rejimi: har 4-kadr (18 ta) yetadi, oraliqni near() yopadi
       const lite = (navigator.connection && navigator.connection.saveData) || (navigator.deviceMemory || 8) <= 2;
       (lite ? [8, 4] : [8, 4, 2, 1]).forEach(st => { for (let i = 0; i < N; i += st) if (!seen.has(i)) { seen.add(i); order.push(i); } });
@@ -675,7 +713,8 @@
         const i = order[k++], im = new Image();
         im.decoding = "async"; im.src = dir + String(i).padStart(2, "0") + ".webp";
         im.decode().then(() => { frames[i] = im; }, () => {}).finally(() => {
-          left--; if (left === order.length - 10 || !left) { seq.classList.add("on"); ch.classList.add("ready"); }
+          left--; h.foiz((order.length - left) / Math.min(first, order.length));
+          if (left === order.length - 10 || !left) { seq.classList.add("on"); ch.classList.add("ready"); h.tayyor(); }
           draw(); next();
         });
       };
