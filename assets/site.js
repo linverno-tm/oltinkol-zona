@@ -101,6 +101,7 @@
       ${s.free ? `<dt>${T.sh_first}</dt><dd class="num">${som(c.first)}</dd><dt>${T.sh_grace}</dt><dd class="num">${som(c.grace)}</dd>` : ""}</dl>
       ${s.free ? `<div class="acts"><a class="btn" href="#ariza" data-shopapply="${esc(s.id)}">${T.sh_apply}</a><a class="btn ghost" href="${s.url}">${T.sh_page}</a></div>` : `<p style="color:var(--ink-3)">${T.sh_soldnote}</p>`}`;
     after(panel);
+    panel.classList.remove("yangi"); void panel.offsetWidth; panel.classList.add("yangi");
     if (scroll && innerWidth < 1080) panel.scrollIntoView({ block: "nearest", behavior: RM ? "auto" : "smooth" });
   }
   if (panel) {
