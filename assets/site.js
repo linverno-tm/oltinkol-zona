@@ -10,20 +10,19 @@
 
   /* ---------- yuklanish holati: rasm/3D kelguncha idish ustida nur + amber chiziq (CSS: .yukl) ----------
      yukl(idish) → { foiz(0..1), tayyor() }. Foiz ma'lum bo'lsa chiziq to'ladi va % yoziladi, bo'lmasa yuguradi.
-     Idishda xira oldindan ko'rinish (LQIP) bo'lmasa — qatlamning o'zi qum rangida (bo'sh joy ko'rinmaydi). */
+     Idishda xira oldindan ko'rinish (LQIP, inline style) bo'lmasa — qatlamning o'zi qum rangida (bo'sh joy ko'rinmaydi).
+     getComputedStyle ishlatilmaydi (har rasmda uslubni qayta hisoblatib, asosiy oqimni band qilardi): joylashuv CSS'da :where(.yukl). */
   const yukl = box => {
     if (box._yk) return box._yk;
     const q = document.createElement("span"), i = document.createElement("i"), b = document.createElement("b");
     q.className = "yukl-q"; q.setAttribute("aria-hidden", "true"); q.append(i, b);
-    const cs = getComputedStyle(box);
-    if (cs.position === "static") box.classList.add("yukl-nisbiy");
-    if (cs.backgroundImage === "none") q.classList.add("yukl-bosh");
+    if (!box.style.backgroundImage) q.classList.add("yukl-bosh");
     box.classList.add("yukl"); box.append(q);
     const h = box._yk = {
       foiz(p) { if (h.bitdi || !(p >= 0)) return; p = Math.min(1, p); box.classList.add("yukl-f"); q.style.setProperty("--p", p.toFixed(3)); b.textContent = Math.round(p * 100) + "%"; },
       tayyor() {
         if (h.bitdi) return; h.bitdi = true; q.classList.add("bitdi");
-        setTimeout(() => { q.remove(); box.classList.remove("yukl", "yukl-f", "yukl-nisbiy"); box._yk = null; }, RM ? 0 : 480);
+        setTimeout(() => { q.remove(); box.classList.remove("yukl", "yukl-f"); box._yk = null; }, RM ? 0 : 480);
       }
     };
     return h;
@@ -96,9 +95,10 @@
     $$(".cell").forEach(g => g.classList.toggle("sel", g.dataset.shop === id));
     const c = credit(s.price);
     panel.innerHTML = `<span class="st ${s.free ? "free" : "sold"}">${s.free ? T.sh_free : T.sh_sold}</span>
-      <h3 class="num">${esc(s.id)}</h3>
-      <dl class="kv"><dt>${T.sh_area}</dt><dd class="num">${s.area} m²</dd><dt>${T.sh_price}</dt><dd class="num">${som(s.price)}</dd>
-      ${s.free ? `<dt>${T.sh_first}</dt><dd class="num">${som(c.first)}</dd><dt>${T.sh_month}</dt><dd class="num">${som(c.month)}</dd>` : ""}</dl>
+      <h3 class="num">${esc(s.id)}</h3><p class="meta num">${s.area} m² · ${T.sh_block} ${esc(s.b)}</p>
+      ${s.free ? `<div class="pay"><small>${T.sh_month}</small><b class="num">${som(c.month)}</b></div>` : ""}
+      <dl class="kv"><dt>${T.sh_price}</dt><dd class="num">${som(s.price)}</dd>
+      ${s.free ? `<dt>${T.sh_first}</dt><dd class="num">${som(c.first)}</dd><dt>${T.sh_grace}</dt><dd class="num">${som(c.grace)}</dd>` : ""}</dl>
       ${s.free ? `<div class="acts"><a class="btn" href="#ariza" data-shopapply="${esc(s.id)}">${T.sh_apply}</a><a class="btn ghost" href="${s.url}">${T.sh_page}</a></div>` : `<p style="color:var(--ink-3)">${T.sh_soldnote}</p>`}`;
     after(panel);
     if (scroll && innerWidth < 1080) panel.scrollIntoView({ block: "nearest", behavior: RM ? "auto" : "smooth" });
@@ -649,7 +649,7 @@
     const io = new IntersectionObserver(es => es.forEach(e => {
       if (!e.isIntersecting) return;
       const im = e.target; io.unobserve(im);
-      if ((im.complete && im.naturalWidth) || im.getBoundingClientRect().width < 120) return;
+      if ((im.complete && im.naturalWidth) || e.boundingClientRect.width < 120) return;
       const h = yukl(box(im));
       im.addEventListener("load", h.tayyor, { once: true }); im.addEventListener("error", h.tayyor, { once: true });
       if (im.complete && im.naturalWidth) h.tayyor();
