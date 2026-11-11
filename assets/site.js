@@ -61,6 +61,10 @@
   const inertBg = on => bgEls().forEach(el => on ? el.setAttribute("inert", "") : el.removeAttribute("inert"));   // fokus faqat ochiq oynada qoladi
   const closeDrawer = () => { if ($("#drawer").hidden) return; $("#drawer").hidden = true; $("#burger").setAttribute("aria-expanded", "false"); inertBg(false); lock(); };
   function toast(t, err) { const el = $("#toast"); el.textContent = cyr ? toCyr(t) : t; el.classList.toggle("err", !!err); el.hidden = false; clearTimeout(toast.h); toast.h = setTimeout(() => el.hidden = true, 2400); }
+  // ariza qayerdan kelgani: havoladagi ?from=ig (yoki utm_source) sessiya davomida eslanadi va ariza havolasiga qo'shiladi
+  const MANBA = (() => { try { const q = new URLSearchParams(location.search), v = (q.get("from") || q.get("utm_source") || "").slice(0, 24).replace(/[^\w.-]/g, "");
+    if (v) sessionStorage.setItem("manba", v); return v || sessionStorage.getItem("manba") || ""; } catch (e) { return ""; } })();
+  const pageUrl = () => { const x = new URL(location.href); if (MANBA && !x.searchParams.has("from")) x.searchParams.set("from", MANBA); return x.href; };
   function copy(text) { navigator.clipboard.writeText(text).then(() => toast(T.copied), () => toast(T.copy_fail, true)); }
 
   /* ---------- kredit: 20% / 18% / 5 yil, 1-yil faqat foiz, keyin 48 oy teng to'lov ---------- */
@@ -230,7 +234,7 @@
       const lab = el.closest("label"), f = lab && lab.firstChild;
       lines.push((f && f.nodeType === 3 ? f.textContent.replace("*", "").trim() : el.name) + ": " + v);
     });
-    lines.push(location.href);
+    lines.push(pageUrl());
     return lines.join("\n");
   }
   function via(r) {
@@ -268,7 +272,7 @@
     Object.keys(okField).forEach(n => mark(form.elements[n], bad.includes(form.elements[n])));
     if (bad.length) { r.className = "res err"; r.textContent = T.f_err; after(r); bad[0].focus(); return; }
     delete data.website;
-    data.need = form.need.selectedOptions[0].text; data.type = form.type.value ? form.type.selectedOptions[0].text : ""; data.page = location.href; data.lang = S.lang; data.ms = Date.now() - opened;
+    data.need = form.need.selectedOptions[0].text; data.type = form.type.value ? form.type.selectedOptions[0].text : ""; data.page = pageUrl(); data.lang = S.lang; data.ms = Date.now() - opened;
     if (S.endpoint) {
       try {
         const res = await fetch(S.endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
